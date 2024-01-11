@@ -1,0 +1,33 @@
+Khởi tạo project:
+composer create-project laravel/laravel example-app
+-----------------------------------------------------------------------------
+Chạy project:
+php artisan serve
+php artisan serve --host 192.168.1.13:8000
+-----------------------------------------------------------------------------
+migrate sql
+php artisan migrate
+
+php artisan make:model tableName --migration
+
+-----------------------------------------------------------------------------
+
+Chuyển link storage
+//rm storage
+php artisan storage:link
+-----------------------------------------------------------------------------
+
+Quy ước ORM
+Tên table trong SQl (xampp) là chữ thường
+Mỗi chữ cách nhau bởi _
+Là dạng số nhiều, ví dụ users, accounts,
+
+Hoặc quy ước bằng code:
+protected $table = "accounts";
+
+-----------------------------------------------------------------------------
+Lỗi QR code:
+https://stackoverflow.com/questions/69442658/laravel-error-when-installing-simple-qrcode-library
+-----------------------------------------------------------------------------
+Taạo QR code bank
+https://api.vietqr.io/MB/0840140264088/100000/HaiZukaNe/vietqr_net_2.jpg
