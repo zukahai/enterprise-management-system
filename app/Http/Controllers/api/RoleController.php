@@ -1,86 +1,67 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 
+use App\Http\Services\RoleService;
+
+
 class RoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    public $data = [];
+
+    public function __construct(RoleService $service)
+    {
+        $this->service = $service;
+    }
+
+    // Đưa ra tất cả các role
     public function index()
     {
-        return "Hello World";
+        $roles = $this->service->getAll();
+        return response()->json($roles, 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreRoleRequest  $request
-     * @return \Illuminate\Http\Response
-     */
+    /* 
+    Thêm vai trò cho hệ thống
+    StoreRoleRequest có các attribute là role_name, description
+    */
     public function store(StoreRoleRequest $request)
     {
-        //
+        // Kiểm tra xem request có lỗi không
+        $object = $request->all();
+        $object = $this->service->add($object);
+        return response()->json($object, 201, [], JSON_UNESCAPED_UNICODE);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Role  $role
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Role $role)
+    // Thông tin 1 role
+    public function show($id)
     {
-        //
+        $role = $this->service->findOrFail($id);
+        return response()->json($role, 200, [], JSON_UNESCAPED_UNICODE);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Role  $role
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Role $role)
+   /*
+   Cập nhật role
+   */
+    public function update($id, UpdateRoleRequest $request)
     {
-        //
+        $object = $this->service->update($id, $request->all());
+        return response()->json($object, 200, [], JSON_UNESCAPED_UNICODE);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateRoleRequest  $request
-     * @param  \App\Models\Role  $role
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateRoleRequest $request, Role $role)
+    /*
+    Xoá 1 role
+    */ 
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Role  $role
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Role $role)
-    {
-        //
+        $id = $this->service->delete($id);
+        return response()->json($id, 204, [], JSON_UNESCAPED_UNICODE);
     }
 }

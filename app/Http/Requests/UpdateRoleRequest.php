@@ -13,7 +13,7 @@ class UpdateRoleRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,20 @@ class UpdateRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'role_name' => 'string|min:1|unique:roles',
+            'description' => 'string|min:1',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'role_name.string' => 'Tên vai trò phải là một chuỗi.',
+            'role_name.min' => 'Tên vai trò phải có ít nhất 1 ký tự.',
+            'role_name.unique' => 'Tên vai trò đã tồn tại.',
+            
+            'description.string' => 'Mô tả phải là một chuỗi.',
+            'description.min' => 'Mô tả phải có ít nhất 1 ký tự.',
         ];
     }
 }
