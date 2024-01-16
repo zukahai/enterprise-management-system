@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateUserRequest extends FormRequest
+class ChangePassword extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,6 +25,7 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'password' => 'string|min:6',
+            'confirm_password' => 'same:password',
         ];
     }
 
@@ -32,6 +33,7 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'password.min' => 'Mật khẩu quá ngắn',
+            'confirm_password.same' => 'Xác nhận mật này khác nhau',
         ];
     }
 }

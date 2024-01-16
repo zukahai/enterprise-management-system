@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\ChangePassword;
 use App\Http\Controllers\Controller;
 use App\Http\Services\AuthService;
 use Illuminate\Support\Facades\Auth;
@@ -21,8 +22,17 @@ class UserController extends Controller
 
     public function index()
     {
+        $users = $this->service->getAll();
+        // ẩn đi cột password
+        $users->makeHidden('password');
+        return response()->json($users, 200);
+    }
+
+    public function viewLogin()
+    {
         return "Login page";
     }
+
 
  
     public function create()
@@ -36,9 +46,11 @@ class UserController extends Controller
     }
 
    
-    public function show(User $user)
+    public function show($id)
     {
-        //
+        $user = $this->service->find($id);
+        $user->makeHidden('password');
+        return response()->json($user, 200, [], JSON_UNESCAPED_UNICODE);
     }
 
    
@@ -46,17 +58,24 @@ class UserController extends Controller
     {
         //
     }
-
    
-    public function update(UpdateUserRequest $request, User $user)
+    public function update($id, UpdateUserRequest $request)
     {
-        //
+        $object = $this->service->update($id, $request->all());
+        return response()->json($object, 200, [], JSON_UNESCAPED_UNICODE);
     }
 
-  
-    public function destroy(User $user)
+    public function changePassword($id, ChangePassword $request)
     {
-        //
+        $object = $this->service->changePassword($id, $request->only('password'));
+        return response()->json($object, 200, [], JSON_UNESCAPED_UNICODE);
+    }
+
+
+    public function destroy($id)
+    {
+        $id = $this->service->delete($id);
+        return response()->json($id, 204, [], JSON_UNESCAPED_UNICODE);
     }
 
     public function login(Request $request) {

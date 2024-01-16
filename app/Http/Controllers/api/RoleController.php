@@ -42,7 +42,7 @@ class RoleController extends Controller
     // Thông tin 1 role
     public function show($id)
     {
-        $role = $this->service->findOrFail($id);
+        $role = $this->service->find($id);
         return response()->json($role, 200, [], JSON_UNESCAPED_UNICODE);
     }
 

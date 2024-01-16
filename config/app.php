@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Facade;
 
 return [
+    'DEFAULT_ROLE_USER' => env('DEFAULT_ROLE_USER', 'staff'),
 
     /*
     |--------------------------------------------------------------------------

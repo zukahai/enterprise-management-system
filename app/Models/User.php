@@ -12,4 +12,8 @@ class User extends Model implements Authenticatable
 {
     use HasFactory, HasApiTokens, AuthenticatableTrait;
     protected $guarded = [];
+
+    public function role() {
+        return $this->hasOne(Role::class, 'id', 'role_id');
+    }
 }
