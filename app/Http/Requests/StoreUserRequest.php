@@ -13,7 +13,7 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,18 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'username' => 'required|string|unique:users',
+            'password' => 'required|string|min:6',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'username.required' => 'Tên người dùng không được rỗng',
+            'username.unique' => 'Tên người dùng đã tồn tại',
+            'password.required' => 'Mật khẩu không được trống',
+            'password.min' => 'Mật khẩu quá ngắn',
         ];
     }
 }

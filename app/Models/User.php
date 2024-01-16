@@ -4,8 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 
-class User extends Model
+class User extends Model implements Authenticatable
 {
-    use HasFactory;
+    use HasFactory, HasApiTokens, AuthenticatableTrait;
+    protected $guarded = [];
 }
