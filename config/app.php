@@ -196,6 +196,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // Barryvdh\Cors\ServiceProvider::class,
+
     ],
 
     /*
@@ -211,6 +213,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        // 'Cors' => Barryvdh\Cors\Facade::class,
     ])->toArray(),
 
 ];

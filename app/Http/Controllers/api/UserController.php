@@ -14,6 +14,11 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+    public function test()
+    {
+        return response()->json(['message' => 'Hello'], 200);
+    }
    
     public function __construct(AuthService $authService)
     {
@@ -49,6 +54,9 @@ class UserController extends Controller
     public function show($id)
     {
         $user = $this->service->find($id);
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
         $user->makeHidden('password');
         return response()->json($user, 200, [], JSON_UNESCAPED_UNICODE);
     }
@@ -105,21 +113,23 @@ class UserController extends Controller
         }
     }
 
-    public function checkToken(Request $request)
-    {
+    public function checkToken(Request $request) {
         // Lấy token từ request
         $token = $request->bearerToken();
 
         if (!$token) {
-            return response()->json(['message' => $request], 401);
+            return response()->json(['message' => 'Unauthorized'], 401);
         }
 
         // Kiểm tra và lấy thông tin người dùng
         $user = Auth::user();
-
+        
         if (!$user) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
+        
+        $users = $this->service->find(7);
+        // \Illuminate\Support\Facades\Auth::login($users);
 
         // Trả về thông tin người dùng
         return response()->json(['user' => $user], 200);

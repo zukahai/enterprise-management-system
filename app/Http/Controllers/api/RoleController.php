@@ -23,7 +23,7 @@ class RoleController extends Controller
     public function index()
     {
         $roles = $this->service->getAll();
-        return response()->json($roles, 200);
+        return response()->json($roles, 200, [], JSON_UNESCAPED_UNICODE);
     }
 
 

@@ -76,4 +76,8 @@ class AuthService
         return $this->model->find($id);
     }
 
+    public function loginSystem($user) {
+        auth()->login($user);
+    }
+
 }
