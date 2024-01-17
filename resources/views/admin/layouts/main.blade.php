@@ -104,79 +104,35 @@
           </div>
 
           <div class="menu-inner-shadow"></div>
-
+          {{-- Menu main --}}
+          @yield('open-dashboard')
+          @php
+              $menus = config('menu');
+          @endphp
           <ul class="menu-inner py-1">
             <!-- Dashboards -->
-            <!-- Dashboards -->
-            <li class="menu-item active open">
+            @foreach ($menus as $menu)
+            <li class="menu-item active {{$menu['name'] == $super ? 'open' : ''}}">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-smart-home"></i>
-                <div data-i18n="Dashboards">Dashboards</div>
-                <div class="badge bg-primary rounded-pill ms-auto">5</div>
+                <i class="menu-icon tf-icons ti {{$menu['icon']}}"></i>
+                <div data-i18n="{{$menu['title']}}">{{$menu['title']}}</div>
+                {{-- <div class="badge bg-primary rounded-pill ms-auto">5</div> --}}
               </a>
+              @if(isset($menu['children']) && count($menu['children']) > 0)
               <ul class="menu-sub">
-                <li class="menu-item active">
-                  <a href="index.html" class="menu-link">
-                    <div data-i18n="Analytics">Analytics</div>
+                @foreach($menu['children'] as $child)
+                <li class="menu-item {{$child['gate'] == $super.".".$sub ? 'active' : ''}}">
+                  <a href="{{route($child['route'])}}" class="menu-link">
+                    <div data-i18n="{{$child['title']}}">{{$child['title']}}</div>
                   </a>
                 </li>
-                <li class="menu-item">
-                  <a href="dashboards-crm.html" class="menu-link">
-                    <div data-i18n="CRM">CRM</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="app-ecommerce-dashboard.html" class="menu-link">
-                    <div data-i18n="eCommerce">eCommerce</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="app-logistics-dashboard.html" class="menu-link">
-                    <div data-i18n="Logistics">Logistics</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="app-academy-dashboard.html" class="menu-link">
-                    <div data-i18n="Academy">Academydddddđ</div>
-                  </a>
-                </li>
+                @endforeach()
+                
               </ul>
+              @endif()
             </li>
 
-            <li class="menu-item active open">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-smart-home"></i>
-                <div data-i18n="Dashboards">Dashboards</div>
-                <div class="badge bg-primary rounded-pill ms-auto">5</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item active">
-                  <a href="index.html" class="menu-link">
-                    <div data-i18n="Analytics">Analytics</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="dashboards-crm.html" class="menu-link">
-                    <div data-i18n="CRM">CRM</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="app-ecommerce-dashboard.html" class="menu-link">
-                    <div data-i18n="eCommerce">eCommerce</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="app-logistics-dashboard.html" class="menu-link">
-                    <div data-i18n="Logistics">Logistics</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="app-academy-dashboard.html" class="menu-link">
-                    <div data-i18n="Academy">Academydddddđ</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
+            @endforeach()
 
 
 

@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Services\AuthService;
 use Illuminate\Support\Facades\Http;
 
-class UserController extends Controller
+class HomeController extends Controller
 {
    
     public function __construct(AuthService $authService)
@@ -16,12 +16,8 @@ class UserController extends Controller
     }
 
     public function index() {
-        return view('admin.pages.staff.index');
+        return view('admin.pages.index');
     }
 
-    public function test()
-    {
-        return response()->json(['data' => 'abc']);
-    }
 
 }

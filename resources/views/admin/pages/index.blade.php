@@ -1,5 +1,12 @@
 @extends('admin.layouts.main')
 
+@section('open-dashboard')
+  @php
+    $super = "home";
+    $sub = "index";
+  @endphp
+@endsection
+
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
