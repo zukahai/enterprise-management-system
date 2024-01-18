@@ -122,6 +122,9 @@ $(function () {
 
   if (dt_basic_table.length) {
     dt_basic = dt_basic_table.DataTable({
+      language: {
+        url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Vietnamese.json'
+      },
       ajax: 'http://127.0.0.1:8000/api/v1/account',
       columns: [
         { data: 'username' },
@@ -260,7 +263,7 @@ $(function () {
         {
           extend: 'collection',
           className: 'btn btn-label-primary dropdown-toggle me-2 waves-effect waves-light',
-          text: '<i class="ti ti-file-export me-sm-1"></i> <span class="d-none d-sm-inline-block">Export</span>',
+          text: '<i class="ti ti-file-export me-sm-1"></i> <span class="d-none d-sm-inline-block">Xuất</span>',
           buttons: [
             {
               extend: 'print',
@@ -398,7 +401,7 @@ $(function () {
           ]
         },
         {
-          text: '<i class="ti ti-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">Add New Record</span>',
+          text: '<i class="ti ti-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">Thêm nhân viên</span>',
           className: 'create-new btn btn-primary waves-effect waves-light'
         }
       ],
@@ -435,7 +438,7 @@ $(function () {
         }
       }
     });
-    $('div.head-label').html('<h5 class="card-title mb-0">DataTable with Buttons</h5>');
+    $('div.head-label').html('<h5 class="card-title mb-0">Danh sách nhân viên</h5>');
   }
 
   // Add New record

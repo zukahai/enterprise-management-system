@@ -16,15 +16,11 @@
     <!-- Page JS -->
     <script src="{{ asset('webhtml/assets/js/tables-datatables-basic.js') }}"></script>
     <script src="{{ asset('webhtml/assets/vendor/libs/moment/moment.js') }}"></script>
-    <script src="{{ asset('webhtml/assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
     <!-- Form Validation -->
-    <script src="{{asset('webhtml/assets/vendor/libs/@form-validation/umd/bundle/popular.min.js')}}"></script>
-  <script src="{{asset('webhtml/assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js')}}"></script>
-  <script src="{{asset('webhtml/assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js')}}"></script>
 @endsection
 
 @section('content')
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">DataTables /</span> Basic</h4>
+    <h4 class="py-3 mb-4"><span class="text-muted fw-light">{{$super}} /</span> {{$sub}}</h4>
 
     <!-- DataTable with Buttons -->
     <div class="card">
