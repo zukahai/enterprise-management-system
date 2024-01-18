@@ -121,6 +121,8 @@ $(function () {
   // --------------------------------------------------------------------
 
   if (dt_basic_table.length) {
+    let authToken = localStorage.getItem('authToken') || "";
+    console.log('authtoken',authToken);
     dt_basic = dt_basic_table.DataTable({
       language: {
         url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Vietnamese.json'
@@ -129,7 +131,7 @@ $(function () {
         url: 'http://127.0.0.1:8000/api/v1/account',
         type: 'GET',
         headers: {
-            'Authorization': 'Bearer 60|dLMIguMF4CR8oO77GCESuA4b4pya0DIbhI0YJfcF73ec5ae0', // Thêm header Authorization nếu cần
+            'Authorization': 'Bearer ' + authToken, // Thêm header Authorization nếu cần
         },
       },
       columns: [

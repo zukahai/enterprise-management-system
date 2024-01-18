@@ -21,6 +21,16 @@ class AuthService
         return Auth::attempt($credentials);
     }
 
+    public function loginByAccount($request) {
+        $username = $request->username;
+        $password = $request->password;
+        $user = $this->model->where('username', $username)->first();
+        if (!$user || !Hash::check($password, $user->password)) {
+            return false;
+        }
+        return $user;
+    }
+
     public function register($request) {
         $role_name_default = config('app.DEFAULT_ROLE_USER');
         $role = $this->roleService->findByRoleName($role_name_default);

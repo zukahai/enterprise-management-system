@@ -57,9 +57,27 @@
     <script src="{{asset('webhtml/assets/vendor/js/template-customizer.js')}}"></script>
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{asset('webhtml/assets/js/config.js')}}"></script>
+
+   
   </head>
 
   <body>
+    
+    @if ($authToken = Session::get('authToken'))
+    <!-- Truyền giá trị token từ PHP sang JavaScript -->
+    <script>
+        function setToken(token) {
+            localStorage.setItem('authToken', token);
+            console.log(localStorage.getItem('authToken'));
+            console.log("aaa");
+        }
+
+        // Call setToken function with the value of $authToken when the page loads
+        window.onload = function() {
+            setToken('{{ $authToken }}');
+        };
+    </script>
+@endif
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
@@ -579,10 +597,11 @@
                 <!--/ Notification -->
 
                 <!-- User -->
+                @if(auth()->check())
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="{{asset('webhtml/assets/img/avatars/1.png')}}" alt class="h-auto rounded-circle" />
+                      <img src="{{asset(auth()->user()->avata)}}" alt class="h-auto rounded-circle" />
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -591,12 +610,13 @@
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="{{asset('webhtml/assets/img/avatars/1.png')}}" alt class="h-auto rounded-circle" />
+                              <img src="{{asset(auth()->user()->avata)}}" alt class="h-auto rounded-circle" />
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-medium d-block">John Doe</span>
-                            <small class="text-muted">Admin</small>
+                            <span class="fw-medium d-block">{{auth()->user()->name}}</span>
+                            <small class="text-muted">{{auth()->user()->username}}</small>
+                            <span class="badge badge-light-success">{{auth()->user()->role->role_name}}</span>
                           </div>
                         </div>
                       </a>
@@ -607,52 +627,27 @@
                     <li>
                       <a class="dropdown-item" href="pages-profile-user.html">
                         <i class="ti ti-user-check me-2 ti-sm"></i>
-                        <span class="align-middle">My Profile</span>
+                        <span class="align-middle">Hồ sơ của tôi</span>
                       </a>
                     </li>
                     <li>
                       <a class="dropdown-item" href="pages-account-settings-account.html">
                         <i class="ti ti-settings me-2 ti-sm"></i>
-                        <span class="align-middle">Settings</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="pages-account-settings-billing.html">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 ti ti-credit-card me-2 ti-sm"></i>
-                          <span class="flex-grow-1 align-middle">Billing</span>
-                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-label-danger w-px-20 h-px-20"
-                            >2</span
-                          >
-                        </span>
+                        <span class="align-middle">Cài đặt</span>
                       </a>
                     </li>
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="pages-faq.html">
-                        <i class="ti ti-help me-2 ti-sm"></i>
-                        <span class="align-middle">FAQ</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="pages-pricing.html">
-                        <i class="ti ti-currency-dollar me-2 ti-sm"></i>
-                        <span class="align-middle">Pricing</span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
+                      <a class="dropdown-item" href="{{route('logout')}}">
                         <i class="ti ti-logout me-2 ti-sm"></i>
-                        <span class="align-middle">Log Out</span>
+                        <span class="align-middle">Đăng xuất</span>
                       </a>
                     </li>
                   </ul>
                 </li>
+                @endif()
                 <!--/ User -->
               </ul>
             </div>

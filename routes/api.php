@@ -26,5 +26,6 @@ Route::prefix('/v1')->middleware('api')->group(function () {
         Route::put('/changePassword/{id}', [UserController::class, 'changePassword'])->name('api.account.changePassword');
         Route::delete('/{id}', [UserController::class, 'destroy'])->name('api.account.destroy');
     });
+
     Route::get('/test', [UserController::class, 'test'])->name('api.test');
 });
