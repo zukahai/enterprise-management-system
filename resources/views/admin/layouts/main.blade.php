@@ -58,26 +58,45 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{asset('webhtml/assets/js/config.js')}}"></script>
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
+
+   
    
   </head>
 
-  <body>
+  <body @yield('onload')>
+    <script>
+      function loadPage(result, type) {
+        console.log("aaa");
+          if (result !== null) {
+              if (type === 'success')
+                  toastr.success(result);
+              if (type === 'danger')
+                  toastr.error(result);
+              if (type === 'warning')
+                  toastr.warning(result);
+              if (type === 'info')
+                  toastr.info(result);
+          }
+      };
+  </script>
     
     @if ($authToken = Session::get('authToken'))
     <!-- Truyền giá trị token từ PHP sang JavaScript -->
     <script>
         function setToken(token) {
             localStorage.setItem('authToken', token);
-            console.log(localStorage.getItem('authToken'));
-            console.log("aaa");
         }
 
         // Call setToken function with the value of $authToken when the page loads
         window.onload = function() {
             setToken('{{ $authToken }}');
+            loadPage('Đăng nhập thành công', 'success');
         };
     </script>
-@endif
+    @endif
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
@@ -751,5 +770,7 @@
     <script src="{{asset('webhtml/assets/js/dashboards-analytics.js')}}"></script>
 
     @yield('js-other')
+
+    
   </body>
 </html>

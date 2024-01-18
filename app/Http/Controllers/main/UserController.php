@@ -38,7 +38,7 @@ class UserController extends Controller
         if ($user) {
             auth()->login($user);
             $token = auth()->user()->createToken('auth-token')->plainTextToken;
-            return redirect(route('home'))->with('authToken', $token)->with('success', 'Đăng nhập thành công');
+            return redirect(route('home'))->with('authToken', $token);
         } else {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
