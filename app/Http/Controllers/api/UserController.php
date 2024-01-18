@@ -11,6 +11,7 @@ use App\Http\Services\AuthService;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 
 class UserController extends Controller
 {
@@ -25,12 +26,37 @@ class UserController extends Controller
         $this->service = $authService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $users = $this->service->getAll();
-        // ẩn đi cột password
-        $users->makeHidden('password');
-        return response()->json(['data' => $users], 200);
+        $json_error = [
+            'message' => 'Unauthenticated.',
+            'error' => 'Unauthenticated.',
+            'data' => []
+        ];
+        try {
+            $token = $request->bearerToken();
+
+            if (!$token) {
+                return response()->json([$json_error], 200);
+            }
+
+            // Kiểm tra và lấy thông tin người dùng
+            $user = Auth::user();
+            
+            if (!$user) {
+                return response()->json([$json_error ], 200);
+            }
+
+            if ($user->role->role_name != 'admin') {
+                return response()->json([$json_error], 200);
+            }
+            $users = $this->service->getAll();
+            // ẩn đi cột password
+            $users->makeHidden('password');
+            return response()->json(['data' => $users], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['data' => []], 200);
+        }
     }
 
     public function viewLogin()
@@ -127,9 +153,6 @@ class UserController extends Controller
         if (!$user) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
-        
-        $users = $this->service->find(7);
-        // \Illuminate\Support\Facades\Auth::login($users);
 
         // Trả về thông tin người dùng
         return response()->json(['user' => $user], 200);

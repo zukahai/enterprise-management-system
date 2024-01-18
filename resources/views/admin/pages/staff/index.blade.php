@@ -8,11 +8,6 @@
 @endsection
 
 @section('js-other')
-    <script>
-      var usersData = @json($users);
-      console.log(usersData);
-      
-    </script>
     <!-- Page JS -->
     <script src="{{ asset('webhtml/assets/js/tables-datatables-basic.js') }}"></script>
     <script src="{{ asset('webhtml/assets/vendor/libs/moment/moment.js') }}"></script>

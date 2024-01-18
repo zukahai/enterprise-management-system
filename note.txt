@@ -31,3 +31,5 @@ https://stackoverflow.com/questions/69442658/laravel-error-when-installing-simpl
 -----------------------------------------------------------------------------
 Taạo QR code bank
 https://api.vietqr.io/MB/0840140264088/100000/HaiZukaNe/vietqr_net_2.jpg
+
+Nếu lỗi auth:sanctum thì mặc định thực hiện app/Exceptions/Handler.php

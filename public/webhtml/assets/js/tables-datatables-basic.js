@@ -125,7 +125,13 @@ $(function () {
       language: {
         url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Vietnamese.json'
       },
-      ajax: 'http://127.0.0.1:8000/api/v1/account',
+      ajax: {
+        url: 'http://127.0.0.1:8000/api/v1/account',
+        type: 'GET',
+        headers: {
+            'Authorization': 'Bearer 60|dLMIguMF4CR8oO77GCESuA4b4pya0DIbhI0YJfcF73ec5ae0', // Thêm header Authorization nếu cần
+        },
+      },
       columns: [
         { data: 'username' },
         { data: 'id' },
