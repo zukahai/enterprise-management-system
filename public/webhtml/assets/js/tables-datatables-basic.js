@@ -122,16 +122,16 @@ $(function () {
 
   if (dt_basic_table.length) {
     dt_basic = dt_basic_table.DataTable({
-      ajax: assetsPath + 'json/table-datatable.json',
+      ajax: 'http://127.0.0.1:8000/api/v1/account',
       columns: [
-        { data: '' },
+        { data: 'username' },
         { data: 'id' },
         { data: 'id' },
-        { data: 'full_name' },
+        { data: 'name' },
         { data: 'email' },
-        { data: 'start_date' },
-        { data: 'salary' },
-        { data: 'status' },
+        { data: 'phone_number' },
+        { data: 'cccd' },
+        { data: 'birthday' },
         { data: '' }
       ],
       columnDefs: [
@@ -170,19 +170,18 @@ $(function () {
           targets: 3,
           responsivePriority: 4,
           render: function (data, type, full, meta) {
-            var $user_img = full['avatar'],
-              $name = full['full_name'],
-              $post = full['post'];
+            var $user_img = full['avata'],
+              $name = full['name'],
+              $post = full['username'];
             if ($user_img) {
               // For Avatar image
               var $output =
-                '<img src="' + assetsPath + 'img/avatars/' + $user_img + '" alt="Avatar" class="rounded-circle">';
+                '<img src="' +'/' + $user_img + '" alt="Avatar" class="rounded-circle">';
             } else {
               // For Avatar badge
               var stateNum = Math.floor(Math.random() * 6);
               var states = ['success', 'danger', 'warning', 'info', 'primary', 'secondary'];
               var $state = states[stateNum],
-                $name = full['full_name'],
                 $initials = $name.match(/\b\w/g) || [];
               $initials = (($initials.shift() || '') + ($initials.pop() || '')).toUpperCase();
               $output = '<span class="avatar-initial rounded-circle bg-label-' + $state + '">' + $initials + '</span>';

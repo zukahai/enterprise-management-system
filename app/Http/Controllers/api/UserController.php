@@ -30,7 +30,7 @@ class UserController extends Controller
         $users = $this->service->getAll();
         // ẩn đi cột password
         $users->makeHidden('password');
-        return response()->json($users, 200);
+        return response()->json(['data' => $users], 200);
     }
 
     public function viewLogin()

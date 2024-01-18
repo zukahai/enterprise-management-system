@@ -33,7 +33,7 @@ class AuthService
     }
 
     public function getAll() {
-        return $this->model->orderBy('id','asc')->paginate();
+        return $this->model->orderBy('id','asc')->get();
     }
 
     public function delete($id) {

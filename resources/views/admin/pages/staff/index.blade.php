@@ -35,15 +35,15 @@
                         <th></th>
                         <th></th>
                         <th>id</th>
-                        <th>Name</th>
+                        <th>Nhân Viên</th>
                         <th>Email</th>
-                        <th>Date</th>
-                        <th>Salary</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th>Số điện thoại</th>
+                        <th>CCCD</th>
+                        <th>Ngày sinh</th>
+                        <th>Thao tác</th>
                     </tr>
                 </thead>
-                <tbody>
+                {{-- <tbody>
                     <tr class="odd">
                         <td class="control" tabindex="0" style=""></td>
                         <td class="  dt-checkboxes-cell"><input type="checkbox" class="dt-checkboxes form-check-input"></td>
@@ -278,7 +278,7 @@
                                     class="text-primary ti ti-pencil"></i></a>
                         </td>
                     </tr>
-                </tbody>
+                </tbody> --}}
             </table>
         </div>
     </div>
