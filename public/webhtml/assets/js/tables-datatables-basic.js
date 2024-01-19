@@ -122,13 +122,14 @@ $(function () {
 
   if (dt_basic_table.length) {
     let authToken = localStorage.getItem('authToken') || "";
+    var domain = document.documentElement.getAttribute('data-domain');
     console.log('authtoken',authToken);
     dt_basic = dt_basic_table.DataTable({
       language: {
         url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Vietnamese.json'
       },
       ajax: {
-        url: 'http://127.0.0.1:8000/api/v1/account',
+        url: domain + '/api/v1/account',
         type: 'GET',
         headers: {
             'Authorization': 'Bearer ' + authToken, // Thêm header Authorization nếu cần

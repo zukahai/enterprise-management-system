@@ -24,6 +24,6 @@ class AuthMiddleware
         }
 
         // Người dùng chưa đăng nhập, chuyển hướng đến route login
-        return redirect()->route('login');
+        return redirect()->route('login')->with('warning', 'Bạn cần đăng nhập');
     }
 }

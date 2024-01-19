@@ -40,13 +40,13 @@ class UserController extends Controller
             $token = auth()->user()->createToken('auth-token')->plainTextToken;
             return redirect(route('home'))->with('authToken', $token);
         } else {
-            return response()->json(['message' => 'Unauthorized'], 401);
+            return redirect()->back()->with('error', "Tài khoản hoặc mật khẩu chưa chính xác!");
         }
     }
 
     public function logout() {
         auth()->logout();
-        return redirect('/login')->with('success', 'Logout successfully');
+        return redirect('/login')->with('success', 'Bạn đã đăng xuất tài khoản');
     }
 
 }

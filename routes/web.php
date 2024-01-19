@@ -6,7 +6,7 @@ use App\Http\Controllers\main\HomeController;
 
 Route::prefix('/')->middleware('auth.custom')->group(function () {
     Route::get('/', [HomeController::class,'index'])->name('home');
-    Route::prefix('/staff')->group(function () {
+    Route::prefix('/staff')->middleware('admin')->group(function () {
         Route::get('/', [UserController::class,'index'])->name('staff.index');
     });
 

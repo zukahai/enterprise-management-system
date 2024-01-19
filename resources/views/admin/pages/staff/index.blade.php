@@ -2,8 +2,8 @@
 
 @section('open-dashboard')
     @php
-        $super = 'staff';
-        $sub = 'index';
+        $super = 'info';
+        $sub = 'staff';
     @endphp
 @endsection
 
