@@ -14,11 +14,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
           username: {
             validators: {
               notEmpty: {
-                message: 'Please enter username'
-              },
-              stringLength: {
-                min: 6,
-                message: 'Username must be more than 6 characters'
+                message: 'Vui lòng nhập tên người dùng'
               }
             }
           },
@@ -46,11 +42,11 @@ document.addEventListener('DOMContentLoaded', function (e) {
           password: {
             validators: {
               notEmpty: {
-                message: 'Please enter your password'
+                message: 'Vui lòng nhập mật khẩu'
               },
               stringLength: {
                 min: 6,
-                message: 'Password must be more than 6 characters'
+                message: 'Mật khẩu không ngắn hơn 6 kí tự'
               }
             }
           },

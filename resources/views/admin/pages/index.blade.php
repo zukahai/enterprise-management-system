@@ -20,8 +20,8 @@
 @endsection
 
 @section('content')
-
-    <div class="row">
+  <h1>Trang chủ</h1>
+    {{-- <div class="row">
       <!-- Website Analytics -->
       <div class="col-lg-6 mb-4">
         <div
@@ -854,6 +854,5 @@
         </div>
       </div>
       <!--/ Projects table -->
-    </div>
-  </div>
+    </div> --}}
 @endsection
