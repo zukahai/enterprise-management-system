@@ -60,6 +60,6 @@ class Handler extends ExceptionHandler
         //     return response()->json([$json_error], 401);
         // }
 
-        return response()->json([$json_error], 200);
+        return response()->json($json_error, 200);
     }
 }

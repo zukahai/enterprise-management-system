@@ -61,7 +61,7 @@
         </div>
         <div class="offcanvas-body flex-grow-1">
             <form class="add-new-record pt-0 row g-2" id="form-add-new-record" method="POST"
-                action="{{ route('staff.create') }}">
+                action="{{ route('staff.create') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="col-sm-12">
                     <label class="form-label" for="username">Tên đăng nhập <span
@@ -123,7 +123,8 @@
                     <div class="input-group input-group-merge">
                         <span id="birthday" class="input-group-text"><i class="ti ti-calendar"></i></span>
                         <input type="date" class="form-control dt-date" id="birthday" name="birthday"
-                            aria-describedby="birthday" placeholder="MM/DD/YYYY" aria-label="MM/DD/YYYY" />
+                            aria-describedby="birthday" placeholder="dd-mm-yyyy" value=""
+                            min="1800-01-01" />
                     </div>
                 </div>
                 <div class="col-sm-12">
@@ -138,7 +139,7 @@
                     <label class="form-label" for="address">Địa chỉ</label>
                     <div class="input-group input-group-merge">
                         <span id="address" class="input-group-text"><i class="ti ti-currency-dollar"></i></span>
-                        <input type="number" id="address" name="address" class="form-control dt-salary"
+                        <input type="text" id="address" name="address" class="form-control dt-salary"
                             placeholder="Hà Nội" aria-label="Hà Nội" aria-describedby="address" />
                     </div>
                 </div>
@@ -166,6 +167,14 @@
                         <input type="number" id="allowance" name="allowance" class="form-control dt-salary"
                             placeholder="3000000" aria-label="250000" aria-describedby="allowance" value="0"
                             min="0" />
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <label class="form-label" for="avata">Ảnh đại diện</label>
+                    <div class="input-group input-group-merge">
+                        <span id="avata" class="input-group-text"><i class="ti ti-currency-dollar"></i></span>
+                        <input type="file" id="avata" name="avata" class="form-control dt-salary"
+                            placeholder="3000000" aria-label="250000" aria-describedby="avata"/>
                     </div>
                 </div>
                 <div class="col-sm-12">

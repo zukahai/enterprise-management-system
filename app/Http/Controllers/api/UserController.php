@@ -30,44 +30,38 @@ class UserController extends Controller
     {
         $json_error = [
             'message' => 'Unauthenticated.',
-            'error' => 'Unauthenticated.',
             'data' => []
         ];
-        try {
-            $token = $request->bearerToken();
+        $token = $request->bearerToken();
 
-            if (!$token) {
-                return response()->json([$json_error], 200);
-            }
-
-            // Kiểm tra và lấy thông tin người dùng
-            $user = Auth::user();
-            
-            if (!$user) {
-                return response()->json([$json_error ], 200);
-            }
-
-            if ($user->role->role_name != 'admin') {
-                return response()->json([$json_error], 200);
-            }
-            $users = $this->service->getAll();
-            // ẩn đi cột password
-            $users->makeHidden('password');
-            return response()->json(['data' => $users], 200);
-        } catch (\Throwable $th) {
-            return response()->json(['data' => []], 200);
+        if (!$token) {
+            return response()->json([$json_error], 200);
         }
+
+        // Kiểm tra và lấy thông tin người dùng
+        $user = Auth::user();
+        
+        if (!$user) {
+            return response()->json([$json_error ], 200);
+        }
+
+        if ($user->role->role_name != 'admin') {
+            return response()->json([$json_error], 200);
+        }
+        $users = $this->service->getAll();
+        // ẩn đi cột password
+        $users->makeHidden('password');
+        return response()->json(['data' => $users], 200);
+       
     }
 
-    public function viewLogin()
-    {
+    public function viewLogin(){
         return "Login page";
     }
 
 
  
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -106,10 +100,31 @@ class UserController extends Controller
     }
 
 
-    public function destroy($id)
-    {
-        $id = $this->service->delete($id);
-        return response()->json($id, 204, [], JSON_UNESCAPED_UNICODE);
+    public function destroy(Request $request, $id){
+        $json_error = [
+            'message' => 'Unauthenticated.',
+            'data' => []
+        ];
+        $token = $request->bearerToken();
+
+        if (!$token) {
+            return response()->json($json_error, 200);
+        }
+        
+
+        // Kiểm tra và lấy thông tin người dùng
+        $user = Auth::user();
+        
+        if (!$user) {
+            return response()->json($json_error, 200);
+        }
+        
+
+        if ($user->role->role_name != 'admin') {
+            return response()->json([$user->role], 200);
+        }
+        $id_rp = $this->service->delete($id);
+        return response()->json(['data' => $id_rp], 200, [], JSON_UNESCAPED_UNICODE);
     }
 
     public function login(Request $request) {

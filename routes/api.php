@@ -24,7 +24,7 @@ Route::prefix('/v1')->middleware('api')->group(function () {
         Route::get('/{id}', [UserController::class, 'show'])->name('api.account.show');
         Route::put('/{id}', [UserController::class, 'update'])->name('api.account.update');
         Route::put('/changePassword/{id}', [UserController::class, 'changePassword'])->name('api.account.changePassword');
-        Route::delete('/{id}', [UserController::class, 'destroy'])->name('api.account.destroy');
+        Route::delete('/{id}', [UserController::class, 'destroy'])->middleware(['auth:sanctum'])->name('api.account.destroy');
     });
 
     Route::get('/test', [UserController::class, 'test'])->name('api.test');

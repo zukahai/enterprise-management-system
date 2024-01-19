@@ -33,7 +33,17 @@ class UserController extends Controller
     public function create(StoreUserRequest $request) {
         if ($request->password != $request->password2)
             return redirect()->route('staff.index')->with('warning','Mật khẩu nhập lại không trùng khớp');
-        $object = $request->only('username', 'password', 'name', 'email', 'date', 'cccd', 'address', 'phone_number', 'business_day', 'allowance');
+
+        $object = $request->only('username', 'password', 'name', 'email', 'date', 'cccd', 'address', 'phone_number', 'business_day', 'allowance', 'birthday');
+
+        // Xử lí ảnh
+        if ($request->hasFile('avata')) {
+            $file = $request->avata;
+            $path = $file->store('images/avatas/post');
+            $file->move(public_path('images/avatas/post'), $path);
+            $object['avata'] = $path;
+        } 
+        
         $user = $this->service->create($object);
         if ($user)
             return redirect()->route('staff.index')->with('success','Thêm nhân viên thành công');

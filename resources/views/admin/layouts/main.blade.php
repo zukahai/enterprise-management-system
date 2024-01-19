@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Công Ty Hoàng Phát</title>
 
     <meta name="description" content="" />
@@ -62,7 +62,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
 
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 
 </head>
@@ -70,7 +70,6 @@
 <body @yield('onload')>
     <script>
         function loadPage(result, type) {
-            console.log("aaa");
             if (result !== null) {
                 if (type === 'success')
                     toastr.success(result);

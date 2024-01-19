@@ -77,6 +77,8 @@ class AuthService
     public function delete($id) {
         $ojbect= $this->model->find($id);
         if (!$ojbect)  return;
+        if ($ojbect->role->role_name == 'admin')
+            return;
         $ojbect->delete();
         return $id;
     }

@@ -186,7 +186,7 @@ $(function () {
         {
           // Actions
           targets: -1,
-          title: 'Actions',
+          title: 'Thao tác',
           orderable: false,
           searchable: false,
           render: function (data, type, full, meta) {
@@ -194,10 +194,9 @@ $(function () {
               '<div class="d-inline-block">' +
               '<a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>' +
               '<ul class="dropdown-menu dropdown-menu-end m-0">' +
-              '<li><a href="javascript:;" class="dropdown-item">Details</a></li>' +
-              '<li><a href="javascript:;" class="dropdown-item">Archive</a></li>' +
+              '<li><a href="javascript:;" class="dropdown-item">Hồ sơ</a></li>' +
               '<div class="dropdown-divider"></div>' +
-              '<li><a href="javascript:;" class="dropdown-item text-danger delete-record">Delete</a></li>' +
+              '<li><a href="javascript:;" class="dropdown-item text-danger delete-record" data-id=' + full['id'] + '>Xoá ' + full['name'] + '</a></li>' +
               '</ul>' +
               '</div>' +
               '<a href="javascript:;" class="btn btn-sm btn-icon item-edit"><i class="text-primary ti ti-pencil"></i></a>'
@@ -423,7 +422,32 @@ $(function () {
 
   // Delete Record
   $('.datatables-basic tbody').on('click', '.delete-record', function () {
-    dt_basic.row($(this).parents('tr')).remove().draw();
+    let authToken = localStorage.getItem('authToken') || "";
+    let id = $(this).data('id');
+    let clickedRow = $(this).closest('tr');
+  
+    // Get CSRF token value from the meta tag
+    let csrfToken = $('meta[name="csrf-token"]').attr('content');
+  
+    $.ajax({
+      type: 'DELETE',
+      url: domain + '/api/v1/account/' + id,
+      headers: {
+        'Authorization': 'Bearer ' + authToken,
+        'X-CSRF-TOKEN': csrfToken
+      }
+    }).done(function (data) {
+      if (data.data != null && data.data != undefined && data.data != []) {
+        console.log(data.data);
+        dt_basic.row(clickedRow).remove().draw();
+        toastr.success("Xóa nhân viên thành công");
+      } else {
+        toastr.error("Xóa nhân viên thất bại");
+      }
+     
+    }).fail(function (error) {
+      console.log(error);
+    });
   });
 
 
