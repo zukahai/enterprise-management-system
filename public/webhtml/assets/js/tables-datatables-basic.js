@@ -18,8 +18,9 @@ document.addEventListener('DOMContentLoaded', function (e) {
         newRecord.addEventListener('click', function () {
           offCanvasEl = new bootstrap.Offcanvas(offCanvasElement);
           // Empty fields on offCanvas open
-          (offCanvasElement.querySelector('.dt-full-name').value = ''),
-            (offCanvasElement.querySelector('.dt-post').value = ''),
+          (offCanvasElement.querySelector('.dt-username').value = ''),
+            (offCanvasElement.querySelector('.dt-password').value = ''),
+            (offCanvasElement.querySelector('.dt-password').value = ''),
             (offCanvasElement.querySelector('.dt-email').value = ''),
             (offCanvasElement.querySelector('.dt-date').value = ''),
             (offCanvasElement.querySelector('.dt-salary').value = '');
@@ -30,84 +31,24 @@ document.addEventListener('DOMContentLoaded', function (e) {
     }, 200);
 
     // Form validation for Add new record
-    fv = FormValidation.formValidation(formAddNewRecord, {
-      fields: {
-        basicFullname: {
-          validators: {
-            notEmpty: {
-              message: 'The name is required'
-            }
-          }
-        },
-        basicPost: {
-          validators: {
-            notEmpty: {
-              message: 'Post field is required'
-            }
-          }
-        },
-        basicEmail: {
-          validators: {
-            notEmpty: {
-              message: 'The Email is required'
-            },
-            emailAddress: {
-              message: 'The value is not a valid email address'
-            }
-          }
-        },
-        basicDate: {
-          validators: {
-            notEmpty: {
-              message: 'Joining Date is required'
-            },
-            date: {
-              format: 'MM/DD/YYYY',
-              message: 'The value is not a valid date'
-            }
-          }
-        },
-        basicSalary: {
-          validators: {
-            notEmpty: {
-              message: 'Basic Salary is required'
-            }
-          }
-        }
-      },
-      plugins: {
-        trigger: new FormValidation.plugins.Trigger(),
-        bootstrap5: new FormValidation.plugins.Bootstrap5({
-          // Use this for enabling/changing valid/invalid class
-          // eleInvalidClass: '',
-          eleValidClass: '',
-          rowSelector: '.col-sm-12'
-        }),
-        submitButton: new FormValidation.plugins.SubmitButton(),
-        // defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
-        autoFocus: new FormValidation.plugins.AutoFocus()
-      },
-      init: instance => {
-        instance.on('plugins.message.placed', function (e) {
-          if (e.element.parentElement.classList.contains('input-group')) {
-            e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
-          }
-        });
-      }
-    });
+   
+
+    
+
 
     // FlatPickr Initialization & Validation
-    flatpickr(formAddNewRecord.querySelector('[name="basicDate"]'), {
-      enableTime: false,
-      // See https://flatpickr.js.org/formatting/
-      dateFormat: 'm/d/Y',
-      // After selecting a date, we need to revalidate the field
-      onChange: function () {
-        fv.revalidateField('basicDate');
-      }
-    });
+    // flatpickr(formAddNewRecord.querySelector('[name="basicDate"]'), {
+    //   enableTime: false,
+    //   // See https://flatpickr.js.org/formatting/
+    //   dateFormat: 'm/d/Y',
+    //   // After selecting a date, we need to revalidate the field
+    //   onChange: function () {
+    //     fv.revalidateField('basicDate');
+    //   }
+    // });
   })();
 });
+
 
 // datatable (jquery)
 $(function () {
@@ -123,7 +64,7 @@ $(function () {
   if (dt_basic_table.length) {
     let authToken = localStorage.getItem('authToken') || "";
     var domain = document.documentElement.getAttribute('data-domain');
-    console.log('authtoken',authToken);
+    // console.log('authtoken',authToken);
     dt_basic = dt_basic_table.DataTable({
       language: {
         url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Vietnamese.json'
@@ -132,7 +73,7 @@ $(function () {
         url: domain + '/api/v1/account',
         type: 'GET',
         headers: {
-            'Authorization': 'Bearer ' + authToken, // Thêm header Authorization nếu cần
+            'Authorization': 'Bearer ' + authToken,
         },
       },
       columns: [
@@ -454,31 +395,31 @@ $(function () {
   // ? Remove/Update this code as per your requirements
   var count = 101;
   // On form submit, if form is valid
-  fv.on('core.form.valid', function () {
-    var $new_name = $('.add-new-record .dt-full-name').val(),
-      $new_post = $('.add-new-record .dt-post').val(),
-      $new_email = $('.add-new-record .dt-email').val(),
-      $new_date = $('.add-new-record .dt-date').val(),
-      $new_salary = $('.add-new-record .dt-salary').val();
+  // fv.on('core.form.valid', function () {
+  //   var $new_name = $('.add-new-record .dt-full-name').val(),
+  //     $new_post = $('.add-new-record .dt-post').val(),
+  //     $new_email = $('.add-new-record .dt-email').val(),
+  //     $new_date = $('.add-new-record .dt-date').val(),
+  //     $new_salary = $('.add-new-record .dt-salary').val();
 
-    if ($new_name != '') {
-      dt_basic.row
-        .add({
-          id: count,
-          full_name: $new_name,
-          post: $new_post,
-          email: $new_email,
-          start_date: $new_date,
-          salary: '$' + $new_salary,
-          status: 5
-        })
-        .draw();
-      count++;
+  //   if ($new_name != '') {
+  //     dt_basic.row
+  //       .add({
+  //         id: count,
+  //         full_name: $new_name,
+  //         post: $new_post,
+  //         email: $new_email,
+  //         start_date: $new_date,
+  //         salary: '$' + $new_salary,
+  //         status: 5
+  //       })
+  //       .draw();
+  //     count++;
 
-      // Hide offcanvas using javascript method
-      offCanvasEl.hide();
-    }
-  });
+  //     // Hide offcanvas using javascript method
+  //     offCanvasEl.hide();
+  //   }
+  // });
 
   // Delete Record
   $('.datatables-basic tbody').on('click', '.delete-record', function () {

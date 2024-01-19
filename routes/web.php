@@ -8,6 +8,7 @@ Route::prefix('/')->middleware('auth.custom')->group(function () {
     Route::get('/', [HomeController::class,'index'])->name('home');
     Route::prefix('/staff')->middleware('admin')->group(function () {
         Route::get('/', [UserController::class,'index'])->name('staff.index');
+        Route::post('/', [UserController::class,'create'])->name('staff.create');
     });
 
     Route::prefix('/profile')->group(function () {

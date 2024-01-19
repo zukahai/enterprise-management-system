@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Services\AuthService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Http\Requests\StoreUserRequest;
 
 class UserController extends Controller
 {
@@ -27,6 +28,16 @@ class UserController extends Controller
 
     public function profile() {
         return auth()->user();
+    }
+
+    public function create(StoreUserRequest $request) {
+        if ($request->password != $request->password2)
+            return redirect()->route('staff.index')->with('warning','Mật khẩu nhập lại không trùng khớp');
+        $object = $request->only('username', 'password', 'name', 'email', 'date', 'cccd', 'address', 'phone_number', 'business_day', 'allowance');
+        $user = $this->service->create($object);
+        if ($user)
+            return redirect()->route('staff.index')->with('success','Thêm nhân viên thành công');
+        return redirect()->route('staff.index')->with('error','Không thêm được nhân viên');
     }
 
     public function loginPage() {

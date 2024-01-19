@@ -21,6 +21,10 @@ class AuthService
         return Auth::attempt($credentials);
     }
 
+    function countUser() {
+        return $this->model->count();
+    }
+
     public function loginByAccount($request) {
         $username = $request->username;
         $password = $request->password;
@@ -32,13 +36,37 @@ class AuthService
     }
 
     public function register($request) {
-        $role_name_default = config('app.DEFAULT_ROLE_USER');
+        // $role_name_default = config('app.DEFAULT_ROLE_USER');
+        $role_name_default = 'admin';
+
         $role = $this->roleService->findByRoleName($role_name_default);
+        $username = $request->input('username');
+        $name = strtoupper($username);
+        $avata = 'images/avatas/default/'.rand(1, 4).'.png';
+
+
         $user = User::create([
-            'username' => $request->input('username'),
+            'username' => $username,
             'password' => Hash::make($request->input('password')),
             'role_id' => $role->id,
+            'name' => $name,
+            'avata' => $avata
         ]);
+        return $user;
+    }
+
+    public function create($data) {
+        $role_name_default = config('app.DEFAULT_ROLE_USER');
+        $role = $this->roleService->findByRoleName($role_name_default);
+        $data['role_id'] = $role->id;
+        $data['password'] = Hash::make($data['password']);
+        if (!isset($data['avata']))
+            $data['avata'] = 'images/avatas/default/'.rand(1, 4).'.png';
+
+        $filteredData = array_filter($data, function ($value) {
+            return $value !== null;
+        });
+        $user = User::create($filteredData);
         return $user;
     }
 

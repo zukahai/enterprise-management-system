@@ -128,6 +128,10 @@ class UserController extends Controller
 
     public function register(StoreUserRequest $request)
     {
+        if ($this->service->countUser() > 0)
+        {
+            return response()->json(['message' => 'Count User > 1'], 200);
+        }
         // Tạo user mới
         $user = $this->service->register($request);
 
