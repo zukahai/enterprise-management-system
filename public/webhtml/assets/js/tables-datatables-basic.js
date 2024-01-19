@@ -77,16 +77,16 @@ $(function () {
         },
       },
       columns: [
-        { data: 'username' },
-        { data: 'id' },
-        { data: 'id' },
-        { data: 'name' },
-        { data: 'email' },
-        { data: 'phone_number' },
-        { data: 'cccd' },
-        { data: 'birthday' },
-        { data: '' }
-      ],
+        { data: 'username', width: '10%' }, 
+        { data: 'id', visible: false },
+        { data: 'id', searchable: false, visible: false },
+        { data: 'name', width: '15%' }, 
+        { data: 'email', width: '20%' },  
+        { data: 'phone_number', width: '10%' },  
+        { data: 'cccd', width: '15%' },  
+        { data: 'birthday', width: '10%' },  
+        { data: '', orderable: false, width: '20%' } 
+    ],
       columnDefs: [
         {
           // For Responsive

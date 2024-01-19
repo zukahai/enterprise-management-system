@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('note')->default(''); // Ghi chú
             $table->unsignedBigInteger('active')->default(1); // 1 là hoạt động, 0 là bị khoá
             $table->unsignedBigInteger('role_id');
-            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
+            $table->foreign('role_id')->references('id')->on('roles');
             $table->rememberToken();
             $table->timestamps();
         });
