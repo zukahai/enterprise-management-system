@@ -71,14 +71,36 @@ class UserController extends Controller
     }
 
    
-    public function show($id)
+    public function show(Request $request, $id)
     {
+        $json_error = [
+            'message' => 'Unauthenticated.',
+            'data' => []
+        ];
+        $token = $request->bearerToken();
+
+        if (!$token) {
+            return response()->json($json_error, 200);
+        }
+        
+
+        // Kiểm tra và lấy thông tin người dùng
+        $user = Auth::user();
+        
+        if (!$user) {
+            return response()->json($json_error, 200);
+        }
+        
+        if ($user->role->role_name != 'admin') {
+            return response()->json([$user->role], 200);
+        }
+
         $user = $this->service->find($id);
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
         $user->makeHidden('password');
-        return response()->json($user, 200, [], JSON_UNESCAPED_UNICODE);
+        return response()->json(['data' => $user], 200, [], JSON_UNESCAPED_UNICODE);
     }
 
    
