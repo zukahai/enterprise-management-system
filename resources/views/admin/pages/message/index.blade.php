@@ -11,7 +11,8 @@
 @endsection
 
 @section('js-other')
-<script src="{{asset('webhtml/assets/js/app-chat.js')}}"></script>
+    <script src="{{asset('webhtml/assets/js/app-chat.js')}}"></script>
+    <script src="{{asset('webhtml/assets/vendor/libs/bootstrap-maxlength/bootstrap-maxlength.js')}}"></script>
 @endsection
 
 @section('content')

@@ -262,18 +262,18 @@
                                 <ul class="dropdown-menu dropdown-menu-end dropdown-styles">
                                     <li>
                                         <a class="dropdown-item" href="javascript:void(0);" data-theme="light">
-                                            <span class="align-middle"><i class="ti ti-sun me-2"></i>Light</span>
+                                            <span class="align-middle"><i class="ti ti-sun me-2"></i>Sáng</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="javascript:void(0);" data-theme="dark">
-                                            <span class="align-middle"><i class="ti ti-moon me-2"></i>Dark</span>
+                                            <span class="align-middle"><i class="ti ti-moon me-2"></i>Tối</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="javascript:void(0);" data-theme="system">
                                             <span class="align-middle"><i
-                                                    class="ti ti-device-desktop me-2"></i>System</span>
+                                                    class="ti ti-device-desktop me-2"></i>Hệ thống</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -282,9 +282,9 @@
 
                             <!-- Quick links  -->
                             <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown me-2 me-xl-0">
-                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
-                                    data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                                    <i class="ti ti-layout-grid-add ti-md"></i>
+                                <a class="nav-link dropdown-toggle hide-arrow" href="{{route('message')}}">
+                                    <i class="fa-regular fa-comment" style="font-size: 24px;"></i>
+                                    <span class="badge bg-danger rounded-pill badge-notifications">2</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end py-0">
                                     <div class="dropdown-menu-header border-bottom">
