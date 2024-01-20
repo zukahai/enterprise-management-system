@@ -9,7 +9,11 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Công Ty Hoàng Phát</title>
+    @yield('title')
+    @php
+        $title = isset($title) ? $title : 'Công Ty Hoàng Phát';
+    @endphp
+    <title>{{$title}}</title>
 
     <meta name="description" content="" />
 
@@ -63,6 +67,8 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    @yield('link-other-head')
 
 
 </head>
@@ -121,6 +127,10 @@
                 <div class="menu-inner-shadow"></div>
                 {{-- Menu main --}}
                 @yield('open-dashboard')
+                @php
+                    $super = isset($super) ? $super : '';
+                    $sub = isset($sub) ? $sub : '';
+                @endphp
                 @php
                     $menus = config('menu');
                 @endphp
