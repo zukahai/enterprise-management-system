@@ -16,7 +16,6 @@ Route::prefix('/v1')->middleware('api')->group(function () {
     });
 
     Route::prefix('/account')->middleware(['auth:sanctum'])->group(function () {
-        Route::post('/register', [UserController::class, 'register'])->name('api.account.register');
         
         Route::get('/login', [UserController::class, 'viewLogin'])->name('api.login');
         Route::middleware(['auth:sanctum'])->get('/checkToken', [UserController::class, 'checkToken']);
@@ -26,6 +25,8 @@ Route::prefix('/v1')->middleware('api')->group(function () {
         Route::put('/changePassword/{id}', [UserController::class, 'changePassword'])->name('api.account.changePassword');
         Route::delete('/{id}', [UserController::class, 'destroy'])->middleware(['auth:sanctum'])->name('api.account.destroy');
     });
+    
+    Route::post('/register', [UserController::class, 'register'])->name('api.account.register');
     Route::post('/login', [UserController::class, 'login'])->name('api.account.login');
     Route::get('/test', [UserController::class, 'test'])->name('api.test');
 });

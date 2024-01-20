@@ -39,8 +39,8 @@ class UserController extends Controller
         // Xử lí ảnh
         if ($request->hasFile('avata')) {
             $file = $request->avata;
-            $path = $file->store('images/avatas/post');
-            $file->move(public_path('images/avatas/post'), $path);
+            $path = $file->store('images/avatars/post');
+            $file->move(public_path('images/avatars/post'), $path);
             $object['avata'] = $path;
         } 
         
@@ -48,6 +48,22 @@ class UserController extends Controller
         if ($user)
             return redirect()->route('staff.index')->with('success','Thêm nhân viên thành công');
         return redirect()->route('staff.index')->with('error','Không thêm được nhân viên');
+    }
+
+    public function update(Request $request, $id) {
+        if (auth()->user()->id != $id && auth()->user()->role->role_name != 'admin')
+            return redirect()->route('staff.index')->with('warning','Bạn không thể cập nhật tài khoản người khác khi không phải là amdin');
+        $object = $request->only('username','name', 'email', 'date', 'cccd', 'address', 'phone_number', 'business_day', 'allowance', 'birthday');
+        if ($request->hasFile('avata')) {
+            $file = $request->avata;
+            $path = $file->store('images/avatars/post');
+            $file->move(public_path('images/avatars/post'), $path);
+            $object['avata'] = $path;
+        } 
+        $user = $this->service->update($id, $object);
+        if ($user)
+            return redirect()->route('staff.index')->with('success','Cập nhật thành công');
+        return redirect()->route('staff.index')->with('error','Cập nhật thất bại');
     }
 
     public function loginPage() {

@@ -42,7 +42,7 @@ class AuthService
         $role = $this->roleService->findByRoleName($role_name_default);
         $username = $request->input('username');
         $name = strtoupper($username);
-        $avata = 'images/avatas/default/'.rand(1, 4).'.png';
+        $avata = 'images/avatars/default/'.rand(1, 4).'.png';
 
 
         $user = User::create([
@@ -61,7 +61,7 @@ class AuthService
         $data['role_id'] = $role->id;
         $data['password'] = Hash::make($data['password']);
         if (!isset($data['avata']))
-            $data['avata'] = 'images/avatas/default/'.rand(1, 4).'.png';
+            $data['avata'] = 'images/avatars/default/'.rand(1, 4).'.png';
 
         $filteredData = array_filter($data, function ($value) {
             return $value !== null;

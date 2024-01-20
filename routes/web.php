@@ -10,6 +10,7 @@ Route::prefix('/')->middleware('auth.custom')->group(function () {
     Route::prefix('/staff')->middleware('admin')->group(function () {
         Route::get('/', [UserController::class,'index'])->name('staff.index');
         Route::post('/', [UserController::class,'create'])->name('staff.create');
+        Route::post('/update/{id?}', [UserController::class,'update'])->name('staff.update');
     });
 
     Route::prefix('/message')->group(function () {

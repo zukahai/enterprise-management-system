@@ -42,9 +42,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <div class="text-center mb-4">
                         <h3 class="mb-2">Chỉnh sửa thông tin nhân viên</h3>
+                        <h2><a href="javascript:" class="mb-2 text-primary" id="edit-name-title"></a></h2>
                         <img src="" alt="" srcset="" class="avata" id="avata">
                     </div>
-                    <form id="editUserForm" class="row g-3" onsubmit="return false">
+                    <form id="editUserForm" class="row g-3" method="POST" action="{{ route('staff.update') }}" enctype="multipart/form-data">
+                        @csrf
                         <div class="col-sm-12">
                             <label class="form-label" for="username">Tên đăng nhập <span
                                     class="font-weight-bold text-danger">*</span></label>
@@ -142,8 +144,8 @@
                                     placeholder="3000000" aria-label="250000" aria-describedby="avata" />
                             </div>
                         </div>
-                        <div class="col-sm-12">
-                            <button type="submit" class="btn btn-primary me-sm-3 me-1" onclick="">Cập nhật thông tin</button>
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-primary mx-auto">Cập nhật thông tin</button>
                         </div>
                     </form>
                 </div>
@@ -387,6 +389,10 @@
             let authToken = localStorage.getItem('authToken') || "";
             let csrfToken = $('meta[name="csrf-token"]').attr('content');
             var domain = document.documentElement.getAttribute('data-domain');
+
+            var editForm = document.getElementById('editUserForm');
+            editForm.action = domain + '/staff/update/' + id;
+
             $.ajax({
                 type: 'GET',
                 url: domain + '/api/v1/account/' + id,
@@ -400,6 +406,7 @@
                         let fullData = data.data;
                         document.getElementById('edit-username').value = fullData.username;
                         document.getElementById('edit-name').value = fullData.name;
+                        document.getElementById('edit-name-title').textContent  = fullData.name;
                         document.getElementById('edit-email').value = fullData.email;
                         document.getElementById('edit-birthday').value = fullData.birthday;
                         document.getElementById('edit-cccd').value = fullData.cccd;

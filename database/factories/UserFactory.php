@@ -24,7 +24,7 @@ class UserFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'role_id' => 16,
             'password' => Hash::make('123456'), // password
-            'avata' => 'images/avatas/default/'.rand(1, 4).'.png'
+            'avata' => 'images/avatars/default/'.rand(1, 4).'.png'
         ];
     }
 
