@@ -30,6 +30,19 @@ class UserController extends Controller
         return auth()->user();
     }
 
+    public function profileUser($username = '') {
+        $user = $this->service->findByUsername($username);
+        if (!$user)
+            return redirect()->route('staff.index')->with('warning','Hồ sơ không tồn tại');
+        if ($user->id != auth()->user()->id && auth()->user()->role->role_name != 'admin') {
+            $user->makeHidden('password');
+            $user->makeHidden('remember_token');
+            $user->makeHidden('cccd');
+        }
+        $this->data['user'] = $user;
+        return View('admin.pages.staff.profile', $this->data);
+    }
+
     public function create(StoreUserRequest $request) {
         if ($request->password != $request->password2)
             return redirect()->route('staff.index')->with('warning','Mật khẩu nhập lại không trùng khớp');

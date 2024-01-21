@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed layout-compact" dir="ltr"
-    data-theme="theme-default" data-assets-path="webhtml/assets/" data-domain="{{ env('APP_URL') }}"
+    data-theme="theme-default" data-assets-path="../../webhtml/assets/" data-domain="{{ env('APP_URL') }}"
     data-template="vertical-menu-template">
 
 <head>
@@ -659,7 +659,7 @@
                                             <div class="dropdown-divider"></div>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="pages-profile-user.html">
+                                            <a class="dropdown-item" href="{{route('profile.user', ["username"=>auth()->user()->username])}}">
                                                 <i class="ti ti-user-check me-2 ti-sm"></i>
                                                 <span class="align-middle">Hồ sơ của tôi</span>
                                             </a>

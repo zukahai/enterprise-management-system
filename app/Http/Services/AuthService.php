@@ -116,6 +116,10 @@ class AuthService
         return $this->model->find($id);
     }
 
+    public function findByUsername($username) {
+        return $this->model->where('username', $username)->first();
+    }
+
     public function loginSystem($user) {
         auth()->login($user);
     }

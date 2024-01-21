@@ -125,22 +125,15 @@ $(function () {
           render: function (data, type, full, meta) {
             var $user_img = full['avata'],
               $name = full['name'],
-              $post = full['username'];
+              $username = full['username'];
             if ($user_img) {
               // For Avatar image
-              var $output =
+              var $output = 
                 '<img src="' +'/' + $user_img + '" alt="Avatar" class="rounded-circle">';
-            } else {
-              // For Avatar badge
-              var stateNum = Math.floor(Math.random() * 6);
-              var states = ['success', 'danger', 'warning', 'info', 'primary', 'secondary'];
-              var $state = states[stateNum],
-                $initials = $name.match(/\b\w/g) || [];
-              $initials = (($initials.shift() || '') + ($initials.pop() || '')).toUpperCase();
-              $output = '<span class="avatar-initial rounded-circle bg-label-' + $state + '">' + $initials + '</span>';
             }
             // Creates full output for row
             var $row_output =
+              '<a href="' + domain + '/profile/' + $username + '">' +
               '<div class="d-flex justify-content-start align-items-center user-name">' +
               '<div class="avatar-wrapper">' +
               '<div class="avatar me-2">' +
@@ -152,10 +145,11 @@ $(function () {
               $name +
               '</span>' +
               '<small class="emp_post text-truncate text-muted">' +
-              $post +
+              $username +
               '</small>' +
               '</div>' +
-              '</div>';
+              '</div>'
+              '</a>';
             return $row_output;
           }
         },

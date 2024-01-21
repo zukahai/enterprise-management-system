@@ -19,6 +19,7 @@ Route::prefix('/')->middleware('auth.custom')->group(function () {
 
     Route::prefix('/profile')->group(function () {
         Route::get('/', [UserController::class, 'profile'])->name('profile');
+        Route::get('/{username}', [UserController::class, 'profileUser'])->name('profile.user');
     });
 
     Route::prefix('/logout')->group(function () {
