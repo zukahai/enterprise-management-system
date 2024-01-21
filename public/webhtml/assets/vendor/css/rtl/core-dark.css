@@ -12471,7 +12471,7 @@ html:not([dir=rtl]) .card .card-separator {
 }
 
 .h-auto {
-  height: auto !important;
+  /* height: auto !important; */
 }
 
 .h-25 {
