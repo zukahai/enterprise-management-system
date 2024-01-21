@@ -252,30 +252,6 @@ $(function () {
               }
             },
             {
-              extend: 'csv',
-              text: '<i class="ti ti-file-text me-1" ></i>Csv',
-              className: 'dropdown-item',
-              exportOptions: {
-                columns: [3, 4, 5, 6, 7],
-                // prevent avatar to be display
-                format: {
-                  body: function (inner, coldex, rowdex) {
-                    if (inner.length <= 0) return inner;
-                    var el = $.parseHTML(inner);
-                    var result = '';
-                    $.each(el, function (index, item) {
-                      if (item.classList !== undefined && item.classList.contains('user-name')) {
-                        result = result + item.lastChild.firstChild.textContent;
-                      } else if (item.innerText === undefined) {
-                        result = result + item.textContent;
-                      } else result = result + item.innerText;
-                    });
-                    return result;
-                  }
-                }
-              }
-            },
-            {
               extend: 'excel',
               text: '<i class="ti ti-file-spreadsheet me-1"></i>Excel',
               className: 'dropdown-item',
@@ -320,7 +296,9 @@ $(function () {
                     });
                     return result;
                   }
-                }
+                },
+                charset: 'utf-8', // Thêm cấu hình charset UTF-8
+                bom: true, // Thêm cấu hình BOM để đảm bảo định dạng UTF-8
               }
             },
             {
@@ -354,72 +332,9 @@ $(function () {
           className: 'create-new btn btn-primary waves-effect waves-light'
         }
       ],
-      
-      // responsive: {
-      //   details: {
-      //     display: $.fn.dataTable.Responsive.display.modal({
-      //       header: function (row) {
-      //         var data = row.data();
-      //         return 'Details of ' + data['full_name'];
-      //       }
-      //     }),
-      //     type: 'column',
-      //     renderer: function (api, rowIdx, columns) {
-      //       var data = $.map(columns, function (col, i) {
-      //         return col.title !== '' // ? Do not show row in modal popup if title is blank (for check box)
-      //           ? '<tr data-dt-row="' +
-      //               col.rowIndex +
-      //               '" data-dt-column="' +
-      //               col.columnIndex +
-      //               '">' +
-      //               '<td>' +
-      //               col.title +
-      //               ':' +
-      //               '</td> ' +
-      //               '<td>' +
-      //               col.data +
-      //               '</td>' +
-      //               '</tr>'
-      //           : '';
-      //       }).join('');
-
-      //       return data ? $('<table class="table"/><tbody />').append(data) : false;
-      //     }
-      //   }
-      // }
     });
     $('div.head-label').html('<h5 class="card-title mb-0">Danh sách nhân viên</h5>');
   }
-
-  // Add New record
-  // ? Remove/Update this code as per your requirements
-  var count = 101;
-  // On form submit, if form is valid
-  // fv.on('core.form.valid', function () {
-  //   var $new_name = $('.add-new-record .dt-full-name').val(),
-  //     $new_post = $('.add-new-record .dt-post').val(),
-  //     $new_email = $('.add-new-record .dt-email').val(),
-  //     $new_date = $('.add-new-record .dt-date').val(),
-  //     $new_salary = $('.add-new-record .dt-salary').val();
-
-  //   if ($new_name != '') {
-  //     dt_basic.row
-  //       .add({
-  //         id: count,
-  //         full_name: $new_name,
-  //         post: $new_post,
-  //         email: $new_email,
-  //         start_date: $new_date,
-  //         salary: '$' + $new_salary,
-  //         status: 5
-  //       })
-  //       .draw();
-  //     count++;
-
-  //     // Hide offcanvas using javascript method
-  //     offCanvasEl.hide();
-  //   }
-  // });
 
   // Delete Record
   $('.datatables-basic tbody').on('click', '.delete-record', function () {
@@ -439,7 +354,6 @@ $(function () {
       }
     }).done(function (data) {
       if (data.data != null && data.data != undefined && data.data != []) {
-        console.log(data.data);
         dt_basic.row(clickedRow).remove().draw();
         toastr.success("Xóa nhân viên thành công");
       } else {

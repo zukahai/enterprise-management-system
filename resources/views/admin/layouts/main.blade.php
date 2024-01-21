@@ -13,7 +13,7 @@
     @php
         $title = isset($title) ? $title : 'Công Ty Hoàng Phát';
     @endphp
-    <title>{{$title}}</title>
+    <title>{{ $title }}</title>
 
     <meta name="description" content="" />
 
@@ -53,6 +53,11 @@
     <link rel="stylesheet" href="{{ asset('webhtml/assets/css/custom.css') }}" />
     <!-- Page CSS -->
     <link rel="stylesheet" href="{{ asset('webhtml/assets/vendor/css/pages/cards-advance.css') }}" />
+    <!-- Thêm thư viện encoding.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SheetJS/sheetjs@0.18.8/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/SheetJS/sheetjs@0.18.8/dist/utf8.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
 
     <!-- Helpers -->
     <script src="{{ asset('webhtml/assets/vendor/js/helpers.js') }}"></script>
@@ -150,15 +155,16 @@
                                     <ul class="menu-sub">
                                         @foreach ($menu['children'] as $child)
                                             @if (!isset($child['role']) || $child['role'] == auth()->user()->role->role_name)
-                                                <li class="menu-item {{ $child['gate'] == $super . '.' . $sub ? 'active' : '' }}">
+                                                <li
+                                                    class="menu-item {{ $child['gate'] == $super . '.' . $sub ? 'active' : '' }}">
                                                     <a href="{{ route($child['route']) }}" class="menu-link">
                                                         <div data-i18n="{{ $child['title'] }}">{{ $child['title'] }}
                                                         </div>
                                                         @if (isset($child['role']))
-                                                                <div class="badge bg-danger rounded-pill ms-auto">
-                                                                    {{ $child['role'] }}
-                                                                </div>
-                                                            @endif
+                                                            <div class="badge bg-danger rounded-pill ms-auto">
+                                                                {{ $child['role'] }}
+                                                            </div>
+                                                        @endif
                                                     </a>
                                                 </li>
                                             @endif
@@ -272,8 +278,8 @@
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="javascript:void(0);" data-theme="system">
-                                            <span class="align-middle"><i
-                                                    class="ti ti-device-desktop me-2"></i>Hệ thống</span>
+                                            <span class="align-middle"><i class="ti ti-device-desktop me-2"></i>Hệ
+                                                thống</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -282,7 +288,7 @@
 
                             <!-- Quick links  -->
                             <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown me-2 me-xl-0">
-                                <a class="nav-link dropdown-toggle hide-arrow" href="{{route('message')}}">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="{{ route('message') }}">
                                     <i class="fa-regular fa-comment" style="font-size: 24px;"></i>
                                     <span class="badge bg-danger rounded-pill badge-notifications">2</span>
                                 </a>

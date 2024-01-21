@@ -145,7 +145,7 @@
                             </div>
                         </div>
                         <div class="col-sm-12 text-center">
-                            <button type="submit" class="btn btn-primary mx-auto">Cập nhật thông tin</button>
+                            <button type="submit" class="btn btn-primary mx-auto" onclick="submitFormEdit()">Cập nhật thông tin</button>
                         </div>
                     </form>
                 </div>
@@ -307,9 +307,9 @@
     <!--/ DataTable with Buttons -->
     {{-- validate form --}}
     <script>
-        formAddNewRecord = document.getElementById('form-add-new-record');
+        
         document.addEventListener('DOMContentLoaded', function() {
-            fv = FormValidation.formValidation(formAddNewRecord, {
+            let validateF = {
                 fields: {
                     username: {
                         validators: {
@@ -368,7 +368,11 @@
                         }
                     });
                 }
-            });
+            }
+            formAddNewRecord = document.getElementById('form-add-new-record');
+            fv = FormValidation.formValidation(formAddNewRecord, validateF);
+            fromEdit = document.getElementById('editUserForm');
+            fvEdit = FormValidation.formValidation(fromEdit, validateF);
         });
 
         function submitForm() {
@@ -376,6 +380,16 @@
                 if (status === 'Valid') {
                     // Nếu tất cả đều thoả mãn, trả về true
                     document.getElementById("form-add-new-record").submit();
+                } else {
+
+                }
+            });
+        }
+        function submitFormEdit() {
+            fvEdit.validate().then(function(status) {
+                if (status === 'Valid') {
+                    // Nếu tất cả đều thoả mãn, trả về true
+                    document.getElementById("editUserForm").submit();
                 } else {
 
                 }

@@ -146,7 +146,7 @@ class UserController extends Controller
             return response()->json([$user->role], 200);
         }
         $id_rp = $this->service->delete($id);
-        return response()->json(['data' => $id_rp], 200, [], JSON_UNESCAPED_UNICODE);
+        return response()->json(['data' => $id_rp, 'username'], 200, [], JSON_UNESCAPED_UNICODE);
     }
 
     public function login(Request $request) {
