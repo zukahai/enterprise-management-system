@@ -57,9 +57,9 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{asset('webhtml/assets/js/config.js')}}"></script>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
+    <script src="{{asset('webhtml/assets/js/js-custom/jquery.min.js')}}"></script>
+    <script src="{{asset('webhtml/assets/js/js-custom/toastr.min.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('webhtml/assets/css/toastr.min.css')}}">
   </head>
 
   <body @yield('onload')>

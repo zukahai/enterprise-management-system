@@ -54,10 +54,8 @@
     <!-- Page CSS -->
     <link rel="stylesheet" href="{{ asset('webhtml/assets/vendor/css/pages/cards-advance.css') }}" />
     <!-- Thêm thư viện encoding.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/SheetJS/sheetjs@0.18.8/dist/xlsx.full.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/SheetJS/sheetjs@0.18.8/dist/utf8.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
+    <script src="{{asset('webhtml/assets/js/js-custom/crypto-js.js')}}"></script>
+    <script src="{{asset('webhtml/assets/js/js-custom/jszip.min.js')}}"></script>
 
     <!-- Helpers -->
     <script src="{{ asset('webhtml/assets/vendor/js/helpers.js') }}"></script>
@@ -67,11 +65,12 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('webhtml/assets/js/config.js') }}"></script>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
+    {{-- toasrt --}}
+    <script src="{{asset('webhtml/assets/js/js-custom/jquery.min.js')}}"></script>
+    <script src="{{asset('webhtml/assets/js/js-custom/toastr.min.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('webhtml/assets/css/toastr.min.css')}}">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="{{asset('webhtml/assets/js/js-custom/jquery.min.3.7.1.js')}}"></script>
 
     @yield('link-other-head')
 
