@@ -10,6 +10,13 @@
     object-fit: cover;
 }
 
+.user-profile-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-top: 30px;
+}
+
 .dt-button-collection {
     margin-top: 0px !important;
 }

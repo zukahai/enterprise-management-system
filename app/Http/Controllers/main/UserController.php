@@ -33,11 +33,13 @@ class UserController extends Controller
     public function profileUser($username = '') {
         $user = $this->service->findByUsername($username);
         if (!$user)
-            return redirect()->route('staff.index')->with('warning','Hồ sơ không tồn tại');
+            return redirect()->route('home')->with('warning','Hồ sơ không tồn tại');
         if ($user->id != auth()->user()->id && auth()->user()->role->role_name != 'admin') {
-            $user->makeHidden('password');
-            $user->makeHidden('remember_token');
-            $user->makeHidden('cccd');
+            $user->makeHidden('password', 'remember_token', 'cccd', 'business_day', 'allowance');
+            $user->password = null;
+            $user->cccd = null;
+            $user->business_day = null;
+            $user->allowance = null;
         }
         $this->data['user'] = $user;
         return View('admin.pages.staff.profile', $this->data);
