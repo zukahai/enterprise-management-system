@@ -3,14 +3,20 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\main\UserController;
 use App\Http\Controllers\main\HomeController;
+use App\Http\Controllers\main\CustomerController;
 use App\Http\Controllers\main\MessageController;
 
 Route::prefix('/')->middleware('auth.custom')->group(function () {
     Route::get('/', [HomeController::class,'index'])->name('home');
+    
     Route::prefix('/staff')->middleware('admin')->group(function () {
         Route::get('/', [UserController::class,'index'])->name('staff.index');
         Route::post('/', [UserController::class,'create'])->name('staff.create');
         Route::post('/update/{id?}', [UserController::class,'update'])->name('staff.update');
+    });
+
+    Route::prefix('/customer')->group(function () {
+        Route::get('/', [CustomerController::class,'index'])->name('customer.index');
     });
 
     Route::prefix('/message')->group(function () {
