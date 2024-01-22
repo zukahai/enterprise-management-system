@@ -14,7 +14,7 @@ return [
             [
                 'title' => '👥 Khách hàng',
                 'gate' => 'info.customer',
-                'route' => 'home',
+                'route' => 'customer.index',
             ],
             [
                 'title' => '👤 Nhân viên',
@@ -24,7 +24,7 @@ return [
             ],
             [
                 'title' => '💰 Ngân hàng',
-                'gate' => 'info.customer',
+                'gate' => 'info.customer1',
                 'route' => 'home',
             ],
         ],

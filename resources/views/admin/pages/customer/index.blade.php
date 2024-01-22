@@ -3,8 +3,15 @@
 @section('open-dashboard')
     @php
         $super = 'info';
-        $sub = 'staff';
+        $sub = 'customer';
     @endphp
+@endsection
+
+@section('title')
+@php
+    $title = "Khách hàng | Công ty Hoàng Phát";
+@endphp
+    
 @endsection
 
 @section('onload')
@@ -21,7 +28,7 @@
 
 @section('js-other')
     <!-- Page JS -->
-    <script src="{{ asset('webhtml/assets/js/tables-datatables-basic.js') }}"></script>
+    <script src="{{ asset('webhtml/assets/genarate/customers.js') }}"></script>
     <script src="{{ asset('webhtml/assets/vendor/libs/moment/moment.js') }}"></script>
     <script src="{{ asset('webhtml/assets/vendor/libs/@form-validation/umd/bundle/popular.min.js') }}"></script>
     <script src="{{ asset('webhtml/assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js') }}"></script>
@@ -160,14 +167,14 @@
             <table class="datatables-basic table">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th></th>
                         <th>id</th>
-                        <th>Nhân Viên</th>
-                        <th>Email</th>
+                        <th>Tên khách hàng</th>
+                        <th>Địa chỉ</th>
+                        <th>Mã số thuế</th>
+                        <th>Thời gian nợ</th>
                         <th>Số điện thoại</th>
-                        <th>CCCD</th>
-                        <th>Ngày sinh</th>
+                        <th>Liện hệ</th>
+                        <th>Ghi chú</th>
                         <th>Thao tác</th>
                     </tr>
                 </thead>
@@ -370,9 +377,9 @@
                 }
             }
             formAddNewRecord = document.getElementById('form-add-new-record');
-            fv = FormValidation.formValidation(formAddNewRecord, validateF);
+            let fv = FormValidation.formValidation(formAddNewRecord, validateF);
             fromEdit = document.getElementById('editUserForm');
-            fvEdit = FormValidation.formValidation(fromEdit, validateF);
+            let fvEdit = FormValidation.formValidation(fromEdit, validateF);
         });
 
         function submitForm() {

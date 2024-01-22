@@ -35,7 +35,8 @@ class CustomerController extends Controller
         if (!$user) {
             return response()->json([$json_error ], 200);
         }
-        return $this->service->getAll();
+        $customers =  $this->service->getAll();
+        return response()->json(['data' => $customers], 200);
     }
     public function show(Request $request, $id)
     {
@@ -95,6 +96,7 @@ class CustomerController extends Controller
             return response()->json([$json_error ], 200);
         }
 
-        return $this->service->delete($id);
+        $id = $this->service->delete($id);
+        return response()->json(['data' => $id], 200);
     }
 }

@@ -17,7 +17,7 @@ class CustomerController extends Controller
     }
     public function index()
     {
-        return $this->service->getAll();
+        return View('admin.pages.customer.index');
     }
 
     /**
