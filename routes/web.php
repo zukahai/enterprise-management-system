@@ -17,6 +17,9 @@ Route::prefix('/')->middleware('auth.custom')->group(function () {
 
     Route::prefix('/customer')->group(function () {
         Route::get('/', [CustomerController::class,'index'])->name('customer.index');
+        Route::post('/', [CustomerController::class,'create'])->name('customer.create');
+        Route::post('/update/{id?}', [CustomerController::class,'update'])->name('customer.update');
+
     });
 
     Route::prefix('/message')->group(function () {

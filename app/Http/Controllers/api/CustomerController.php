@@ -57,7 +57,8 @@ class CustomerController extends Controller
             return response()->json([$json_error ], 200);
         }
 
-        return $this->service->getById($id);
+        $object = $this->service->getById($id);
+        return response()->json(['data' => $object], 200);
     }
 
     /**

@@ -18,12 +18,13 @@ document.addEventListener('DOMContentLoaded', function (e) {
         newRecord.addEventListener('click', function () {
           offCanvasEl = new bootstrap.Offcanvas(offCanvasElement);
           // Empty fields on offCanvas open
-          (offCanvasElement.querySelector('.dt-username').value = ''),
-            (offCanvasElement.querySelector('.dt-password').value = ''),
-            (offCanvasElement.querySelector('.dt-password').value = ''),
-            (offCanvasElement.querySelector('.dt-email').value = ''),
-            (offCanvasElement.querySelector('.dt-date').value = ''),
-            (offCanvasElement.querySelector('.dt-salary').value = '');
+          // (offCanvasElement.querySelector('.dt-name').value = ''),
+          //   (offCanvasElement.querySelector('.dt-address').value = ''),
+          //   (offCanvasElement.querySelector('.dt-mst').value = ''),
+          //   (offCanvasElement.querySelector('.dt-phone_number').value = ''),
+          //   (offCanvasElement.querySelector('.dt-time').value = ''),
+          //   (offCanvasElement.querySelector('.dt-note').value = '');
+          //   (offCanvasElement.querySelector('.dt-contact').value = '');
           // Open offCanvas with form
           offCanvasEl.show();
         });
@@ -31,9 +32,9 @@ document.addEventListener('DOMContentLoaded', function (e) {
     }, 200);
 
     // Form validation for Add new record
-   
 
-    
+
+
 
 
     // FlatPickr Initialization & Validation
@@ -73,25 +74,25 @@ $(function () {
         url: domain + '/api/v1/customer',
         type: 'GET',
         headers: {
-            'Authorization': 'Bearer ' + authToken,
+          'Authorization': 'Bearer ' + authToken,
         },
         done: function (data) {
           // console.log(data);
         }
       },
       columns: [
-        { data: 'id', width: '10%' }, 
-        { data: 'name', width: '15%' }, 
-        { data: 'address', width: '20%' },  
-        { data: 'mst', width: '10%' },  
-        { data: 'time', width: '15%' },  
-        { data: 'phone_number', width: '10%' },  
-        { data: 'contact', width: '10%' }, 
-        { data: 'note', width: '10%' }, 
-        { data: '', orderable: false, width: '20%' } 
-    ],
-    Responsive: true,
-    columnDefs: [
+        { data: 'id', width: '10%' },
+        { data: 'name', width: '15%' },
+        { data: 'address', width: '20%' },
+        { data: 'mst', width: '10%' },
+        { data: 'time', width: '15%' },
+        { data: 'phone_number', width: '10%' },
+        { data: 'contact', width: '10%' },
+        { data: 'note', width: '10%' },
+        { data: '', orderable: false, width: '20%' }
+      ],
+      Responsive: true,
+      columnDefs: [
         {
           // Label
           targets: -2,
@@ -138,23 +139,7 @@ $(function () {
               text: '<i class="ti ti-printer me-1" ></i>Print',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [3, 4, 5, 6, 7],
-                // prevent avatar to be display
-                format: {
-                  body: function (inner, coldex, rowdex) {
-                    if (inner.length <= 0) return inner;
-                    var el = $.parseHTML(inner);
-                    var result = '';
-                    $.each(el, function (index, item) {
-                      if (item.classList !== undefined && item.classList.contains('user-name')) {
-                        result = result + item.lastChild.firstChild.textContent;
-                      } else if (item.innerText === undefined) {
-                        result = result + item.textContent;
-                      } else result = result + item.innerText;
-                    });
-                    return result;
-                  }
-                }
+                columns: [0, 1, 2, 3, 4, 5, 6, 7],
               },
               customize: function (win) {
                 //customize print view for dark
@@ -175,23 +160,8 @@ $(function () {
               text: '<i class="ti ti-file-spreadsheet me-1"></i>Excel',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [3, 4, 5, 6, 7],
-                // prevent avatar to be display
-                format: {
-                  body: function (inner, coldex, rowdex) {
-                    if (inner.length <= 0) return inner;
-                    var el = $.parseHTML(inner);
-                    var result = '';
-                    $.each(el, function (index, item) {
-                      if (item.classList !== undefined && item.classList.contains('user-name')) {
-                        result = result + item.lastChild.firstChild.textContent;
-                      } else if (item.innerText === undefined) {
-                        result = result + item.textContent;
-                      } else result = result + item.innerText;
-                    });
-                    return result;
-                  }
-                }
+                columns: [0, 1, 2, 3, 4, 5, 6, 7],
+              
               }
             },
             {
@@ -199,23 +169,7 @@ $(function () {
               text: '<i class="ti ti-file-description me-1"></i>Pdf',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [3, 4, 5, 6, 7],
-                // prevent avatar to be display
-                format: {
-                  body: function (inner, coldex, rowdex) {
-                    if (inner.length <= 0) return inner;
-                    var el = $.parseHTML(inner);
-                    var result = '';
-                    $.each(el, function (index, item) {
-                      if (item.classList !== undefined && item.classList.contains('user-name')) {
-                        result = result + item.lastChild.firstChild.textContent;
-                      } else if (item.innerText === undefined) {
-                        result = result + item.textContent;
-                      } else result = result + item.innerText;
-                    });
-                    return result;
-                  }
-                },
+                columns: [0, 1, 2, 3, 4, 5, 6, 7],
                 charset: 'utf-8', // Thêm cấu hình charset UTF-8
                 bom: true, // Thêm cấu hình BOM để đảm bảo định dạng UTF-8
               }
@@ -225,23 +179,7 @@ $(function () {
               text: '<i class="ti ti-copy me-1" ></i>Copy',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [3, 4, 5, 6, 7],
-                // prevent avatar to be display
-                format: {
-                  body: function (inner, coldex, rowdex) {
-                    if (inner.length <= 0) return inner;
-                    var el = $.parseHTML(inner);
-                    var result = '';
-                    $.each(el, function (index, item) {
-                      if (item.classList !== undefined && item.classList.contains('user-name')) {
-                        result = result + item.lastChild.firstChild.textContent;
-                      } else if (item.innerText === undefined) {
-                        result = result + item.textContent;
-                      } else result = result + item.innerText;
-                    });
-                    return result;
-                  }
-                }
+                columns: [0, 1, 2, 3, 4, 5, 6, 7],
               }
             }
           ]
@@ -260,10 +198,10 @@ $(function () {
     let authToken = localStorage.getItem('authToken') || "";
     let id = $(this).data('id');
     let clickedRow = $(this).closest('tr');
-  
+
     // Get CSRF token value from the meta tag
     let csrfToken = $('meta[name="csrf-token"]').attr('content');
-  
+
     $.ajax({
       type: 'DELETE',
       url: domain + '/api/v1/customer/' + id,
@@ -272,13 +210,13 @@ $(function () {
         'X-CSRF-TOKEN': csrfToken
       }
     }).done(function (data) {
-      if (Math.floor(data.data > 0) ) {
+      if (Math.floor(data.data > 0)) {
         dt_basic.row(clickedRow).remove().draw();
         toastr.success("Xóa khách hàng thành công");
       } else {
         toastr.error("Xóa khách hàng thất bại");
       }
-     
+
     }).fail(function (error) {
       console.log(error);
     });

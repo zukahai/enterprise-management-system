@@ -39,6 +39,9 @@ class CustomerService
 
     public function update($id, $data) {
         try {
+            $data = array_filter($data, function ($value) {
+                return !is_null($value);
+            });
             $this->model->where('id', $id)->update($data);
 
             // Lấy đối tượng đã được cập nhật
@@ -54,7 +57,11 @@ class CustomerService
         }
     }
 
-    public function add($data) {
+    public function create($data) {
+        //lọc những trường khác null trong data
+        $data = array_filter($data, function ($value) {
+            return !is_null($value);
+        });
         $ojbect = $this->model->create($data);
         return $ojbect;
     }

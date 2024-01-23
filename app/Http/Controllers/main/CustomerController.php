@@ -8,6 +8,7 @@ use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Http\Services\CustomerService;
 
+
 class CustomerController extends Controller
 {
     
@@ -20,67 +21,35 @@ class CustomerController extends Controller
         return View('admin.pages.customer.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(StoreCustomerRequest $request)
     {
-        //
+        $object = $request->only('name', 'mst', 'time', 'contact', 'address', 'phone_number', 'note');
+        $this->service->create($object);
+        return redirect()->route('customer.index')->with('success','Thêm khách hàng thành công');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreCustomerRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreCustomerRequest $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
     public function show(Customer $customer)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Customer $customer)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateCustomerRequest  $request
-     * @param  \App\Models\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateCustomerRequest $request, Customer $customer)
+    public function update(UpdateCustomerRequest $request, $id)
     {
-        //
+        $object = $request->only('name', 'mst', 'time', 'contact', 'address', 'phone_number', 'note');
+        $object_update = $this->service->update($id, $object);
+        return redirect()->route('customer.index')->with('success','Sửa thông tin khách hàng thành công');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Customer $customer)
     {
         //

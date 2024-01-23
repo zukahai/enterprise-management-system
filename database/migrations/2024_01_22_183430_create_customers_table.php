@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('name')->default('Nguyễn Văn A');
-            $table->string('address')->default('');
-            $table->string('mst')->default('');
-            $table->dateTime('time')->default(now()); // thời gian nợ
-            $table->string('phone_number')->default('');
-            $table->string('contact')->default('');
-            $table->string('note')->default('');
+            $table->string('address')->default('')->nullable();
+            $table->string('mst')->default('')->nullable();
+            $table->dateTime('time')->default(now())->nullable(); // thời gian nợ
+            $table->string('phone_number')->default('')->nullable();
+            $table->string('contact')->default('')->nullable();
+            $table->string('note')->default('')->nullable();
             $table->timestamps();
         });
     }
