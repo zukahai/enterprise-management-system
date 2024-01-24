@@ -140,9 +140,9 @@
                     <label class="form-label" for="select2">Select2</label>
                     <div class="input-group input-group-merge">
                         <span class="input-group-text"><i class="ti ti-list"></i></span>
-                        <select class="form-control select2" id="select2" name="select2" aria-label="Select2" aria-describedby="select2">
+                        <select class="select2 w-100" id="select2Basic" name="select2" aria-label="Select2" aria-describedby="select2">
                             <!-- Option 1 -->
-                            <option value="option1">Option 1</option>
+                            <option value="option1">1 Phan Thị Tuệ Anh</option>
                             <!-- Option 2 -->
                             <option value="option2">Option 2</option>
                             <!-- Option 3 -->
@@ -158,12 +158,6 @@
             </form>
         </div>
     </div>
-    <script>
-        // Initialize Select2
-        $(document).ready(function() {
-            $('#select2').select2();
-        });
-    </script>
     <!--/ DataTable with Buttons -->
     {{-- validate form --}}
     <script>

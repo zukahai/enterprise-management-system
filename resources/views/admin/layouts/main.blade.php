@@ -40,6 +40,7 @@
     <link rel="stylesheet" href="{{ asset('webhtml/assets/css/demo.css') }}" />
 
     <!-- Vendors CSS -->
+    <link rel="stylesheet" href="{{ asset('webhtml/assets/vendor/libs/select2/select2.css') }}" />
     <link rel="stylesheet" href="{{ asset('webhtml/assets/vendor/libs/node-waves/node-waves.css') }}" />
     <link rel="stylesheet" href="{{ asset('webhtml/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ asset('webhtml/assets/vendor/libs/typeahead-js/typeahead.css') }}" />
@@ -72,17 +73,6 @@
     <link rel="stylesheet" href="{{asset('webhtml/assets/css/toastr.min.css')}}">
 
     <script src="{{asset('webhtml/assets/js/js-custom/jquery.min.3.7.1.js')}}"></script>
-
-    {{-- select2 --}}
-    {{-- <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
-    <script src="{{asset('webhtml/assets/js/js-custom/select2.js')}}"></script> --}}
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    
-    <!-- Include Select2 CSS and JS files -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-    
-
     @yield('link-other-head')
 
 
@@ -776,6 +766,8 @@
     <!-- endbuild -->
 
     <!-- Vendors JS -->
+    <script src="{{ asset('webhtml/assets/vendor/libs/select2/select2.js') }}"></script>
+    <script src="{{ asset('webhtml/assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
     <script src="{{ asset('webhtml/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
     <script src="{{ asset('webhtml/assets/vendor/libs/swiper/swiper.js') }}"></script>
     <script src="{{ asset('webhtml/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
@@ -785,6 +777,10 @@
 
     <!-- Page JS -->
     <script src="{{ asset('webhtml/assets/js/dashboards-analytics.js') }}"></script>
+    <!-- Page JS -->
+    <script src="{{ asset('webhtml/assets/js/forms-selects.js')}}"></script>
+    {{-- <script src="{{ asset('webhtml/assets/js/forms-tagify.js')}}"></script>
+    <script src="{{ asset('webhtml/assets/js/forms-typeahead.js')}}"></script> --}}
 
     @yield('js-other')
 
