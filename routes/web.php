@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\main\UserController;
 use App\Http\Controllers\main\HomeController;
 use App\Http\Controllers\main\CustomerController;
+use App\Http\Controllers\main\BankController;
 use App\Http\Controllers\main\MessageController;
 
 Route::prefix('/')->middleware('auth.custom')->group(function () {
@@ -19,7 +20,12 @@ Route::prefix('/')->middleware('auth.custom')->group(function () {
         Route::get('/', [CustomerController::class,'index'])->name('customer.index');
         Route::post('/', [CustomerController::class,'create'])->name('customer.create');
         Route::post('/update/{id?}', [CustomerController::class,'update'])->name('customer.update');
+    });
 
+    Route::prefix('/bank')->group(function () {
+        Route::get('/', [BankController::class,'index'])->name('bank.index');
+        Route::post('/', [BankController::class,'create'])->name('bank.create');
+        Route::post('/update/{id?}', [BankController::class,'update'])->name('bank.update');
     });
 
     Route::prefix('/message')->group(function () {

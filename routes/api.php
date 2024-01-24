@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\RoleController;
 use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\api\CustomerController;
+use App\Http\Controllers\api\BankController;
 
 Route::prefix('/v1')->middleware('api')->group(function () {
 
@@ -31,6 +32,13 @@ Route::prefix('/v1')->middleware('api')->group(function () {
         Route::get('/{id}', [CustomerController::class, 'show'])->name('api.customer.show');
         Route::put('/{id}', [CustomerController::class, 'update'])->name('api.customer.update');
         Route::delete('/{id}', [CustomerController::class, 'destroy'])->name('api.customer.destroy');
+    });
+
+    Route::prefix('/bank')->middleware(['auth:sanctum'])->group(function () {
+        Route::get('/', [BankController::class, 'index'])->name('api.bank.index');
+        Route::get('/{id}', [BankController::class, 'show'])->name('api.bank.show');
+        Route::put('/{id}', [BankController::class, 'update'])->name('api.bank.update');
+        Route::delete('/{id}', [BankController::class, 'destroy'])->name('api.bank.destroy');
     });
     
     Route::post('/register', [UserController::class, 'register'])->name('api.account.register');

@@ -24,8 +24,8 @@ return [
             ],
             [
                 'title' => '💰 Ngân hàng',
-                'gate' => 'info.customer1',
-                'route' => 'home',
+                'gate' => 'info.bank',
+                'route' => 'bank.index',
             ],
         ],
     ],
