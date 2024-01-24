@@ -139,7 +139,6 @@
                 <div class="col-sm-12">
                     <label class="form-label" for="select2">Select2</label>
                     <div class="input-group input-group-merge">
-                        <span class="input-group-text"><i class="ti ti-list"></i></span>
                         <select class="select2 w-100" id="select2Basic" name="select2" aria-label="Select2" aria-describedby="select2">
                             <!-- Option 1 -->
                             <option value="option1">1 Phan Thị Tuệ Anh</option>

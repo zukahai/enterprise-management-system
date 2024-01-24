@@ -24,3 +24,7 @@
 div[role="menu"]{
     box-shadow: 0 0.25rem 1rem rgba(15, 20, 34, 0.55) !important;
 }
+
+.position-relative {
+    width: 100%;
+}
