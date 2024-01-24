@@ -17,36 +17,10 @@ document.addEventListener('DOMContentLoaded', function (e) {
       if (newRecord) {
         newRecord.addEventListener('click', function () {
           offCanvasEl = new bootstrap.Offcanvas(offCanvasElement);
-          // Empty fields on offCanvas open
-          // (offCanvasElement.querySelector('.dt-name').value = ''),
-          //   (offCanvasElement.querySelector('.dt-address').value = ''),
-          //   (offCanvasElement.querySelector('.dt-mst').value = ''),
-          //   (offCanvasElement.querySelector('.dt-phone_number').value = ''),
-          //   (offCanvasElement.querySelector('.dt-time').value = ''),
-          //   (offCanvasElement.querySelector('.dt-note').value = '');
-          //   (offCanvasElement.querySelector('.dt-contact').value = '');
-          // Open offCanvas with form
           offCanvasEl.show();
         });
       }
     }, 200);
-
-    // Form validation for Add new record
-
-
-
-
-
-    // FlatPickr Initialization & Validation
-    // flatpickr(formAddNewRecord.querySelector('[name="basicDate"]'), {
-    //   enableTime: false,
-    //   // See https://flatpickr.js.org/formatting/
-    //   dateFormat: 'm/d/Y',
-    //   // After selecting a date, we need to revalidate the field
-    //   onChange: function () {
-    //     fv.revalidateField('basicDate');
-    //   }
-    // });
   })();
 });
 
@@ -76,7 +50,7 @@ $(function () {
         url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Vietnamese.json'
       },
       ajax: {
-        url: domain + '/api/v1/bank',
+        url: domain + '/api/v1/supplier',
         type: 'GET',
         headers: {
           'Authorization': 'Bearer ' + authToken,
@@ -87,15 +61,31 @@ $(function () {
       },
       columns: [
         { data: 'id', width: '10%' },
-        { data: 'name', width: '30%' },
-        { data: 'note', width: '40%' },
-        { data: '', orderable: false, width: '20%' }
+        { data: 'name', width: '10%' },
+        { data: 'address', width: '10%' },
+        { data: 'mst', width: '10%' },
+        { data: 'stk', width: '10%' },
+        { data: null}, // ngân hàng
+        { data: 'time', width: '10%' },
+        { data: 'phone_number', width: '10%' },
+        { data: 'contact', width: '10%' },
+        { data: 'note', width: '10%' },
+        { data: '', orderable: false, width: '10%' }
       ],
       search: {
         search: getSearchParamFromURL()
       },
       Responsive: true,
       columnDefs: [
+        {
+          targets: 5,
+          render: function (data, type, row) {
+            // Sử dụng dữ liệu từ trường bank.name
+            let name = row.bank ? row.bank.name : '';
+            let id = row.bank? row.bank.id : '';
+            return '<a href="' + domain + '/bank/?s=' + name + '">' + name + '</a>';
+          },
+        },
         {
           // Actions
           targets: -1,
@@ -178,12 +168,12 @@ $(function () {
           ]
         },
         {
-          text: '<i class="ti ti-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">Thêm ngân hàng</span>',
+          text: '<i class="ti ti-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">Thêm nhà cung cấp</span>',
           className: 'create-new btn btn-primary waves-effect waves-light'
         }
       ],
     });
-    $('div.head-label').html('<h5 class="card-title mb-0">Danh sách ngân hàng/h5>');
+    $('div.head-label').html('<h5 class="card-title mb-0">Danh sách nhà cung cấp/h5>');
   }
 
   // Delete Record
@@ -197,7 +187,7 @@ $(function () {
 
     $.ajax({
       type: 'DELETE',
-      url: domain + '/api/v1/bank/' + id,
+      url: domain + '/api/v1/supplier/' + id,
       headers: {
         'Authorization': 'Bearer ' + authToken,
         'X-CSRF-TOKEN': csrfToken
@@ -205,9 +195,9 @@ $(function () {
     }).done(function (data) {
       if (Math.floor(data.data > 0)) {
         dt_basic.row(clickedRow).remove().draw();
-        toastr.success("Xóa ngân hàng thành công");
+        toastr.success("Xóa nhà cung cấp thành công");
       } else {
-        toastr.error("Xóa ngân hàng thất bại");
+        toastr.error("Xóa nhà cung cấp thất bại");
       }
 
     }).fail(function (error) {

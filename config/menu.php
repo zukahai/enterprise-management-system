@@ -8,8 +8,8 @@ return [
         'children' => [
             [
                 'title' => '🏭 Nhà cung cấp',
-                'gate' => 'info.index',
-                'route' => 'home',
+                'gate' => 'info.supplier',
+                'route' => 'supplier.index',
             ],
             [
                 'title' => '👥 Khách hàng',

@@ -65,12 +65,23 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('webhtml/assets/js/config.js') }}"></script>
 
+
     {{-- toasrt --}}
     <script src="{{asset('webhtml/assets/js/js-custom/jquery.min.js')}}"></script>
     <script src="{{asset('webhtml/assets/js/js-custom/toastr.min.js')}}"></script>
     <link rel="stylesheet" href="{{asset('webhtml/assets/css/toastr.min.css')}}">
 
     <script src="{{asset('webhtml/assets/js/js-custom/jquery.min.3.7.1.js')}}"></script>
+
+    {{-- select2 --}}
+    {{-- <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+    <script src="{{asset('webhtml/assets/js/js-custom/select2.js')}}"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    <!-- Include Select2 CSS and JS files -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    
 
     @yield('link-other-head')
 

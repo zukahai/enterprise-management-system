@@ -1,15 +1,12 @@
 <?php
 
 namespace App\Http\Services;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
+use App\Models\Supplier;
 
-use App\Models\Role;
-
-class RoleService
+class SupplierService
 {
-    public function __construct(Role $model)
+    public function __construct(Supplier $model)
     {
         $this->model = $model;
     }
@@ -20,11 +17,11 @@ class RoleService
 
 
     public function getAll() {
-        return $this->model->orderBy('id','asc')->get();
+        return $this->model->with('bank')->orderBy('id','asc')->get();
     }
 
     public function getById($id) {
-        return $this->model->find($id);
+        return $this->model->with('bank')->find($id);
     }
 
     public function delete($id) {
@@ -61,9 +58,5 @@ class RoleService
         });
         $ojbect = $this->model->create($data);
         return $ojbect;
-    }
-
-    public function findByRoleName($roleName) {
-        return $this->model->where('role_name', $roleName)->first();
     }
 }

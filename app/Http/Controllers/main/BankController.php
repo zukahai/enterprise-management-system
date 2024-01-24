@@ -32,8 +32,4 @@ class BankController extends Controller
         return redirect()->back()->with('success','Sửa thông tin ngân hàng thành công');
     }
 
-    public function destroy(Customer $customer)
-    {
-        //
-    }
 }

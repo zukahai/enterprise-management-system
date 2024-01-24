@@ -3,26 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <title>Document</title>
+    <title>Select2 Example</title>
+    
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    <!-- Include Select2 CSS and JS files -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 </head>
 <body>
-    <script>
-       $(document).ready(function() {
-                $.ajax({
-                    url: 'http://127.0.0.1:8000/test',
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(data, status, errors) {
-                        console.log(data);
-                    },
-                    error: function(data, status, errors) {
-                        console.log(errors);
-                    }
 
-                })
-        });
+<div class="col-sm-12">
+    <label class="form-label" for="select2">Select2 Example</label>
+    <div class="input-group input-group-merge">
+        <span class="input-group-text"><i class="ti ti-list"></i></span>
+        
+        <!-- Select2 Dropdown -->
+        <select class="form-control select2" id="select2" name="select2" aria-label="Select2" aria-describedby="select2">
+            <!-- Options -->
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+        </select>
+    </div>
+</div>
 
-    </script>
+<script>
+    // Initialize Select2
+    $(document).ready(function() {
+        $('#select2').select2();
+    });
+</script>
+
 </body>
 </html>

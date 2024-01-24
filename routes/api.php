@@ -6,6 +6,8 @@ use App\Http\Controllers\api\RoleController;
 use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\api\CustomerController;
 use App\Http\Controllers\api\BankController;
+use App\Http\Controllers\api\SupplierController;
+
 
 Route::prefix('/v1')->middleware('api')->group(function () {
 
@@ -39,6 +41,13 @@ Route::prefix('/v1')->middleware('api')->group(function () {
         Route::get('/{id}', [BankController::class, 'show'])->name('api.bank.show');
         Route::put('/{id}', [BankController::class, 'update'])->name('api.bank.update');
         Route::delete('/{id}', [BankController::class, 'destroy'])->name('api.bank.destroy');
+    });
+
+    Route::prefix('/supplier')->middleware(['auth:sanctum'])->group(function () {
+        Route::get('/', [SupplierController::class, 'index'])->name('api.supplier.index');
+        Route::get('/{id}', [SupplierController::class, 'show'])->name('api.supplier.show');
+        Route::put('/{id}', [SupplierController::class, 'update'])->name('api.supplier.update');
+        Route::delete('/{id}', [SupplierController::class, 'destroy'])->name('api.supplier.destroy');
     });
     
     Route::post('/register', [UserController::class, 'register'])->name('api.account.register');

@@ -6,6 +6,7 @@ use App\Http\Controllers\main\HomeController;
 use App\Http\Controllers\main\CustomerController;
 use App\Http\Controllers\main\BankController;
 use App\Http\Controllers\main\MessageController;
+use App\Http\Controllers\main\SupplierController;
 
 Route::prefix('/')->middleware('auth.custom')->group(function () {
     Route::get('/', [HomeController::class,'index'])->name('home');
@@ -26,6 +27,12 @@ Route::prefix('/')->middleware('auth.custom')->group(function () {
         Route::get('/', [BankController::class,'index'])->name('bank.index');
         Route::post('/', [BankController::class,'create'])->name('bank.create');
         Route::post('/update/{id?}', [BankController::class,'update'])->name('bank.update');
+    });
+
+    Route::prefix('/supplier')->group(function () {
+        Route::get('/', [SupplierController::class,'index'])->name('supplier.index');
+        Route::post('/', [SupplierController::class,'create'])->name('supplier.create');
+        Route::post('/update/{id?}', [SupplierController::class,'update'])->name('supplier.update');
     });
 
     Route::prefix('/message')->group(function () {
