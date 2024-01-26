@@ -31,14 +31,14 @@ return [
     ],
     [
         'title' => 'Vật liệu',
-        'name' => 'info2',
+        'name' => 'materials',
         'icon' => 'ti-package',
         'route' => 'home',
         'children' => [
             [
                 'title' => '🛢️ Nguyên liệu',
-                'gate' => 'info.index',
-                'route' => 'home',
+                'gate' => 'materials.ingredient',
+                'route' => 'ingredient.index',
             ],
             [
                 'title' => '📦 Thành phẩm',

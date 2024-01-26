@@ -22,14 +22,14 @@ class SupplierController extends Controller
 
     public function create(StoreSupplierRequest $request)
     {
-        $object = $request->only('name', 'note');
+        $object = $request->only('name', 'address', 'mst', 'stk', 'bank_id', 'time', 'contact', 'phone_number', 'note');
         $this->service->create($object);
-        return redirect()->back()->with('success','Thêm nhà cung cấp thành công');
+        return redirect(route('supplier.index'))->with('success','Thêm nhà cung cấp thành công');
     }
 
     public function update(UpdateSupplierRequest $request, $id)
     {
-        $object = $request->only('name', 'mst', 'time', 'contact', 'address', 'phone_number', 'note');
+        $object = $request->only('name', 'address', 'mst', 'stk', 'bank_id', 'time', 'contact', 'phone_number', 'note');
         $object_update = $this->service->update($id, $object);
         return redirect()->back()->with('success','Sửa thông tin nhà cung cấp thành công');
     }

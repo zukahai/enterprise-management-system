@@ -17,10 +17,36 @@ document.addEventListener('DOMContentLoaded', function (e) {
       if (newRecord) {
         newRecord.addEventListener('click', function () {
           offCanvasEl = new bootstrap.Offcanvas(offCanvasElement);
+          // Empty fields on offCanvas open
+          // (offCanvasElement.querySelector('.dt-name').value = ''),
+          //   (offCanvasElement.querySelector('.dt-address').value = ''),
+          //   (offCanvasElement.querySelector('.dt-mst').value = ''),
+          //   (offCanvasElement.querySelector('.dt-phone_number').value = ''),
+          //   (offCanvasElement.querySelector('.dt-time').value = ''),
+          //   (offCanvasElement.querySelector('.dt-note').value = '');
+          //   (offCanvasElement.querySelector('.dt-contact').value = '');
+          // Open offCanvas with form
           offCanvasEl.show();
         });
       }
     }, 200);
+
+    // Form validation for Add new record
+
+
+
+
+
+    // FlatPickr Initialization & Validation
+    // flatpickr(formAddNewRecord.querySelector('[name="basicDate"]'), {
+    //   enableTime: false,
+    //   // See https://flatpickr.js.org/formatting/
+    //   dateFormat: 'm/d/Y',
+    //   // After selecting a date, we need to revalidate the field
+    //   onChange: function () {
+    //     fv.revalidateField('basicDate');
+    //   }
+    // });
   })();
 });
 
@@ -50,7 +76,7 @@ $(function () {
         url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Vietnamese.json'
       },
       ajax: {
-        url: domain + '/api/v1/supplier',
+        url: domain + '/api/v1/ingredient',
         type: 'GET',
         headers: {
           'Authorization': 'Bearer ' + authToken,
@@ -61,16 +87,15 @@ $(function () {
       },
       columns: [
         { data: 'id', width: '10%' },
-        { data: 'name', width: '10%' },
-        { data: 'address', width: '10%' },
-        { data: 'mst', width: '10%' },
-        { data: 'stk', width: '10%' },
-        { data: null}, // ngân hàng
-        { data: 'time', width: '10%' },
-        { data: 'phone_number', width: '10%' },
-        { data: 'contact', width: '10%' },
+        { data: 'name', width: '20%' },
+        { data: 'dvt', width: '10%' },
+        { data: 'length', width: '10%' },
+        { data: 'width', width: '10%' },
+        { data: 'height', width: '10%' },
+        { data: 'buying_price', width: '15%' },
+        { data: 'selling_price', width: '15%' },
         { data: 'note', width: '10%' },
-        { data: '', orderable: false, width: '10%' }
+        { data: '', orderable: false, width: '20%' }
       ],
       search: {
         search: getSearchParamFromURL()
@@ -78,13 +103,10 @@ $(function () {
       Responsive: true,
       columnDefs: [
         {
-          targets: 5,
-          render: function (data, type, row) {
-            // Sử dụng dữ liệu từ trường bank.name
-            let name = row.bank ? row.bank.name : '';
-            let id = row.bank? row.bank.id : '';
-            return '<a href="' + domain + '/bank/?s=' + name + '">' + name + '</a>';
-          },
+          targets: [-3, -4],
+          render: function (data, type, full, meta) {
+            return data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
+          }
         },
         {
           // Actions
@@ -122,7 +144,7 @@ $(function () {
               text: '<i class="ti ti-printer me-1" ></i>Print',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+                columns: [0, 1, 2, 3, 4, 5, 6, 7],
               },
               customize: function (win) {
                 //customize print view for dark
@@ -143,7 +165,7 @@ $(function () {
               text: '<i class="ti ti-file-spreadsheet me-1"></i>Excel',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+                columns: [0, 1, 2, 3, 4, 5, 6, 7],
               
               }
             },
@@ -152,7 +174,7 @@ $(function () {
               text: '<i class="ti ti-file-description me-1"></i>Pdf',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+                columns: [0, 1, 2, 3, 4, 5, 6, 7],
                 charset: 'utf-8', // Thêm cấu hình charset UTF-8
                 bom: true, // Thêm cấu hình BOM để đảm bảo định dạng UTF-8
               }
@@ -162,18 +184,18 @@ $(function () {
               text: '<i class="ti ti-copy me-1" ></i>Copy',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+                columns: [0, 1, 2, 3, 4, 5, 6, 7],
               }
             }
           ]
         },
         {
-          text: '<i class="ti ti-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">Thêm nhà cung cấp</span>',
+          text: '<i class="ti ti-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">Thêm nguyên liệu</span>',
           className: 'create-new btn btn-primary waves-effect waves-light'
         }
       ],
     });
-    $('div.head-label').html('<h5 class="card-title mb-0">Danh sách nhà cung cấp/h5>');
+    $('div.head-label').html('<h5 class="card-title mb-0">Danh sách nguyên liệu/h5>');
   }
 
   // Delete Record
@@ -187,7 +209,7 @@ $(function () {
 
     $.ajax({
       type: 'DELETE',
-      url: domain + '/api/v1/supplier/' + id,
+      url: domain + '/api/v1/ingredient/' + id,
       headers: {
         'Authorization': 'Bearer ' + authToken,
         'X-CSRF-TOKEN': csrfToken
@@ -195,9 +217,9 @@ $(function () {
     }).done(function (data) {
       if (Math.floor(data.data > 0)) {
         dt_basic.row(clickedRow).remove().draw();
-        toastr.success("Xóa nhà cung cấp thành công");
+        toastr.success("Xóa nguyên liệu thành công");
       } else {
-        toastr.error("Xóa nhà cung cấp thất bại");
+        toastr.error("Xóa nguyên liệu thất bại");
       }
 
     }).fail(function (error) {

@@ -87,8 +87,9 @@ $(function () {
       },
       columns: [
         { data: 'id', width: '10%' },
-        { data: 'name', width: '30%' },
+        { data: 'name', width: '20%' },
         { data: 'note', width: '40%' },
+        { data: 'code', width: '10%' },
         { data: '', orderable: false, width: '20%' }
       ],
       search: {

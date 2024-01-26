@@ -42,13 +42,13 @@
       </button> --}}
     <!-- Edit User Modal -->
     <div class="modal fade" id="editUser2" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-simple modal-edit-user">
+        <div class="modal-dialog modal-lg modal-simple modal-edit_user">
             <div class="modal-content p-3 p-md-5">
                 <div class="modal-body">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <div class="text-center mb-4">
                         <h3 class="mb-2">Chỉnh sửa thông tin nhà cung cấp</h3>
-                        <h2><a href="javascript:" class="mb-2 text-primary" id="edit-name-title"></a></h2>
+                        <h2><a href="javascript:" class="mb-2 text-primary" id="edit_name-title"></a></h2>
                     </div>
                     <form id="editUserForm" class="row g-3" method="POST" action="{{ route('staff.update') }}"
                         enctype="multipart/form-data">
@@ -58,16 +58,82 @@
                                     class="font-weight-bold text-danger">*</span></label>
                             <div class="input-group input-group-merge">
                                 <span id="name" class="input-group-text"><i class="ti ti-user"></i></span>
-                                <input type="text" id="edit-name" class="form-control dt-name" name="name"
-                                    placeholder="Agribank" aria-label="Agribank" aria-describedby="name" />
+                                <input type="text" id="edit_name" class="form-control dt-name" name="name"
+                                    placeholder="Nguyễn Văn A" aria-label="Nguyễn Văn A" aria-describedby="name" />
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-sm-12">
-                            <label class="form-label" for="note">Ghi chú</label>
+                            <label class="form-label" for="address">Địa chỉ</label>
                             <div class="input-group input-group-merge">
-                                <span class="input-group-text"><i class="ti ti-currency-dollar"></i></span>
-                                <input type="text" id="edit-note" name="note" class="form-control dt-salary"
-                                    placeholder="Ghi chú" aria-label="Ghi chú" aria-describedby="note" />
+                                <span class="input-group-text"><i class="fa-solid fa-address-book"></i></span>
+                                <input type="text" id="edit_address" name="address" class="form-control dt-salary"
+                                    placeholder="Địa chỉ" aria-label="Địa chỉ" aria-describedby="address" />
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="form-label" for="mst">Mã số thuế</label>
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-text"><i class="fas fa-angle-double-down"></i></span>
+                                <input type="text" id="edit_mst" name="mst" class="form-control dt-salary"
+                                    placeholder="Mã số thuế" aria-label="Mã số thuế" aria-describedby="mst" />
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="form-label" for="stk">Số tài khoản</label>
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-text"><i class="fas fa-angle-double-down"></i></span>
+                                <input type="text" id="edit_stk" name="stk" class="form-control dt-salary"
+                                    placeholder="Số tài khoản" aria-label="Số tài khoản" aria-describedby="stk" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <label class="form-label" for="select2">Ngân hàng</label>
+                            <div class="input-group input-group-merge">
+                                <select class="select2 w-100" id="edit_bank_select" name="bank_id" aria-label="Select2"
+                                    aria-describedby="select2">
+                                    <!-- Options -->
+                                </select>
+                            </div>
+                            <div class="col-sm-12">
+                                <label class="form-label" for="note">Thời gian nợ</label>
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-text"><i class="fa-solid fa-hourglass-half"></i></span>
+                                    <input type="datetime-local" class="form-control dt-date" id="edit_time" name="time"
+                                        aria-describedby="time" placeholder="yyyy-MM-ddThh:mm:ss" value=""
+                                        min="1800-01-01T00:00" />
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <label class="form-label" for="phone_numer">Số điện thoại</label>
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-text"><i class="fa-solid fa-phone-volume"></i></span>
+                                    <input type="text" id="edit_phone_number" name="phone_number"
+                                        class="form-control dt-salary" placeholder="Số điện thoại"
+                                        aria-label="Số điện thoại" aria-describedby="phone_numer" />
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <label class="form-label" for="contact">Liên hệ</label>
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-text"><i class="fa-solid fa-address-card"></i></span>
+                                    <input type="text" id="edit_contact" name="contact"
+                                        class="form-control dt-salary" placeholder="Liên hệ" aria-label="Liên hệ"
+                                        aria-describedby="contact" />
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <label class="form-label" for="note">Ghi chú</label>
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-text"><i class="fa-solid fa-notes-medical"></i></span>
+                                    <input type="text" id="edit_note" name="note" class="form-control dt-salary"
+                                        placeholder="Ghi chú" aria-label="Ghi chú" aria-describedby="note" />
+                                </div>
                             </div>
                         </div>
 
@@ -112,7 +178,7 @@
         </div>
         <div class="offcanvas-body flex-grow-1">
             <form class="add-new-record pt-0 row g-2" id="form-add-new-record" method="POST"
-                action="{{ route('bank.create') }}" enctype="multipart/form-data">
+                action="{{ route('supplier.create') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="col-sm-12">
                     <label class="form-label" for="name">Tên nhà cung cấp<span
@@ -120,34 +186,79 @@
                     <div class="input-group input-group-merge">
                         <span id="name" class="input-group-text"><i class="ti ti-user"></i></span>
                         <input type="text" id="name" class="form-control dt-name" name="name"
-                            placeholder="Agribank" aria-label="Agribank" aria-describedby="name" />
+                            placeholder="Nguyễn Văn A" aria-label="Nguyễn Văn A" aria-describedby="name" />
                         @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
+                </div>
                 <div class="col-sm-12">
-                    <label class="form-label" for="note">Ghi chú</label>
+                    <label class="form-label" for="address">Địa chỉ</label>
                     <div class="input-group input-group-merge">
-                        <span class="input-group-text"><i class="ti ti-currency-dollar"></i></span>
-                        <input type="text" id="note" name="note" class="form-control dt-salary"
-                            placeholder="Ghi chú" aria-label="Ghi chú" aria-describedby="note" />
+                        <span class="input-group-text"><i class="fa-solid fa-address-book"></i></span>
+                        <input type="text" id="address" name="address" class="form-control dt-salary"
+                            placeholder="Địa chỉ" aria-label="Địa chỉ" aria-describedby="address" />
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <label class="form-label" for="mst">Mã số thuế</label>
+                    <div class="input-group input-group-merge">
+                        <span class="input-group-text"><i class="fas fa-angle-double-down"></i></span>
+                        <input type="text" id="mst" name="mst" class="form-control dt-salary"
+                            placeholder="Mã số thuế" aria-label="Mã số thuế" aria-describedby="mst" />
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <label class="form-label" for="stk">Số tài khoản</label>
+                    <div class="input-group input-group-merge">
+                        <span class="input-group-text"><i class="fas fa-angle-double-down"></i></span>
+                        <input type="text" id="stk" name="stk" class="form-control dt-salary"
+                            placeholder="Số tài khoản" aria-label="Số tài khoản" aria-describedby="stk" />
                     </div>
                 </div>
 
                 <div class="col-sm-12">
-                    <label class="form-label" for="select2">Select2</label>
+                    <label class="form-label" for="select2">Ngân hàng</label>
                     <div class="input-group input-group-merge">
-                        <select class="select2 w-100" id="select2Basic" name="select2" aria-label="Select2" aria-describedby="select2">
-                            <!-- Option 1 -->
-                            <option value="option1">1 Phan Thị Tuệ Anh</option>
-                            <!-- Option 2 -->
-                            <option value="option2">Option 2</option>
-                            <!-- Option 3 -->
-                            <option value="option3">Option 3</option>
-                            <!-- Add more options as needed -->
+                        <select class="select2 w-100" id="bank_select" name="bank_id" aria-label="Select2"
+                            aria-describedby="select2">
+                            <!-- Options -->
                         </select>
+                    </div>
+                    <div class="col-sm-12">
+                        <label class="form-label" for="note">Thời gian nợ</label>
+                        <div class="input-group input-group-merge">
+                            <span class="input-group-text"><i class="fa-solid fa-hourglass-half"></i></span>
+                            <input type="datetime-local" class="form-control dt-date" id="time" name="time"
+                                aria-describedby="time" placeholder="yyyy-MM-ddThh:mm:ss" value=""
+                                min="1800-01-01T00:00" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <label class="form-label" for="phone_number">Số điện thoại</label>
+                        <div class="input-group input-group-merge">
+                            <span class="input-group-text"><i class="fa-solid fa-phone-volume"></i></span>
+                            <input type="text" id="phone_number" name="phone_number" class="form-control dt-salary"
+                                placeholder="Số điện thoại" aria-label="Số điện thoại" aria-describedby="phone_number" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <label class="form-label" for="contact">Liên hệ</label>
+                        <div class="input-group input-group-merge">
+                            <span class="input-group-text"><i class="fa-solid fa-address-card"></i></span>
+                            <input type="text" id="contact" name="contact" class="form-control dt-salary"
+                                placeholder="Liên hệ" aria-label="Liên hệ" aria-describedby="contact" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <label class="form-label" for="note">Ghi chú</label>
+                        <div class="input-group input-group-merge">
+                            <span class="input-group-text"><i class="fa-solid fa-notes-medical"></i></span>
+                            <input type="text" id="note" name="note" class="form-control dt-salary"
+                                placeholder="Ghi chú" aria-label="Ghi chú" aria-describedby="note" />
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-12 mt-2">
@@ -193,13 +304,13 @@
                 }
             }
             formAddNewRecord = document.getElementById('form-add-new-record');
-            fv_bank = FormValidation.formValidation(formAddNewRecord, validateF);
+            fv_supplier = FormValidation.formValidation(formAddNewRecord, validateF);
             fromEdit = document.getElementById('editUserForm');
-            fvEdit_bank = FormValidation.formValidation(fromEdit, validateF);
+            fvEdit_supplier = FormValidation.formValidation(fromEdit, validateF);
         });
 
         function submitForm() {
-            fv_bank.validate().then(function(status) {
+            fv_supplier.validate().then(function(status) {
                 if (status === 'Valid') {
                     // Nếu tất cả đều thoả mãn, trả về true
                     document.getElementById("form-add-new-record").submit();
@@ -210,7 +321,7 @@
         }
 
         function submitFormEdit() {
-            fvEdit_bank.validate().then(function(status) {
+            fvEdit_supplier.validate().then(function(status) {
                 if (status === 'Valid') {
                     // Nếu tất cả đều thoả mãn, trả về true
                     document.getElementById("editUserForm").submit();
@@ -229,11 +340,11 @@
             var domain = document.documentElement.getAttribute('data-domain');
 
             var editForm = document.getElementById('editUserForm');
-            editForm.action = domain + '/bank/update/' + id;
+            editForm.action = domain + '/supplier/update/' + id;
 
             $.ajax({
                 type: 'GET',
-                url: domain + '/api/v1/bank/' + id,
+                url: domain + '/api/v1/supplier/' + id,
                 headers: {
                     'Authorization': 'Bearer ' + authToken,
                     'X-CSRF-TOKEN': csrfToken
@@ -242,13 +353,64 @@
                     if (data.data != undefined && data.data != []) {
                         let fullData = data.data;
                         console.log(fullData);
-                        document.getElementById('edit-name').value = fullData.name;
-                        document.getElementById('edit-note').value = fullData.note;
-                        document.getElementById('edit-name-title').textContent = fullData.name;
+                        document.getElementById('edit_name').value = fullData.name;
+                        document.getElementById('edit_address').value = fullData.address;
+                        document.getElementById('edit_mst').value = fullData.mst;
+                        document.getElementById('edit_stk').value = fullData.stk;
+                        document.getElementById('edit_phone_number').value = fullData.phone_number;
+                        document.getElementById('edit_note').value = fullData.note;
+                        document.getElementById('edit_contact').value = fullData.contact;
+                        document.getElementById('edit_note').value = fullData.note;
+                        document.getElementById('edit_name-title').textContent = fullData.name;
+
+                        var selectElement = document.getElementById('edit_bank_select');
+                        var options = selectElement.options;
+
+                        var valueToSelect = fullData.bank_id;
+                        $('#edit_bank_select').val(valueToSelect).trigger('change');
                     }
                 }
             });
         }
+    </script>
+
+    <script>
+        window.onload = function() {
+            let authToken = localStorage.getItem('authToken') || "";
+            let csrfToken = $('meta[name="csrf-token"]').attr('content');
+            var domain = document.documentElement.getAttribute('data-domain');
+            $.ajax({
+                type: 'GET',
+                url: domain + '/api/v1/bank',
+                headers: {
+                    'Authorization': 'Bearer ' + authToken,
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                success: function(data) {
+                    if (data.data != undefined && data.data != []) {
+                        let fullData = data.data;
+                        let bank_select = document.getElementById('bank_select');
+                        let edit_bank_select = document.getElementById('edit_bank_select');
+                        fullData.forEach(element => {
+                            let newOption = document.createElement("option");
+                            newOption.value = element.id;
+                            newOption.text = element.name + " \t (" + element.code + ")";
+                            bank_select.appendChild(newOption);
+                            let newOption2 = document.createElement("option");
+                            newOption2.value = element.id;
+                            newOption2.text = element.name + " \t (" + element.code + ")";
+                            edit_bank_select.appendChild(newOption2);
+                        });
+                    }
+                }
+            });
+            // Thực hiện onload ở body
+            var bodyElement = document.querySelector('body');
+            var onLoadAttribute = bodyElement.getAttribute('onload');
+            if (onLoadAttribute) {
+                eval(onLoadAttribute);
+            }
+        };
     </script>
 
     <hr class="my-5" />

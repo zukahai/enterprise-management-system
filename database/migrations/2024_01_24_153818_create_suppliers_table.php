@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('address')->default('')->nullable();
             $table->string('mst')->default('')->nullable();
             $table->string('stk')->default('')->nullable();
-            $table->dateTime('time')->default('0000-00-00 00:00:00')->nullable();
+            $table->dateTime('time')->default(now())->nullable(); // thời gian nợ
             $table->string('email')->default('')->nullable();
             $table->string('phone_number')->default('')->nullable();
             $table->string('contact')->default('')->nullable();

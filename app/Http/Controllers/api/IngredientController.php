@@ -1,15 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\api;
-
-use App\Http\Services\BankService;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Services\IngredientService;
 use Illuminate\Support\Facades\Auth;
 
-class BankController extends Controller
+class IngredientController extends Controller
 {
-    public function __construct(BankService $service)
+    public function __construct(IngredientService $service)
     {
         $this->service = $service;
     }

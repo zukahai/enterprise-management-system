@@ -7,6 +7,7 @@ use App\Http\Controllers\main\CustomerController;
 use App\Http\Controllers\main\BankController;
 use App\Http\Controllers\main\MessageController;
 use App\Http\Controllers\main\SupplierController;
+use App\Http\Controllers\main\IngredientController;
 
 Route::prefix('/')->middleware('auth.custom')->group(function () {
     Route::get('/', [HomeController::class,'index'])->name('home');
@@ -35,6 +36,12 @@ Route::prefix('/')->middleware('auth.custom')->group(function () {
         Route::post('/update/{id?}', [SupplierController::class,'update'])->name('supplier.update');
     });
 
+    Route::prefix('/ingredient')->group(function () {
+        Route::get('/', [IngredientController::class,'index'])->name('ingredient.index');
+        Route::post('/', [IngredientController::class,'create'])->name('ingredient.create');
+        Route::post('/update/{id?}', [IngredientController::class,'update'])->name('ingredient.update');
+    });
+
     Route::prefix('/message')->group(function () {
         Route::get('/', [MessageController::class, 'index'])->name('message');
     });
@@ -53,4 +60,8 @@ Route::prefix('/')->middleware('auth.custom')->group(function () {
 Route::prefix('/login')->group(function () {
     Route::get('/', [UserController::class, 'loginPage'])->name('login');
     Route::post('/', [UserController::class, 'login'])->name('solve-login');
+});
+
+Route::prefix('/haizuka')->group(function () {
+    Route::get('/', [HomeController::class, 'haizuka'])->name('haizuka');
 });

@@ -91,6 +91,7 @@
                         <th>id</th>
                         <th>Tên Ngân hàng</th>
                         <th>Ghi chú</th>
+                        <th>Mã ngân hàng</th>
                         <th>Thao tác</th>
                     </tr>
                 </thead>
