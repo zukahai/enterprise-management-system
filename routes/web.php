@@ -8,6 +8,7 @@ use App\Http\Controllers\main\BankController;
 use App\Http\Controllers\main\MessageController;
 use App\Http\Controllers\main\SupplierController;
 use App\Http\Controllers\main\IngredientController;
+use App\Http\Controllers\main\UnitController;
 
 Route::prefix('/')->middleware('auth.custom')->group(function () {
     Route::get('/', [HomeController::class,'index'])->name('home');
@@ -40,6 +41,12 @@ Route::prefix('/')->middleware('auth.custom')->group(function () {
         Route::get('/', [IngredientController::class,'index'])->name('ingredient.index');
         Route::post('/', [IngredientController::class,'create'])->name('ingredient.create');
         Route::post('/update/{id?}', [IngredientController::class,'update'])->name('ingredient.update');
+    });
+
+    Route::prefix('/unit')->group(function () {
+        Route::get('/', [UnitController::class,'index'])->name('unit.index');
+        Route::post('/', [UnitController::class,'create'])->name('unit.create');
+        Route::post('/update/{id?}', [UnitController::class,'update'])->name('unit.update');
     });
 
     Route::prefix('/message')->group(function () {

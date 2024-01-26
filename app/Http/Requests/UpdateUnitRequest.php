@@ -13,7 +13,7 @@ class UpdateUnitRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**

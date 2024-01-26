@@ -8,6 +8,7 @@ use App\Http\Controllers\api\CustomerController;
 use App\Http\Controllers\api\BankController;
 use App\Http\Controllers\api\SupplierController;
 use App\Http\Controllers\api\IngredientController;
+use App\Http\Controllers\api\UnitController;
 
 
 Route::prefix('/v1')->middleware('api')->group(function () {
@@ -56,6 +57,13 @@ Route::prefix('/v1')->middleware('api')->group(function () {
         Route::get('/{id}', [IngredientController::class, 'show'])->name('api.ingredient.show');
         Route::put('/{id}', [IngredientController::class, 'update'])->name('api.ingredient.update');
         Route::delete('/{id}', [IngredientController::class, 'destroy'])->name('api.ingredient.destroy');
+    });
+
+    Route::prefix('/unit')->middleware(['auth:sanctum'])->group(function () {
+        Route::get('/', [UnitController::class, 'index'])->name('api.unit.index');
+        Route::get('/{id}', [UnitController::class, 'show'])->name('api.unit.show');
+        Route::put('/{id}', [UnitController::class, 'update'])->name('api.unit.update');
+        Route::delete('/{id}', [UnitController::class, 'destroy'])->name('api.unit.destroy');
     });
     
     Route::post('/register', [UserController::class, 'register'])->name('api.account.register');
