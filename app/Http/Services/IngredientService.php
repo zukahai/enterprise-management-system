@@ -19,7 +19,7 @@ class IngredientService
 
 
     public function getAll() {
-        return $this->model->orderBy('id','asc')->get();
+        return $this->model->with('unit')->orderBy('id','asc')->get();
     }
 
     public function getById($id) {

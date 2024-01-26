@@ -59,7 +59,7 @@
                             <div class="input-group input-group-merge">
                                 <span id="name" class="input-group-text"><i class="ti ti-user"></i></span>
                                 <input type="text" id="edit_name" class="form-control dt-name" name="name"
-                                    placeholder="đơn vị" aria-label="đơn vị" aria-describedby="name" />
+                                    placeholder="Đơn vị" aria-label="Đơn vị" aria-describedby="name" />
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -118,7 +118,7 @@
                     <div class="input-group input-group-merge">
                         <span id="name" class="input-group-text"><i class="ti ti-user"></i></span>
                         <input type="text" id="name" class="form-control dt-name" name="name"
-                            placeholder="đơn vị" aria-label="đơn vị" aria-describedby="name" />
+                            placeholder="Đơn vị" aria-label="Đơn vị" aria-describedby="name" />
                         @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

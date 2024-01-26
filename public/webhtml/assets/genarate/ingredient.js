@@ -88,7 +88,7 @@ $(function () {
       columns: [
         { data: 'id', width: '10%' },
         { data: 'name', width: '20%' },
-        { data: 'dvt', width: '10%' },
+        { data: null, width: '10%'}, // đơn vị
         { data: 'length', width: '10%' },
         { data: 'width', width: '10%' },
         { data: 'height', width: '10%' },
@@ -102,6 +102,13 @@ $(function () {
       },
       Responsive: true,
       columnDefs: [
+        {
+          targets: 2,
+          render: function (data, type, row) {
+            let name = row.unit ? row.unit.name : '';
+            return '<a href="' + domain + '/unit/?s=' + name + '">' + name + '</a>';
+          },
+        },
         {
           targets: [-3, -4],
           render: function (data, type, full, meta) {

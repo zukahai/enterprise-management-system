@@ -70,10 +70,9 @@
                         <div class="col-sm-12">
                             <label class="form-label" for="select2">Đơn vị</label>
                             <div class="input-group input-group-merge">
-                                <select class="select2 w-100" id="edit_dvt_select" name="dvt" aria-label="Select2"
+                                <select class="select2 w-100" id="edit_dvt_select" name="unit_id" aria-label="Select2"
                                     aria-describedby="select2">
-                                    <option value="Cái">Cái</option>
-                                    <option value="m2">m2</option>
+                                    {{-- options --}}
                                 </select>
                             </div>
                         </div>
@@ -185,10 +184,9 @@
                 <div class="col-sm-12">
                     <label class="form-label" for="select2">Đơn vị</label>
                     <div class="input-group input-group-merge">
-                        <select class="select2 w-100" id="dvt_select" name="dvt" aria-label="Select2"
+                        <select class="select2 w-100" id="dvt_select" name="unit_id" aria-label="Select2"
                             aria-describedby="select2">
-                            <option value="Cái">Cái</option>
-                            <option value="m2">m2</option>
+                           {{-- options --}}
                         </select>
                     </div>
                 </div>
@@ -341,13 +339,52 @@
                         document.getElementById('edit_height').value = fullData.height;
                         document.getElementById('edit_buying_price').value = fullData.buying_price;
                         document.getElementById('edit_selling_price').value = fullData.selling_price;
-                        var valueToSelect = fullData.dvt;
+                        var valueToSelect = fullData.unit_id;
                         $('#edit_dvt_select').val(valueToSelect).trigger('change');
                     }
                 }
             });
         }
     </script>
+
+<script>
+    window.onload = function() {
+        let authToken = localStorage.getItem('authToken') || "";
+        let csrfToken = $('meta[name="csrf-token"]').attr('content');
+        var domain = document.documentElement.getAttribute('data-domain');
+        $.ajax({
+            type: 'GET',
+            url: domain + '/api/v1/unit',
+            headers: {
+                'Authorization': 'Bearer ' + authToken,
+                'X-CSRF-TOKEN': csrfToken
+            },
+            success: function(data) {
+                if (data.data != undefined && data.data != []) {
+                    let fullData = data.data;
+                    let dvt_select = document.getElementById('dvt_select');
+                    let edit_dvt_select = document.getElementById('edit_dvt_select');
+                    fullData.forEach(element => {
+                        let newOption = document.createElement("option");
+                        newOption.value = element.id;
+                        newOption.text = element.name;
+                        dvt_select.appendChild(newOption);
+                        let newOption2 = document.createElement("option");
+                        newOption2.value = element.id;
+                        newOption2.text = element.name;
+                        edit_dvt_select.appendChild(newOption2);
+                    });
+                }
+            }
+        });
+        // Thực hiện onload ở body
+        var bodyElement = document.querySelector('body');
+        var onLoadAttribute = bodyElement.getAttribute('onload');
+        if (onLoadAttribute) {
+            eval(onLoadAttribute);
+        }
+    };
+</script>
 
     <hr class="my-5" />
 @endsection

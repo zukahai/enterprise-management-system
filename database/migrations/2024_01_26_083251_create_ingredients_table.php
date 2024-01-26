@@ -16,12 +16,13 @@ return new class extends Migration
         Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('dvt');
             $table->unsignedBigInteger('width')->default(0)->nullable();
             $table->unsignedBigInteger('height')->default(0)->nullable();
             $table->unsignedBigInteger('length')->default(0)->nullable();
             $table->unsignedBigInteger('buying_price')->default(0)->nullable();
             $table->unsignedBigInteger('selling_price')->default(0)->nullable();
+            $table->unsignedBigInteger('unit_id');
+            $table->foreign('unit_id')->references('id')->on('units');
             $table->string('note')->default('')->nullable();
             $table->timestamps();
         });
