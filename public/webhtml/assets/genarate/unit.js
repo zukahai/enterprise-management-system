@@ -132,7 +132,7 @@ $(function () {
               text: '<i class="ti ti-printer me-1" ></i>Print',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [0, 1, 2, 3, 4, 5, 6, 7],
+                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8],
               },
               customize: function (win) {
                 //customize print view for dark
@@ -153,7 +153,7 @@ $(function () {
               text: '<i class="ti ti-file-spreadsheet me-1"></i>Excel',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [0, 1, 2, 3, 4, 5, 6, 7],
+                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8],
               
               }
             },
@@ -162,7 +162,7 @@ $(function () {
               text: '<i class="ti ti-file-description me-1"></i>Pdf',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [0, 1, 2, 3, 4, 5, 6, 7],
+                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8],
                 charset: 'utf-8', // Thêm cấu hình charset UTF-8
                 bom: true, // Thêm cấu hình BOM để đảm bảo định dạng UTF-8
               }
@@ -172,7 +172,7 @@ $(function () {
               text: '<i class="ti ti-copy me-1" ></i>Copy',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [0, 1, 2, 3, 4, 5, 6, 7],
+                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8],
               }
             }
           ]
