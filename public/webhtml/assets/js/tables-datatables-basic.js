@@ -81,12 +81,14 @@ $(function () {
         { data: 'id', visible: false },
         { data: 'id', searchable: false, visible: false },
         { data: 'name', width: '15%' }, 
-        { data: 'email', width: '20%' },  
+        { data: 'email', width: '15%' },  
         { data: 'phone_number', width: '10%' },  
-        { data: 'cccd', width: '15%' },  
+        { data: 'cccd', width: '15%' },
+        { data: 'address', width: '15%' },  
         { data: 'birthday', width: '10%' },  
         { data: '', orderable: false, width: '20%' } 
     ],
+    Responsive: true,
       columnDefs: [
         {
           // For Responsive

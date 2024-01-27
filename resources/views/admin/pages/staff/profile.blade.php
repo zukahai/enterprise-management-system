@@ -31,7 +31,7 @@
         <div class="col-12">
           <div class="card mb-4">
             <div class="user-profile-header-banner">
-              <img src="{{asset('webhtml/assets/img/pages/profile-banner.png')}}" alt="Banner image" class="rounded-top" />
+              <img src="{{asset('webhtml/assets/img/pages/profile-banner.png')}}" alt="Banner image" class="rounded-top banner-img" />
             </div>
             <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
               <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
@@ -48,7 +48,7 @@
                     <ul
                       class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
                       <li class="list-inline-item d-flex gap-1">
-                        <i class="ti ti-color-swatch"></i> {{$user->role->role_name}}
+                        <i class="ti ti-color-swatch"></i> {{ucfirst($user->role->role_name)}}
                       </li>
                       <li class="list-inline-item d-flex gap-1"><i class="ti ti-map-pin"></i> {{$user->address}}</li>
                       <li class="list-inline-item d-flex gap-1">
@@ -96,6 +96,10 @@
             <div class="card-body">
               <small class="card-text text-uppercase">Thông tin</small>
               <ul class="list-unstyled mb-4 mt-3">
+                <li class="d-flex align-items-center mb-3">
+                  <i class="ti ti-user text-heading"></i
+                  ><span class="fw-medium mx-2 text-heading">Mã người dùng</span> <span>{{$user->username}}</span>
+                </li>
                 <li class="d-flex align-items-center mb-3">
                   <i class="ti ti-user text-heading"></i
                   ><span class="fw-medium mx-2 text-heading">Họ tên</span> <span>{{$user->name}}</span>

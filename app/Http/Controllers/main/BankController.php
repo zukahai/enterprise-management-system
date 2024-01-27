@@ -20,14 +20,15 @@ class BankController extends Controller
 
     public function create(StoreBankRequest $request)
     {
-        $object = $request->only('name', 'note');
+        $object = $request->all();
         $this->service->create($object);
         return redirect()->back()->with('success','Thêm ngân hàng thành công');
     }
 
     public function update(UpdateBankRequest $request, $id)
     {
-        $object = $request->only('name', 'mst', 'time', 'contact', 'address', 'phone_number', 'note');
+        $object = $request->all();
+        // dd($object);
         $object_update = $this->service->update($id, $object);
         return redirect()->back()->with('success','Sửa thông tin ngân hàng thành công');
     }

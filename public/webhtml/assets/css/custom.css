@@ -28,3 +28,9 @@ div[role="menu"]{
 .position-relative {
     width: 100%;
 }
+
+.banner-img{
+    width: 100% !important; 
+    height: 100% !important;
+    object-fit: cover;
+}

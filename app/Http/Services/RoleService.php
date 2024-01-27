@@ -28,10 +28,14 @@ class RoleService
     }
 
     public function delete($id) {
-        $ojbect= $this->model->find($id);
-        if (!$ojbect)  return -1;
-        $ojbect->delete();
-        return $id;
+        try {
+            $ojbect= $this->model->find($id);
+            if (!$ojbect)  return -1;
+            $ojbect->delete();
+            return $id;
+        } catch (\Exception $e) {
+            return -1;
+        }
     }
 
     public function update($id, $data) {

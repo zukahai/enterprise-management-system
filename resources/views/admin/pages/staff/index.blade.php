@@ -167,6 +167,7 @@
                         <th>Email</th>
                         <th>Số điện thoại</th>
                         <th>CCCD</th>
+                        <th>Địa chỉ</th>
                         <th>Ngày sinh</th>
                         <th>Thao tác</th>
                     </tr>
