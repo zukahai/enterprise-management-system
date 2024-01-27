@@ -448,27 +448,36 @@ if (typeof $ !== 'undefined') {
     if (searchInput.length) {
       // Filter config
       var filterConfig = function (data) {
-        return function findMatches(q, cb) {
-          let matches;
-          matches = [];
-          data.filter(function (i) {
-            if (i.name.toLowerCase().startsWith(q.toLowerCase())) {
-              matches.push(i);
-            } else if (
-              !i.name.toLowerCase().startsWith(q.toLowerCase()) &&
-              i.name.toLowerCase().includes(q.toLowerCase())
-            ) {
-              matches.push(i);
-              matches.sort(function (a, b) {
-                return b.name < a.name ? 1 : -1;
-              });
-            } else {
-              return [];
-            }
-          });
-          cb(matches);
+        // Hàm tổng hợp để chuyển đổi chuỗi thành dạng không dấu và không phân biệt ký tự viết hoa/thường
+        const normalizeString = (str) => {
+            return str
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/đ/g, 'd');
         };
-      };
+    
+        return function findMatches(q, cb) {
+            let matches = [];
+    
+            data.filter(function (i) {
+                const itemName = normalizeString(i.name);
+                const query = normalizeString(q);
+    
+                if (itemName.startsWith(query)) {
+                    matches.push(i);
+                } else if (!itemName.startsWith(query) && itemName.includes(query)) {
+                    matches.push(i);
+                    matches.sort(function (a, b) {
+                        return normalizeString(b.name).localeCompare(normalizeString(a.name));
+                    });
+                }
+            });
+    
+            cb(matches);
+        };
+    };
+    
 
       // Search JSON
       var searchJson = 'search-vertical.json'; // For vertical layout
@@ -502,7 +511,7 @@ if (typeof $ !== 'undefined') {
               limit: 5,
               source: filterConfig(searchData.pages),
               templates: {
-                header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Pages</h6>',
+                header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Các trang liên quan</h6>',
                 suggestion: function ({ url, icon, name }) {
                   return (
                     '<a href="' +
@@ -522,46 +531,6 @@ if (typeof $ !== 'undefined') {
                 notFound:
                   '<div class="not-found px-3 py-2">' +
                   '<h6 class="suggestions-header text-primary mb-2">Pages</h6>' +
-                  '<p class="py-2 mb-0"><i class="ti ti-alert-circle ti-xs me-2"></i> No Results Found</p>' +
-                  '</div>'
-              }
-            },
-            // Files
-            {
-              name: 'files',
-              display: 'name',
-              limit: 4,
-              source: filterConfig(searchData.files),
-              templates: {
-                header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Files</h6>',
-                suggestion: function ({ src, name, subtitle, meta }) {
-                  return (
-                    '<a href="javascript:;">' +
-                    '<div class="d-flex w-50">' +
-                    '<img class="me-3" src="' +
-                    assetsPath +
-                    src +
-                    '" alt="' +
-                    name +
-                    '" height="32">' +
-                    '<div class="w-75">' +
-                    '<h6 class="mb-0">' +
-                    name +
-                    '</h6>' +
-                    '<small class="text-muted">' +
-                    subtitle +
-                    '</small>' +
-                    '</div>' +
-                    '</div>' +
-                    '<small class="text-muted">' +
-                    meta +
-                    '</small>' +
-                    '</a>'
-                  );
-                },
-                notFound:
-                  '<div class="not-found px-3 py-2">' +
-                  '<h6 class="suggestions-header text-primary mb-2">Files</h6>' +
                   '<p class="py-2 mb-0"><i class="ti ti-alert-circle ti-xs me-2"></i> No Results Found</p>' +
                   '</div>'
               }
