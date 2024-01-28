@@ -30,25 +30,26 @@ return new class extends Migration
             $table->string('note')->default('')->nullable();
             $table->string('type')->default('')->nullable();
             $table->string('delivered_enough')->default(0)->nullable();
-            $table->unsignedBigInteger('xa')->default(0)->nullable();
-            $table->string('mold')->default('')->nullable(); // Ph8m khuôn
-            $table->unsignedBigInteger('n_color')->default(0)->nullable();
-            $table->unsignedBigInteger('in')->default(0)->nullable();
-            $table->unsignedBigInteger('in_n')->default(0)->nullable();
-            $table->unsignedBigInteger('boi')->default(0)->nullable();
-            $table->unsignedBigInteger('boi_n')->default(0)->nullable();
-            $table->unsignedBigInteger('mang')->default(0)->nullable();
-            $table->unsignedBigInteger('mang_n')->default(0)->nullable();
-            $table->unsignedBigInteger('be')->default(0)->nullable();
-            $table->unsignedBigInteger('be_n')->default(0)->nullable();
-            $table->unsignedBigInteger('chap')->default(0)->nullable();
-            $table->unsignedBigInteger('chap_n')->default(0)->nullable();
-            $table->unsignedBigInteger('dong')->default(0)->nullable();
-            $table->unsignedBigInteger('dong_n')->default(0)->nullable();
-            $table->unsignedBigInteger('dan')->default(0)->nullable();
-            $table->unsignedBigInteger('dan_n')->default(0)->nullable();
-            $table->unsignedBigInteger('other')->default(0)->nullable();
-            $table->unsignedBigInteger('other_n')->default(0)->nullable();
+            $table->bigInteger('xa')->default(0)->nullable();
+            $table->bigInteger('x')->default(0)->nullable();
+            $table->string('mold')->default('')->nullable(); // Phim khuôn
+            $table->bigInteger('n_color')->default(0)->nullable();
+            $table->bigInteger('in')->default(0)->nullable();
+            $table->bigInteger('in_n')->default(0)->nullable();
+            $table->bigInteger('boi')->default(0)->nullable();
+            $table->bigInteger('boi_n')->default(0)->nullable();
+            $table->bigInteger('mang')->default(0)->nullable();
+            $table->bigInteger('mang_n')->default(0)->nullable();
+            $table->bigInteger('be')->default(0)->nullable();
+            $table->bigInteger('be_n')->default(0)->nullable();
+            $table->bigInteger('chap')->default(0)->nullable();
+            $table->bigInteger('chap_n')->default(0)->nullable();
+            $table->bigInteger('dong')->default(0)->nullable();
+            $table->bigInteger('dong_n')->default(0)->nullable();
+            $table->bigInteger('dan')->default(0)->nullable();
+            $table->bigInteger('dan_n')->default(0)->nullable();
+            $table->bigInteger('other')->default(0)->nullable();
+            $table->bigInteger('other_n')->default(0)->nullable();
 
             $table->foreign('unit_id')->references('id')->on('units');
             $table->timestamps();

@@ -9,6 +9,7 @@ use App\Http\Controllers\api\BankController;
 use App\Http\Controllers\api\SupplierController;
 use App\Http\Controllers\api\IngredientController;
 use App\Http\Controllers\api\UnitController;
+use App\Http\Controllers\api\FinishedProductController;
 
 
 Route::prefix('/v1')->middleware('api')->group(function () {
@@ -64,6 +65,13 @@ Route::prefix('/v1')->middleware('api')->group(function () {
         Route::get('/{id}', [UnitController::class, 'show'])->name('api.unit.show');
         Route::put('/{id}', [UnitController::class, 'update'])->name('api.unit.update');
         Route::delete('/{id}', [UnitController::class, 'destroy'])->name('api.unit.destroy');
+    });
+
+    Route::prefix('/finished-product')->middleware(['auth:sanctum'])->group(function () {
+        Route::get('/', [FinishedProductController::class, 'index'])->name('api.finished-product.index');
+        Route::get('/{id}', [FinishedProductController::class, 'show'])->name('api.finished-product.show');
+        Route::put('/{id}', [FinishedProductController::class, 'update'])->name('api.finished-product.update');
+        Route::delete('/{id}', [FinishedProductController::class, 'destroy'])->name('api.finished-product.destroy');
     });
     
     Route::post('/register', [UserController::class, 'register'])->name('api.account.register');

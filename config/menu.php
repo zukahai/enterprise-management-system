@@ -42,8 +42,8 @@ return [
             ],
             [
                 'title' => '📦 Thành phẩm',
-                'gate' => 'materials.customer',
-                'route' => 'home',
+                'gate' => 'materials.finished-product',
+                'route' => 'finished-product.index',
             ],
             [
                 'title' => '📐 Đơn vị',

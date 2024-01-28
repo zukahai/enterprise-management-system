@@ -9,6 +9,7 @@ use App\Http\Controllers\main\MessageController;
 use App\Http\Controllers\main\SupplierController;
 use App\Http\Controllers\main\IngredientController;
 use App\Http\Controllers\main\UnitController;
+use App\Http\Controllers\main\FinishedProductController;
 
 Route::prefix('/')->middleware('auth.custom')->group(function () {
     Route::get('/', [HomeController::class,'index'])->name('home');
@@ -47,6 +48,12 @@ Route::prefix('/')->middleware('auth.custom')->group(function () {
         Route::get('/', [UnitController::class,'index'])->name('unit.index');
         Route::post('/', [UnitController::class,'create'])->name('unit.create');
         Route::post('/update/{id?}', [UnitController::class,'update'])->name('unit.update');
+    });
+
+    Route::prefix('/finished-product')->group(function () {
+        Route::get('/', [FinishedProductController::class,'index'])->name('finished-product.index');
+        Route::post('/', [FinishedProductController::class,'create'])->name('finished-product.create');
+        Route::post('/update/{id?}', [FinishedProductController::class,'update'])->name('finished-product.update');
     });
 
     Route::prefix('/message')->group(function () {
