@@ -19,7 +19,7 @@ class FinishedProductService
 
 
     public function getAll() {
-        return $this->model->with('unit')->orderBy('id','asc')->get();
+        return $this->model->with('unit')->orderBy('id','desc')->get();
     }
 
     public function getById($id) {

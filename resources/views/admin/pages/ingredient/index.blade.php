@@ -173,7 +173,7 @@
                     <div class="input-group input-group-merge">
                         <span id="name" class="input-group-text"><i class="ti ti-user"></i></span>
                         <input type="text" id="name" class="form-control dt-name" name="name"
-                            placeholder="Nguyên liệu" aria-label="Nguyên liệu" aria-describedby="name" />
+                            placeholder="Nguyên liệu" aria-label="Nguyên liệu" aria-describedby="name" autofocus/>
                         @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
