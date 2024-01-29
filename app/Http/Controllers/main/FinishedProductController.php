@@ -9,6 +9,8 @@ use App\Http\Services\FinishedProductService;
 
 class FinishedProductController extends Controller
 {
+    public $data = [];
+
     public function __construct(FinishedProductService $service)
     {
         $this->service = $service;
@@ -31,6 +33,15 @@ class FinishedProductController extends Controller
         // dd($object);
         $object_update = $this->service->update($id, $object);
         return redirect()->back()->with('success','Sửa thông tin thành phẩm thành công');
+    }   
+
+    public function show($id) {
+        $object = $this->service->getById($id);
+        if ($object) {
+            $this->data['object'] = $object;
+            return view('admin.pages.finished-product.detail', $this->data);
+        }
+        return redirect(route('finished-product.index'))->with('error', 'Không tìm thấy thành phẩm');
     }
 
 }

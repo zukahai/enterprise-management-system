@@ -122,6 +122,12 @@ $(function () {
       // scrollCollapse: true,
       Responsive: true,
       columnDefs: [
+        { //tên
+          targets: 1,
+          render: function (data, type, full, meta){
+            return '<a href="/finished-product/' + full['id'] + '" class="text' + full['id'] + '">' + data + '</a>';
+          } 
+        },
         { //xa
           targets: -11,
           render: function (data, type, full, meta){

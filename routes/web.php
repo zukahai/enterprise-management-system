@@ -53,6 +53,7 @@ Route::prefix('/')->middleware('auth.custom')->group(function () {
     Route::prefix('/finished-product')->group(function () {
         Route::get('/', [FinishedProductController::class,'index'])->name('finished-product.index');
         Route::post('/', [FinishedProductController::class,'create'])->name('finished-product.create');
+        Route::get('/{id}', [FinishedProductController::class,'show'])->name('finished-product.detail');
         Route::post('/update/{id?}', [FinishedProductController::class,'update'])->name('finished-product.update');
     });
 
