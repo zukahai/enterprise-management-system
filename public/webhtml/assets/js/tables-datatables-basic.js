@@ -256,6 +256,7 @@ $(function () {
                 // prevent avatar to be display
                 format: {
                   body: function (inner, coldex, rowdex) {
+                    console.log("format");
                     if (inner.length <= 0) return inner;
                     var el = $.parseHTML(inner);
                     var result = '';

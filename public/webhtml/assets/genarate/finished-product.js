@@ -104,6 +104,7 @@ $(function () {
         { data: 'delivered_enough', width: '10%' },
         { data: null, width: '10%' }, //xa
         { data: 'mold', width: '10%' },
+        { data: 'n_color', width: '10%' },
         { data: null, width: '10%' }, //in
         { data: null, width: '10%' }, // mang
         { data: null, width: '10%' }, //be
@@ -116,13 +117,15 @@ $(function () {
       search: {
         search: getSearchParamFromURL()
       },
+      // scrollX: true,
+      // scrollCollapse: true,
       Responsive: true,
       columnDefs: [
         { //xa
-          targets: -10,
+          targets: -11,
           render: function (data, type, full, meta){
             if (full['xa'] > 0)
-              return full['xa'] +
+              return full['xa'] +'<br>' +
                 '<span class="badge bg-label-success">' + full['x'] + '</span>';
             return "";
           } 
@@ -131,7 +134,7 @@ $(function () {
           targets: -8,
           render: function (data, type, full, meta){
             if (full['in'] > 0)
-              return full['in'] + 
+              return full['in'] + '<br>' +
               '<span class="badge bg-label-success">' + full['in_n'] + '</span>';
             return ""
           } 
@@ -149,7 +152,7 @@ $(function () {
           targets: -6,
           render: function (data, type, full, meta){
             if (full['be'] > 0)
-              return full['be'] + 
+              return full['be'] + '<br>' +
               '<span class="badge bg-label-success">' + full['be_n'] + '</span>';
             return "";
           } 
@@ -158,7 +161,7 @@ $(function () {
           targets: -5,
           render: function (data, type, full, meta){
             if (full['chap'] > 0)
-              return full['chap'] + 
+              return full['chap'] + '<br>' +
               '<span class="badge bg-label-success">' + full['chap_n'] + '</span>';
             return "";
           } 
@@ -167,7 +170,7 @@ $(function () {
           targets: -4,
           render: function (data, type, full, meta){
             if (full['dong'] > 0)
-              return full['dong'] + 
+              return full['dong'] + '<br>' +
               '<span class="badge bg-label-success">' + full['dong_n'] + '</span>';
             return "";
           } 
@@ -176,7 +179,7 @@ $(function () {
           targets: -3,
           render: function (data, type, full, meta){
             if (full['dan'] > 0)
-              return full['dan'] + 
+              return full['dan'] + '<br>' +
               '<span class="badge bg-label-success">' + full['dan_n'] + '</span>';
             return "";
           } 
@@ -185,7 +188,7 @@ $(function () {
           targets: -2,
           render: function (data, type, full, meta){
             if (full['other'] > 0)
-              return full['other'] + 
+              return full['other'] + '<br>' +
               '<span class="badge bg-label-success">' + full['other_n'] + '</span>';
             return "";
           } 
@@ -216,7 +219,13 @@ $(function () {
               '<a href="javascript:;" class="btn btn-sm btn-icon item-edit" data-bs-toggle="modal" data-bs-target="#editUser2" onclick="editRecord(' + full['id'] + ')"><i class="text-primary ti ti-pencil"></i></a>'
             );
           }
-        }
+        },
+        {
+          targets: [10],
+          render: function (data, type, full, meta) {
+            return data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
+          }
+        },
       ],
       order: [[2, 'desc']],
       dom: '<"card-header flex-column flex-md-row"<"head-label text-center"><"dt-action-buttons text-end pt-3 pt-md-0"B>><"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>>t<"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
@@ -233,37 +242,60 @@ $(function () {
               text: '<i class="ti ti-printer me-1" ></i>Print',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,17, 18, 19, 20, 21, 22, 23],
+                // prevent avatar to be display
+                format: {
+                  body: function (inner, coldex, rowdex) {
+                    inner = String(inner);
+                    if (inner.indexOf('<br>') !== -1) {
+                      let text = inner.split('<br>')[0];
+                      return text;
+                    } else {
+                      var tempElement = document.createElement('div');
+                      tempElement.innerHTML = inner;
+                      var anchorElement = tempElement.querySelector('a');
+                      if (anchorElement) {
+                        return anchorElement.textContent || anchorElement.innerText;
+                      } else {
+                        // xoá dấu phẩy
+                        var regex = /^\d{1,3}(,\d{3})*$/;
+                        if (regex.test(inner))
+                          return parseFloat(inner.replace(/,/g, ''));
+                        return inner;
+                      }
+                    }
+                  }
+                }
               },
-              customize: function (win) {
-                //customize print view for dark
-                $(win.document.body)
-                  .css('color', config.colors.headingColor)
-                  .css('border-color', config.colors.borderColor)
-                  .css('background-color', config.colors.bodyBg);
-                $(win.document.body)
-                  .find('table')
-                  .addClass('compact')
-                  .css('color', 'inherit')
-                  .css('border-color', 'inherit')
-                  .css('background-color', 'inherit');
-              }
             },
             {
               extend: 'excel',
               text: '<i class="ti ti-file-spreadsheet me-1"></i>Excel',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
-              },
-              format: {
-                body: function (data, row, column, node) {
-                  // Kiểm tra xem column có phải là cột thứ 23 không
-                  if (column === 22) {
-                    // Lấy HTML từ cột thứ 23
-                    return $(data).html();
+                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,17, 18, 19, 20, 21, 22, 23],
+                // prevent avatar to be display
+                format: {
+                  body: function (inner, coldex, rowdex) {
+                    inner = String(inner);
+                    if (inner.indexOf('<br>') !== -1) {
+                      let text = inner.split('<br>')[0];
+                      return text;
+                    } else {
+                      var tempElement = document.createElement('div');
+                      tempElement.innerHTML = inner;
+                      var anchorElement = tempElement.querySelector('a');
+                      if (anchorElement) {
+                        return anchorElement.textContent || anchorElement.innerText;
+                      } else {
+                        // xoá dấu phẩy
+                        var regex = /^\d{1,3}(,\d{3})*$/;
+                        if (regex.test(inner))
+                          return parseFloat(inner.replace(/,/g, ''));
+                        return inner;
+                      }
+                    }
                   }
-                  return data;
                 }
               }
             },
@@ -272,9 +304,32 @@ $(function () {
               text: '<i class="ti ti-file-description me-1"></i>Pdf',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,17, 18, 19, 20, 21, 22, 23],
+                // prevent avatar to be display
                 charset: 'utf-8', // Thêm cấu hình charset UTF-8
                 bom: true, // Thêm cấu hình BOM để đảm bảo định dạng UTF-8
+                format: {
+                  body: function (inner, coldex, rowdex) {
+                    inner = String(inner);
+                    if (inner.indexOf('<br>') !== -1) {
+                      let text = inner.split('<br>')[0];
+                      return text;
+                    } else {
+                      var tempElement = document.createElement('div');
+                      tempElement.innerHTML = inner;
+                      var anchorElement = tempElement.querySelector('a');
+                      if (anchorElement) {
+                        return anchorElement.textContent || anchorElement.innerText;
+                      } else {
+                        // xoá dấu phẩy
+                        var regex = /^\d{1,3}(,\d{3})*$/;
+                        if (regex.test(inner))
+                          return parseFloat(inner.replace(/,/g, ''));
+                        return inner;
+                      }
+                    }
+                  }
+                }
               }
             },
             {
@@ -282,18 +337,41 @@ $(function () {
               text: '<i class="ti ti-copy me-1" ></i>Copy',
               className: 'dropdown-item',
               exportOptions: {
-                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,17, 18, 19, 20, 21, 22, 23],
+                // prevent avatar to be display
+                format: {
+                  body: function (inner, coldex, rowdex) {
+                    inner = String(inner);
+                    if (inner.indexOf('<br>') !== -1) {
+                      let text = inner.split('<br>')[0];
+                      return text;
+                    } else {
+                      var tempElement = document.createElement('div');
+                      tempElement.innerHTML = inner;
+                      var anchorElement = tempElement.querySelector('a');
+                      if (anchorElement) {
+                        return anchorElement.textContent || anchorElement.innerText;
+                      } else {
+                        // xoá dấu phẩy
+                        var regex = /^\d{1,3}(,\d{3})*$/;
+                        if (regex.test(inner))
+                          return parseFloat(inner.replace(/,/g, ''));
+                        return inner;
+                      }
+                    }
+                  }
+                }
               }
             }
           ]
         },
         {
-          text: '<i class="ti ti-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">Thêm ngân hàng</span>',
+          text: '<i class="ti ti-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">Thêm thành phẩm</span>',
           className: 'create-new btn btn-primary waves-effect waves-light'
         }
       ],
     });
-    $('div.head-label').html('<h5 class="card-title mb-0">Danh sách ngân hàng/h5>');
+    $('div.head-label').html('<h5 class="card-title mb-0">Danh sách thành phẩm/h5>');
   }
 
   // Delete Record
@@ -315,9 +393,9 @@ $(function () {
     }).done(function (data) {
       if (Math.floor(data.data > 0)) {
         dt_basic.row(clickedRow).remove().draw();
-        toastr.success("Xóa ngân hàng thành công");
+        toastr.success("Xóa thành phẩm thành công");
       } else {
-        toastr.error("Xóa ngân hàng thất bại");
+        toastr.error("Xóa thành phẩm thất bại");
       }
 
     }).fail(function (error) {

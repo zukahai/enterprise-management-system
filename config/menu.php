@@ -53,7 +53,7 @@ return [
         ],
     ],
     [
-        'title' => 'Đặt hàng và giao nhận',
+        'title' => 'Đặt và giao hàng',
         'name' => 'info3',
         'icon' => 'ti-truck',
         'route' => 'home',
