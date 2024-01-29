@@ -9,7 +9,7 @@
 
 @section('title')
     @php
-        $title = "Thành phẩm | ". $object->name." | Công ty Hoàng Phát";
+        $title = $object->name." | Thành phẩm | Công ty Hoàng Phát";
     @endphp
 @endsection
 
@@ -27,7 +27,6 @@
 
 @section('js-other')
     <!-- Page JS -->
-    <script src="{{ asset('webhtml/assets/genarate/finished-product.js') }}"></script>
     <script src="{{ asset('webhtml/assets/vendor/libs/moment/moment.js') }}"></script>
     <script src="{{ asset('webhtml/assets/vendor/libs/@form-validation/umd/bundle/popular.min.js') }}"></script>
     <script src="{{ asset('webhtml/assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js') }}"></script>
@@ -38,6 +37,7 @@
 @section('content')
     <h4 class="py-3 mb-4"><span class="text-muted fw-light">{{ ucfirst($super) }} /</span> 
         <a href="{{ route('finished-product.index') }}">{{ ucfirst($sub) }}</a> 
+        / {{ $object->name }}
     </h4>
     {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editUser2">
         Show
@@ -365,11 +365,170 @@
     </div>
     <!--/ Delete User Modal -->
 
-    <div class="col-sm-12 mt-2">
-        <button  class="btn btn-primary me-sm-3 me-1" data-bs-toggle="modal" data-bs-target="#edit" onclick="editRecord({{$object->id}})">Chỉnh sửa</button>
-        <button  class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete-modal">Xoá</button>
+
+    <div class="card">
+        <div class="card-datatable table-responsive pt-0">
+
+            <table class="datatables-basic table span-table" id="table-detail">
+                <thead>
+
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="2">Mã</td>
+                        <td>{{$object->id}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Tên</td>
+                        <td>{{$object->name}}</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3" class="color-1">KT đơn dàng</td>
+                        <td class="color-1">Dài</td>
+                        <td class="color-1">{{$object->ktdh_length}}</td>
+                    </tr>
+                    <tr>
+                        <td class="color-1">Rộng</td>
+                        <td class="color-1">{{$object->ktdh_width}}</td>
+                    </tr>
+                    <tr>
+                        <td class="color-1">Cao</td>
+                        <td class="color-1">{{$object->ktdh_height}}</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3" class="color-2">KT Sản xuất</td>
+                        <td class="color-2">Dài</td>
+                        <td class="color-2">{{$object->ktsx_length}}</td>
+                    </tr>
+                    <tr>
+                        <td class="color-2">Rộng</td>
+                        <td class="color-2">{{$object->ktsx_width}}</td>
+                    </tr>
+                    <tr>
+                        <td class="color-2">Cao</td>
+                        <td class="color-2">{{$object->ktsx_height}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Sóng</td>
+                        <td>{{$object->song}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Đơn vị</td>
+                        <td>{{$object->unit->name}} {{($object->unit->description ? "(".$object->unit->description.")" : "")}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Đơn giá</td>
+                        <td>{{$object->price}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Hoa hồng</td>
+                        <td>{{$object->rose}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">% Hoa hồng</td>
+                        <td>{{$object->rose_percent}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Ghi chú</td>
+                        <td>{{$object->note}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Kiểu</td>
+                        <td>{{$object->type}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Giao đủ</td>
+                        <td>{{$object->delivered_enough}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Xả</td>
+                        <td>
+                            @if($object->xa > 0)
+                            {{$object->xa}}<br>
+                            <span class="badge bg-label-success">{{$object->x}}</span>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Phim / khuôn</td>
+                        <td>{{$object->mold}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Số màu</td>
+                        <td>{{$object->n_color}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">In</td>
+                        <td>
+                            @if($object->in > 0)
+                            {{$object->in}}<br>
+                            <span class="badge bg-label-success">{{$object->in_n}}</span>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Màng</td>
+                        <td>
+                            @if($object->mang > 0)
+                            {{$object->mang}}<br>
+                            <span class="badge bg-label-success">{{$object->mang_n}}</span>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Bế</td>
+                        <td>
+                            @if($object->be > 0)
+                            {{$object->be}}<br>
+                            <span class="badge bg-label-success">{{$object->be_n}}</span>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Chạp</td>
+                        <td>
+                            @if($object->chap > 0)
+                            {{$object->chap}}<br>
+                            <span class="badge bg-label-success">{{$object->chap_n}}</span>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Đóng</td>
+                        <td>
+                            @if($object->dong > 0)
+                            {{$object->dong}}<br>
+                            <span class="badge bg-label-success">{{$object->dong_n}}</span>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Dán</td>
+                        <td>
+                            @if($object->dan > 0)
+                            {{$object->dan}}<br>
+                            <span class="badge bg-label-success">{{$object->dan_n}}</span>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Khác</td>
+                        <td>
+                            @if($object->other > 0)
+                            {{$object->other}}<br>
+                            <span class="badge bg-label-success">{{$object->other_n}}</span>
+                            @endif
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-12 text-center mb-2">
+            <button  class="btn btn-primary me-sm-3 me-1" data-bs-toggle="modal" data-bs-target="#edit" onclick="editRecord({{$object->id}})">Chỉnh sửa</button>
+            <button  class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete-modal">Xoá</button>
+        </div>
     </div>
-    <h1>{{$object}}</h1>
+
     {{-- validate form --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
