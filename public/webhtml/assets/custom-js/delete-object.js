@@ -26,3 +26,7 @@ function deleteObject(id, prefix, name) {
         console.log(error);
     });
 }
+
+function formatNumber(data) {
+    return data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}

@@ -356,7 +356,7 @@
                     </div>
                     <div id="" class="row g-3" method="POST">
                         <div class="col-sm-12 text-center">
-                            <button type="submit" class="btn btn-primary mx-auto" onclick="deleteObject({{$object->id}}, 'finished-product', 'abc')">Xoá</button>
+                            <button type="submit" class="btn btn-primary mx-auto" onclick="deleteObject({{$object->id}}, 'finished-product', 'thành phẩm')">Xoá</button>
                         </div>
                     </div>
                 </div>

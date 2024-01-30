@@ -132,8 +132,8 @@ $(function () {
           targets: -11,
           render: function (data, type, full, meta){
             if (full['xa'] > 0)
-              return full['xa'] +'<br>' +
-                '<span class="badge bg-label-success">' + full['x'] + '</span>';
+              return formatNumber(full['xa']) +'<br>' +
+                '<span class="badge bg-label-success">' + formatNumber(full['x'])+ '</span>';
             return "";
           } 
         },
@@ -141,8 +141,8 @@ $(function () {
           targets: -8,
           render: function (data, type, full, meta){
             if (full['in'] > 0)
-              return full['in'] + '<br>' +
-              '<span class="badge bg-label-success">' + full['in_n'] + '</span>';
+              return formatNumber(full['in']) + '<br>' +
+              '<span class="badge bg-label-success">' + formatNumber(full['in_n']) + '</span>';
             return ""
           } 
         },
@@ -150,8 +150,8 @@ $(function () {
           targets: -7,
           render: function (data, type, full, meta){
             if (full['mang'] > 0)
-            return full['mang'] + '<br>' +
-            '<span class="badge bg-label-success">' + full['mang_n'] + '</span>';
+            return formatNumber(full['mang']) + '<br>' +
+            '<span class="badge bg-label-success">' + formatNumber(full['mang_n'])+ '</span>';
             return "";
           } 
         },
@@ -159,8 +159,8 @@ $(function () {
           targets: -6,
           render: function (data, type, full, meta){
             if (full['be'] > 0)
-              return full['be'] + '<br>' +
-              '<span class="badge bg-label-success">' + full['be_n'] + '</span>';
+              return formatNumber(full['be']) + '<br>' +
+              '<span class="badge bg-label-success">' + formatNumber(full['be_n']) + '</span>';
             return "";
           } 
         },
@@ -168,8 +168,8 @@ $(function () {
           targets: -5,
           render: function (data, type, full, meta){
             if (full['chap'] > 0)
-              return full['chap'] + '<br>' +
-              '<span class="badge bg-label-success">' + full['chap_n'] + '</span>';
+              return formatNumber(full['chap']) + '<br>' +
+              '<span class="badge bg-label-success">' + formatNumber(full['chap_n'])+ '</span>';
             return "";
           } 
         },
@@ -177,8 +177,8 @@ $(function () {
           targets: -4,
           render: function (data, type, full, meta){
             if (full['dong'] > 0)
-              return full['dong'] + '<br>' +
-              '<span class="badge bg-label-success">' + full['dong_n'] + '</span>';
+              return formatNumber(full['dong']) + '<br>' +
+              '<span class="badge bg-label-success">' + formatNumber(full['dong_n']) + '</span>';
             return "";
           } 
         },
@@ -186,8 +186,8 @@ $(function () {
           targets: -3,
           render: function (data, type, full, meta){
             if (full['dan'] > 0)
-              return full['dan'] + '<br>' +
-              '<span class="badge bg-label-success">' + full['dan_n'] + '</span>';
+              return formatNumber(full['dan']) + '<br>' +
+              '<span class="badge bg-label-success">' + formatNumber(full['dan_n']) + '</span>';
             return "";
           } 
         },
@@ -195,8 +195,8 @@ $(function () {
           targets: -2,
           render: function (data, type, full, meta){
             if (full['other'] > 0)
-              return full['other'] + '<br>' +
-              '<span class="badge bg-label-success">' + full['other_n'] + '</span>';
+              return formatNumber(full['other']) + '<br>' +
+              '<span class="badge bg-label-success">' + formatNumber(full['other_n']) + '</span>';
             return "";
           } 
         },
@@ -230,7 +230,7 @@ $(function () {
         {
           targets: [10],
           render: function (data, type, full, meta) {
-            return data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
+            return formatNumber(data)
           }
         },
       ],
@@ -286,7 +286,7 @@ $(function () {
                     inner = String(inner);
                     if (inner.indexOf('<br>') !== -1) {
                       let text = inner.split('<br>')[0];
-                      return text;
+                      return parseFloat(text.replace(/[,\.]/g, ''));
                     } else {
                       var tempElement = document.createElement('div');
                       tempElement.innerHTML = inner;
@@ -295,9 +295,9 @@ $(function () {
                         return anchorElement.textContent || anchorElement.innerText;
                       } else {
                         // xoá dấu phẩy
-                        var regex = /^\d{1,3}(,\d{3})*$/;
+                        var regex = /^(\d{1,3}(\.\d{3})*(,\d{3})*|\d+)$/;
                         if (regex.test(inner))
-                          return parseFloat(inner.replace(/,/g, ''));
+                          return parseFloat(inner.replace(/[,\.]/g, ''));
                         return inner;
                       }
                     }

@@ -164,7 +164,7 @@
                     </div>
                     <div id="" class="row g-3" method="POST">
                         <div class="col-sm-12 text-center">
-                            <button type="submit" class="btn btn-primary mx-auto" onclick="deleteObject({{ $object->id }}, 'supplier', 'hhh')">Xoá</button>
+                            <button type="submit" class="btn btn-primary mx-auto" onclick="deleteObject({{ $object->id }}, 'supplier', 'nhà cung cấp')">Xoá</button>
                         </div>
                     </div>
                 </div>
@@ -234,6 +234,12 @@
         <div class="bank-quick col-sm-12 mb-2 container">
             <hr>
             <h4>Chuyển khoản nhanh</h4>
+            <span id="qr-error" class="text-success">Mã chuyển khoản được tạo từ thông tin nhà cung cấp</span>
+            <div class="text-center">
+                <img id="qrcode" class="my-2 rounded-2"
+                    src="https://api.vietqr.io/{{ $object->bank->code }}/{{ $object->stk }}/0/Hoang Phat/vietqr_net_2.jpg"
+                    alt="Ngân hàng không hợp lệ" srcset="">
+            </div>
             <div class="row mb-2">
                 <div class="col-sm-4">
                     <label class="form-label" for="select2">Ngân hàng</label>
@@ -271,11 +277,6 @@
                             onchange="changeQR()" onkeyup="changeQR()" />
                     </div>
                 </div>
-            </div>
-            <div class="text-center">
-                <img id="qrcode" class="my-2 rounded-2"
-                    src="https://api.vietqr.io/{{ $object->bank->code }}/{{ $object->stk }}/0/Hoang Phat/vietqr_net_2.jpg"
-                    alt="Ngân hàng không hợp lệ" srcset="">
             </div>
         </div>
     </div>
