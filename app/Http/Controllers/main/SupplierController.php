@@ -10,6 +10,8 @@ use App\Http\Services\BankService;
 
 class SupplierController extends Controller
 {
+    public $data = [];
+
     public function __construct(SupplierService $service, BankService $bankService)
     {
         $this->service = $service;
@@ -32,6 +34,15 @@ class SupplierController extends Controller
         $object = $request->only('name', 'address', 'mst', 'stk', 'bank_id', 'time', 'contact', 'phone_number', 'note');
         $object_update = $this->service->update($id, $object);
         return redirect()->back()->with('success','Sửa thông tin nhà cung cấp thành công');
+    }
+
+    public function show($id) {
+        $object = $this->service->getById($id);
+        if ($object) {
+            $this->data['object'] = $object;
+            return view('admin.pages.supplier.detail', $this->data);
+        }
+        return redirect(route('supplier.index'))->with('error', 'Không tìm thấy nhà cung cấp');
     }
 
 }

@@ -78,6 +78,12 @@ $(function () {
       Responsive: true,
       columnDefs: [
         {
+          targets: 1,
+          render: function (data, type, row) {
+            return '<a href="' + domain + '/supplier/' + row.id + '">' + row.name + '</a>';
+          },
+        },
+        {
           targets: 5,
           render: function (data, type, row) {
             // Sử dụng dữ liệu từ trường bank.name

@@ -35,6 +35,7 @@ Route::prefix('/')->middleware('auth.custom')->group(function () {
     Route::prefix('/supplier')->group(function () {
         Route::get('/', [SupplierController::class,'index'])->name('supplier.index');
         Route::post('/', [SupplierController::class,'create'])->name('supplier.create');
+        Route::get('/{id}', [SupplierController::class,'show'])->name('supplier.detail');
         Route::post('/update/{id?}', [SupplierController::class,'update'])->name('supplier.update');
     });
 
