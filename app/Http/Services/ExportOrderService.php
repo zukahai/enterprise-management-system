@@ -4,11 +4,11 @@ namespace App\Http\Services;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-use App\Models\FinishedProduct;
+use App\Models\ExportOrder;
 
-class FinishedProductService
+class ExportOrderService
 {
-    public function __construct(FinishedProduct $model)
+    public function __construct(ExportOrder $model)
     {
         $this->model = $model;
     }
@@ -19,11 +19,11 @@ class FinishedProductService
 
 
     public function getAll() {
-        return $this->model->with('unit')->orderBy('id','desc')->get();
+        return $this->model->with(['customer', 'finishedProduct'])->orderBy('id','desc')->get();
     }
 
     public function getById($id) {
-        return $this->model->with('unit')->find($id);
+        return $this->model->find($id);
     }
 
     public function delete($id) {

@@ -10,6 +10,7 @@ use App\Http\Controllers\main\SupplierController;
 use App\Http\Controllers\main\IngredientController;
 use App\Http\Controllers\main\UnitController;
 use App\Http\Controllers\main\FinishedProductController;
+use App\Http\Controllers\main\ExportOrderController;
 
 Route::prefix('/')->middleware('auth.custom')->group(function () {
     Route::get('/', [HomeController::class,'index'])->name('home');
@@ -56,6 +57,13 @@ Route::prefix('/')->middleware('auth.custom')->group(function () {
         Route::post('/', [FinishedProductController::class,'create'])->name('finished-product.create');
         Route::get('/{id}', [FinishedProductController::class,'show'])->name('finished-product.detail');
         Route::post('/update/{id?}', [FinishedProductController::class,'update'])->name('finished-product.update');
+    });
+
+    Route::prefix('/export-order')->group(function () {
+        Route::get('/', [ExportOrderController::class,'index'])->name('export-order.index');
+        Route::post('/', [ExportOrderController::class,'create'])->name('export-order.create');
+        Route::get('/{id}', [ExportOrderController::class,'show'])->name('export-order.detail');
+        Route::post('/update/{id?}', [ExportOrderController::class,'update'])->name('export-order.update');
     });
 
     Route::prefix('/message')->group(function () {

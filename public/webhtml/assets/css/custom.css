@@ -52,14 +52,20 @@ div[role="menu"]{
 .color-1,
 #fn-product td:nth-child(3),
 #fn-product td:nth-child(4),
-#fn-product td:nth-child(5) {
+#fn-product td:nth-child(5),
+#export-order-table td:nth-child(7),
+#export-order-table td:nth-child(8),
+#export-order-table td:nth-child(9) {
     background-color: rgba(243, 214, 214, 0.25) !important;
 }
 
 .color-2,
 #fn-product td:nth-child(6),
 #fn-product td:nth-child(7),
-#fn-product td:nth-child(8) {
+#fn-product td:nth-child(8),
+#export-order-table td:nth-child(10),
+#export-order-table td:nth-child(11),
+#export-order-table td:nth-child(12) {
     background-color: rgba(46, 138, 243, 0.15) !important;
 }
 

@@ -10,6 +10,7 @@ use App\Http\Controllers\api\SupplierController;
 use App\Http\Controllers\api\IngredientController;
 use App\Http\Controllers\api\UnitController;
 use App\Http\Controllers\api\FinishedProductController;
+use App\Http\Controllers\api\ExportOrderController;
 
 
 Route::prefix('/v1')->middleware('api')->group(function () {
@@ -72,6 +73,13 @@ Route::prefix('/v1')->middleware('api')->group(function () {
         Route::get('/{id}', [FinishedProductController::class, 'show'])->name('api.finished-product.show');
         Route::put('/{id}', [FinishedProductController::class, 'update'])->name('api.finished-product.update');
         Route::delete('/{id}', [FinishedProductController::class, 'destroy'])->name('api.finished-product.destroy');
+    });
+
+    Route::prefix('/export-order')->middleware(['auth:sanctum'])->group(function () {
+        Route::get('/', [ExportOrderController::class, 'index'])->name('api.export-order.index');
+        Route::get('/{id}', [ExportOrderController::class, 'show'])->name('api.export-order.show');
+        Route::put('/{id}', [ExportOrderController::class, 'update'])->name('api.export-order.update');
+        Route::delete('/{id}', [ExportOrderController::class, 'destroy'])->name('api.export-order.destroy');
     });
     
     Route::post('/register', [UserController::class, 'register'])->name('api.account.register');

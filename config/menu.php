@@ -54,14 +54,14 @@ return [
     ],
     [
         'title' => 'Đặt và giao hàng',
-        'name' => 'info3',
+        'name' => 'order',
         'icon' => 'ti-truck',
         'route' => 'home',
         'children' => [
             [
                 'title' => '📤 Đơn hàng xuất',
-                'gate' => 'info.index',
-                'route' => 'home',
+                'gate' => 'order.export-order',
+                'route' => 'export-order.index',
             ],
             [
                 'title' => '📥 Đơn hàng nhập',
