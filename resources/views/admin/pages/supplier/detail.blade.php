@@ -229,10 +229,46 @@
             <button  class="btn btn-primary me-sm-3 me-1" data-bs-toggle="modal" data-bs-target="#edit" onclick="editRecord({{$object->id}})">Chỉnh sửa</button>
             <button  class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete-modal">Xoá</button>
         </div>
-        <div class="bank-quick col-sm-12 text-center mb-2">
+        <div class="bank-quick col-sm-12 mb-2 container">
             <hr>
             <h4>Chuyển khoản nhanh</h4>
-            <img src="https://api.vietqr.io/{{$object->bank->code}}/{{$object->stk}}/0/Hoang Phat/vietqr_net_2.jpg" alt="Ngân hàng không hợp lệ" srcset="">
+            <div class="row mb-2">
+                <div class="col-sm-4">
+                    <label class="form-label" for="xa">Mã ngân hàng</label>
+                    <div class="input-group input-group-merge">
+                        <span class="input-group-text"></i></span>
+                        <input type="text" id="code" name="code" class="form-control dt-salary"
+                            placeholder="Mã ngân hàng" aria-label="Mã ngân hàng" aria-describedby="code" value="{{$object->bank->code}}" onchange="changeQR()" onkeyup="changeQR()"/>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <label class="form-label" for="x">Số tài khoản</label>
+                    <div class="input-group input-group-merge">
+                        <span class="input-group-text"><i class=""></i></span>
+                        <input type="text" id="stk" name="stk" class="form-control dt-salary"
+                            placeholder="Số tài khoản" aria-label="Số tài khoản" aria-describedby="x" value="{{$object->stk}}" onchange="changeQR()" onkeyup="changeQR()"/>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <label class="form-label" for="xa">Số tiền</label>
+                    <div class="input-group input-group-merge">
+                        <span class="input-group-text"><i class="ti ti-currency-dollar"></i></span>
+                        <input type="number" id="money" name="money" class="form-control dt-salary"
+                            placeholder="Số tiền" aria-label="Số tiền" aria-describedby="xa" value="0" min="0" onchange="changeQR()" onkeyup="changeQR()"/>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <label class="form-label" for="x">Nội dung chuyển khoản</label>
+                    <div class="input-group input-group-merge">
+                        <span class="input-group-text"><i class=""></i></span>
+                        <input type="text" id="content" name="content" class="form-control dt-salary"
+                            placeholder="X" aria-label="X" aria-describedby="x" value="Hoang Phat" onchange="changeQR()" onkeyup="changeQR()"/>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <img id="qrcode" class="my-2 rounded-2" src="https://api.vietqr.io/{{$object->bank->code}}/{{$object->stk}}/0/Hoang Phat/vietqr_net_2.jpg" alt="Ngân hàng không hợp lệ" srcset="">
+            </div>
         </div>
     </div>
 
@@ -396,6 +432,19 @@
             }).fail(function (error) {
                 console.log(error);
             });
+        }
+    </script>
+
+    {{-- QR --}}
+    <script>
+        function changeQR() {
+            let code = document.getElementById('code').value ;
+            let stk = document.getElementById('stk').value ;
+            let money = document.getElementById('money').value ;
+            let content = document.getElementById('content').value ;
+            let src = "https://api.vietqr.io/" + code + "/" + stk + "/" + money + "/" + content + "/vietqr_net_2.jpg";
+            document.getElementById('qrcode').src = src;
+            document.getElementById('download-qrcode').href = src;
         }
     </script>
 
