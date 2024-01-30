@@ -103,7 +103,7 @@ $(function () {
               '<div class="d-inline-block">' +
               '<a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="text-primary ti ti-dots-vertical"></i></a>' +
               '<ul class="dropdown-menu dropdown-menu-end m-0">' +
-              '<li><a href="javascript:;" class="dropdown-item">Hồ sơ</a></li>' +
+              '<li><a href="' + domain + '/supplier/' + full['id'] + '" class="dropdown-item">Xem chi tiết</a></li>' +
               '<div class="dropdown-divider"></div>' +
               '<li><a href="javascript:;" class="dropdown-item text-danger delete-record" data-id=' + full['id'] + '>Xoá ' + full['name'] + '</a></li>' +
               '</ul>' +

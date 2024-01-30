@@ -58,6 +58,9 @@
     <script src="{{asset('webhtml/assets/js/js-custom/crypto-js.js')}}"></script>
     <script src="{{asset('webhtml/assets/js/js-custom/jszip.min.js')}}"></script>
 
+    {{-- Xoá detail --}}
+    <script src="{{ asset('webhtml/assets/custom-js/delete-object.js') }}"></script>
+
     <!-- Helpers -->
     <script src="{{ asset('webhtml/assets/vendor/js/helpers.js') }}"></script>
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
