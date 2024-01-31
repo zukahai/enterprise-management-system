@@ -19,7 +19,7 @@ class ExportOrderService
 
 
     public function getAll() {
-        return $this->model->with(['customer', 'finishedProduct'])->orderBy('id','desc')->get();
+        return $this->model->with(['customer', 'finishedProduct.unit'])->orderBy('id','desc')->get();
     }
 
     public function getById($id) {

@@ -94,6 +94,13 @@ $(function () {
       Responsive: true,
       columnDefs: [
         {
+          // name
+          targets: 1,
+          render: function (data, type, full, meta) {
+            return '<a href="../../../customer/' + full['id'] + '">' + data + '</a>';
+          }
+        },
+        {
           // Label
           targets: -2,
           render: function (data, type, full, meta) {

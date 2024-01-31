@@ -100,7 +100,7 @@ $(function () {
         { data: 'finished_product.ktsx_width', width: '10%' },
         { data: 'finished_product.ktsx_height', width: '10%' },
         { data: 'finished_product.song', width: '10%' },
-        { data: null, width: '10%' },
+        { data: 'finished_product.unit.name', width: '10%' },
         { data: 'finished_product.price', width: '10%' },
         { data: 'count', width: '10%' },
         { data: null, width: '10%' }, // thành tiền
@@ -221,8 +221,7 @@ $(function () {
         {
           targets: 13,
           render: function (data, type, row){
-            let name = row.unit ? row.unit.name : '';
-            return '<a href="' + domain + '/unit/?s=' + name + '">' + name + '</a>';
+            return '<a href="' + domain + '/unit/?s=' + data + '">' + data + '</a>';
           } 
         },
         {

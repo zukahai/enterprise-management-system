@@ -65,22 +65,22 @@ return [
             ],
             [
                 'title' => '📥 Đơn hàng nhập',
-                'gate' => 'info.index',
+                'gate' => 'info3.index',
                 'route' => 'home',
             ],
             [
                 'title' => '🚚 Xuất giao hàng',
-                'gate' => 'info.customer',
+                'gate' => 'info3.customer',
                 'route' => 'home',
             ],
             [
                 'title' => '💵 Hoá đơn bán hàng',
-                'gate' => 'info.customer',
+                'gate' => 'info3.customer',
                 'route' => 'home',
             ],
             [
                 'title' => '🚛 Nhập giao hàng',
-                'gate' => 'info.customer',
+                'gate' => 'info3.customer',
                 'route' => 'home',
             ]
         ],

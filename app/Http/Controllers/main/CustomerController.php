@@ -33,9 +33,13 @@ class CustomerController extends Controller
         //
     }
 
-    public function show(Customer $customer)
-    {
-        //
+    public function show($id) {
+        $object = $this->service->getById($id);
+        if ($object) {
+            $this->data['object'] = $object;
+            return view('admin.pages.customer.detail', $this->data);
+        }
+        return redirect(route('customer.index'))->with('error', 'Không tìm thấy thành phẩm');
     }
 
     public function edit(Customer $customer)
@@ -47,7 +51,7 @@ class CustomerController extends Controller
     {
         $object = $request->only('name', 'mst', 'time', 'contact', 'address', 'phone_number', 'note');
         $object_update = $this->service->update($id, $object);
-        return redirect()->route('customer.index')->with('success','Sửa thông tin khách hàng thành công');
+        return redirect()->back()->with('success','Sửa thông tin khách hàng thành công');
     }
 
     public function destroy(Customer $customer)
