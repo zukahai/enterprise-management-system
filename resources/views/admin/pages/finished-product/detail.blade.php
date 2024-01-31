@@ -57,6 +57,15 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="col-sm-12">
+                            <label class="form-label" for="id_custom">Mã thành phẩm<span
+                                    class="font-weight-bold text-danger">*</span></label>
+                            <div class="input-group input-group-merge">
+                                <span id="id_custom" class="input-group-text"><i class="ti ti-user"></i></span>
+                                <input type="text" id="edit_id_custom" class="form-control dt-name" name="id_custom"
+                                    placeholder="AH" aria-label="AH" aria-describedby="name" />
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
                             <label class="form-label" for="name">Tên thành phẩm<span
                                     class="font-weight-bold text-danger">*</span></label>
                             <div class="input-group input-group-merge">
@@ -376,7 +385,7 @@
                 <tbody>
                     <tr>
                         <td colspan="2">Mã</td>
-                        <td>{{$object->id}}</td>
+                        <td>{{$object->id_custom}}</td>
                     </tr>
                     <tr>
                         <td colspan="2">Tên</td>

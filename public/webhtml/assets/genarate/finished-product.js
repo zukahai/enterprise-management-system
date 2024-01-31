@@ -87,7 +87,7 @@ $(function () {
       },
       order: [[1, 'desc']],
       columns: [
-        { data: 'id', width: '10%' },
+        { data: 'id_custom', width: '10%' },
         { data: 'name', width: '30%' },
         { data: 'ktdh_length', width: '10%' },
         { data: 'ktdh_width', width: '10%' },

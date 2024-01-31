@@ -9,6 +9,13 @@ document.addEventListener('DOMContentLoaded', function () {
                         message: 'Tên thành phẩm không được trống'
                     }
                 }
+            },
+            id_custom: {
+                validators: {
+                    notEmpty: {
+                        message: 'Mã thành phẩm không được trống'
+                    }
+                }
             }
         },
         plugins: {
@@ -115,6 +122,7 @@ function editRecord(id) {
                 document.getElementById('edit_dan_n').value = fullData.dan_n;
                 document.getElementById('edit_other').value = fullData.other;
                 document.getElementById('edit_other_n').value = fullData.other_n;
+                document.getElementById('edit_id_custom').value = fullData.id_custom;
 
                 var valueToSelect = fullData.unit_id;
                 $('#edit_dvt_select').val(valueToSelect).trigger('change');

@@ -137,13 +137,13 @@ $(function () {
         { //khách hàng
           targets: 2,
           render: function (data, type, full, meta){
-            return '(' + full['customer']['id'] + ')<br>'  +'<a href="../../../customer/' + full['customer']['id'] + '">' + data + '</a>';
+            return '(' + full['customer']['id_custom'] + ')<br>'  +'<a href="../../../customer/' + full['customer']['id'] + '">' + data + '</a>';
           } 
         },
         { //đơn hàng xuất
           targets: 5,
           render: function (data, type, full, meta){
-            return '(' + full['finished_product']['id'] + ')<br>'+
+            return '(' + full['finished_product']['id_custom'] + ')<br>'+
              '<a href="../../../finished-product/' + full['finished_product']['id'] + '">' + data + '</a>';
           } 
         },
