@@ -137,13 +137,14 @@ $(function () {
         { //khách hàng
           targets: 2,
           render: function (data, type, full, meta){
-            return '<a href="../../../customer/' + full['customer']['id'] + '">' + data + '</a>';
+            return '(' + full['customer']['id'] + ')<br>'  +'<a href="../../../customer/' + full['customer']['id'] + '">' + data + '</a>';
           } 
         },
         { //đơn hàng xuất
           targets: 5,
           render: function (data, type, full, meta){
-            return '<a href="../../../finished-product/' + full['finished_product']['id'] + '">' + data + '</a>';
+            return '(' + full['finished_product']['id'] + ')<br>'+
+             '<a href="../../../finished-product/' + full['finished_product']['id'] + '">' + data + '</a>';
           } 
         },
         { //xa
@@ -250,7 +251,7 @@ $(function () {
               '<ul class="dropdown-menu dropdown-menu-end m-0">' +
               '<li><a href="'+ domain +'/export-order/' + full['id']+'" class="dropdown-item">Xem chi tiết</a></li>' +
               '<div class="dropdown-divider"></div>' +
-              '<li><a href="javascript:;" class="dropdown-item text-danger delete-record" data-id=' + full['id'] + '>Xoá ' + full['name'] + '</a></li>' +
+              '<li><a href="javascript:;" class="dropdown-item text-danger delete-record" data-id=' + full['id'] + '>Xoá id =' + full['id'] + '</a></li>' +
               '</ul>' +
               '</div>' +
               '<a href="javascript:;" class="btn btn-sm btn-icon item-edit" data-bs-toggle="modal" data-bs-target="#editUser2" onclick="editRecord(' + full['id'] + ')"><i class="text-primary ti ti-pencil"></i></a>'
@@ -402,8 +403,11 @@ $(function () {
           ]
         },
         {
-          text: '<i class="ti ti-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">Chọn thành phẩm</span>',
-          className: 'create-new btn btn-primary waves-effect waves-light'
+          text: '<i class="ti ti-plus me-sm-1"></i> <span class="d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#add-export-order">Chọn thành phẩm</span>',
+          className: 'btn btn-primary',
+          action: function (e, dt, node, config) {
+            $('#add-export-order').modal('show');
+          }
         }
       ],
     });
