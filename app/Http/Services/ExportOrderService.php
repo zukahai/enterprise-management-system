@@ -8,9 +8,10 @@ use App\Models\ExportOrder;
 
 class ExportOrderService
 {
-    public function __construct(ExportOrder $model)
+    public function __construct(ExportOrder $model, CustomerService $customerService)
     {
         $this->model = $model;
+        $this->customerService = $customerService;
     }
    
     function countObject() {
@@ -63,6 +64,17 @@ class ExportOrderService
         $data = array_filter($data, function ($value) {
             return !is_null($value);
         });
+
+        // Tạp mã nội bộ
+        // Lấy hai số cuối của năm hiện tại
+        $twoDigitYear = date('y');
+        $customer = $this->customerService->getById($data['customer_id']);
+        $id_customer = $customer->id_custom;
+        $count_export_order = $customer->exportOrder->count();
+        // Gán giá trị vào trường internal_code
+        $number = $id_customer . '-' . $twoDigitYear . 'X00001';
+        $data['internal_code'] = $number.'/'.($count_export_order + 1);
+
         $ojbect = $this->model->create($data);
         return $ojbect;
     }

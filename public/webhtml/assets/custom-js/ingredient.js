@@ -115,16 +115,20 @@ window.onload = function () {
                 let fullData = data.data;
                 let dvt_select = document.getElementById('dvt_select');
                 let edit_dvt_select = document.getElementById('edit_dvt_select');
-                fullData.forEach(element => {
-                    let newOption = document.createElement("option");
-                    newOption.value = element.id;
-                    newOption.text = element.name;
-                    dvt_select.appendChild(newOption);
-                    let newOption2 = document.createElement("option");
-                    newOption2.value = element.id;
-                    newOption2.text = element.name;
-                    edit_dvt_select.appendChild(newOption2);
-                });
+                if (dvt_select)
+                    fullData.forEach(element => {
+                        let newOption = document.createElement("option");
+                        newOption.value = element.id;
+                        newOption.text = element.name;
+                        dvt_select.appendChild(newOption);
+                    });
+                if (edit_dvt_select)
+                    fullData.forEach(element => {
+                        let newOption = document.createElement("option");
+                        newOption.value = element.id;
+                        newOption.text = element.name;
+                        edit_dvt_select.appendChild(newOption);
+                    });
             }
         }
     });

@@ -121,16 +121,21 @@ window.onload = function () {
                 let fullData = data.data;
                 let bank_select = document.getElementById('bank_select');
                 let edit_bank_select = document.getElementById('edit_bank_select');
-                fullData.forEach(element => {
-                    let newOption = document.createElement("option");
-                    newOption.value = element.id;
-                    newOption.text = element.name + " \t (" + element.code + ")";
-                    bank_select.appendChild(newOption);
-                    let newOption2 = document.createElement("option");
-                    newOption2.value = element.id;
-                    newOption2.text = element.name + " \t (" + element.code + ")";
-                    edit_bank_select.appendChild(newOption2);
-                });
+
+                if (bank_select)
+                    fullData.forEach(element => {
+                        let newOption = document.createElement("option");
+                        newOption.value = element.id;
+                        newOption.text = element.name + " \t (" + element.code + ")";
+                        bank_select.appendChild(newOption);
+                    });
+                if (edit_bank_select)
+                    fullData.forEach(element => {
+                        let newOption = document.createElement("option");
+                        newOption.value = element.id;
+                        newOption.text = element.name + " \t (" + element.code + ")";
+                        edit_bank_select.appendChild(newOption);
+                    });
             }
         }
     });

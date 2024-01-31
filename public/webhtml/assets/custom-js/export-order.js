@@ -101,19 +101,20 @@ window.onload = function () {
                 let fullData = data.data;
                 let customer_select = document.getElementById('customer_select');
                 let customer_select_add = document.getElementById('customer_select_add');
-                fullData.forEach(element => {
-                    let newOption = document.createElement("option");
-                    newOption.value = element.id;
-                    newOption.text = "(ID = " + element.id + ") \t" + element.name;
-                    customer_select.appendChild(newOption);
-                });
-
-                fullData.forEach(element => {
-                    let newOption = document.createElement("option");
-                    newOption.value = element.id;
-                    newOption.text = "(ID = " + element.id + ") \t" + element.name;
-                    customer_select_add.appendChild(newOption);
-                });
+                if (customer_select)
+                    fullData.forEach(element => {
+                        let newOption = document.createElement("option");
+                        newOption.value = element.id;
+                        newOption.text = element.id_custom + "|\t" + element.name;
+                        customer_select.appendChild(newOption);
+                    });
+                if (customer_select_add)
+                    fullData.forEach(element => {
+                        let newOption = document.createElement("option");
+                        newOption.value = element.id;
+                        newOption.text = element.id_custom + "|\t" + element.name;
+                        customer_select_add.appendChild(newOption);
+                    });
             }
         }
     });
@@ -130,19 +131,20 @@ window.onload = function () {
                 let fullData = data.data;
                 let finished_product_select = document.getElementById('finished_product_select');
                 let finished_product_select_add = document.getElementById('finished_product_select_add');
-                fullData.forEach(element => {
-                    let newOption = document.createElement("option");
-                    newOption.value = element.id;
-                    newOption.text = "(ID = " + element.id + ") \t" + element.name;
-                    finished_product_select.appendChild(newOption);
-                });
-
-                fullData.forEach(element => {
-                    let newOption = document.createElement("option");
-                    newOption.value = element.id;
-                    newOption.text = "(ID = " + element.id + ") \t" + element.name;
-                    finished_product_select_add.appendChild(newOption);
-                });
+                if (finished_product_select)
+                    fullData.forEach(element => {
+                        let newOption = document.createElement("option");
+                        newOption.value = element.id;
+                        newOption.text = element.id_custom + "|\t" + element.name;
+                        finished_product_select.appendChild(newOption);
+                    });
+                if (finished_product_select_add)
+                    fullData.forEach(element => {
+                        let newOption = document.createElement("option");
+                        newOption.value = element.id;
+                        newOption.text = element.id_custom + "|\t" + element.name;
+                        finished_product_select_add.appendChild(newOption);
+                    });
             }
         }
     });

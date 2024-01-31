@@ -222,6 +222,7 @@
                     <tr>
                         <th>id</th>
                         <th>Sản phẩm</th>
+                        <th>Mã nội bộ</th>
                         <th>Số lượng</th>
                         <th>Dơn giá</th>
                         <th>Thành tiền</th>

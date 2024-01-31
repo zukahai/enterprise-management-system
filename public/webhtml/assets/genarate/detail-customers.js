@@ -67,9 +67,10 @@ $(function () {
       },
       columns: [
         { data: 'id', width: '10%' },
-        { data: 'finished_product.name', width: '30%' },
-        { data: 'count', width: '20%' },
-        { data: 'finished_product.price', width: '20%' },
+        { data: 'finished_product.name', width: '20%' },
+        { data: 'internal_code', width: '20%' },
+        { data: 'count', width: '10%' },
+        { data: 'finished_product.price', width: '10%' },
         { data: null, width: '10%' }, // thành tiền
         { data: 'delivery_date', width: '10%' },
         { data: 'status', width: '10%' },
@@ -84,20 +85,20 @@ $(function () {
           }
         },
         {
-          targets: [2, 3],
+          targets: [3, 4],
           render: function (data, type, full, meta) {
             return formatNumber(data);
           }
         },
         {
-          targets: [4],
+          targets: [5],
           render: function (data, type, full, meta) {
             let total_price_row = BigInt(BigInt(full['count']) * BigInt(full['finished_product']['price']));
             return formatNumber(total_price_row);
           }
         },
         {
-          targets: [6],
+          targets: [7],
           render: function (data, type, full, meta) {
             let text = (data == '1') ? 'Hoàn thành' : 'Chưa hoàn thành';
             let bootstrap_class = (data == '1') ? 'badge bg-label-success' : 'badge bg-label-danger';

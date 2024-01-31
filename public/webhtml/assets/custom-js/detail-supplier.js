@@ -112,17 +112,21 @@ window.onload = function () {
                 let fullData = data.data;
                 let edit_bank_select = document.getElementById('edit_bank_select');
                 let bank_qr = document.getElementById('bank_qr');
-                fullData.forEach(element => {
-                    // Cho load mã QR code
-                    let newOption = document.createElement("option");
-                    newOption.value = element.code;
-                    newOption.text = element.name;
-                    bank_qr.appendChild(newOption);
-                    let newOption2 = document.createElement("option");
-                    newOption2.value = element.id;
-                    newOption2.text = element.name;
-                    edit_bank_select.appendChild(newOption2);
-                });
+                if (bank_qr)
+                    fullData.forEach(element => {
+                        // Cho load mã QR code
+                        let newOption = document.createElement("option");
+                        newOption.value = element.code;
+                        newOption.text = element.name;
+                        bank_qr.appendChild(newOption);
+                    });
+                if (edit_bank_select)
+                    fullData.forEach(element => {
+                        let newOption = document.createElement("option");
+                        newOption.value = element.id;
+                        newOption.text = element.name;
+                        edit_bank_select.appendChild(newOption);
+                    });
 
                 var valueToSelect = code;
                 $('#bank_qr').val(valueToSelect).trigger('change');
