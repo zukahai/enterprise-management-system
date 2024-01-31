@@ -9,6 +9,13 @@ document.addEventListener('DOMContentLoaded', function () {
                         message: 'Tên khách hàng không được trống'
                     }
                 }
+            },
+            id_custom: {
+                validators: {
+                    notEmpty: {
+                        message: 'Mã khách hàng không được trống'
+                    }
+                }
             }
         },
         plugins: {
@@ -90,6 +97,7 @@ function editRecord(id) {
                 document.getElementById('edit-contact').value = fullData.contact;
                 document.getElementById('edit-note').value = fullData.note;
                 document.getElementById('edit-name-title').textContent = fullData.name;
+                document.getElementById('edit_id_custom').value = fullData.id_custom;
             }
         }
     });

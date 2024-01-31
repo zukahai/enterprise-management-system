@@ -81,7 +81,7 @@ $(function () {
         }
       },
       columns: [
-        { data: 'id', width: '10%' },
+        { data: 'id_custom', width: '10%' },
         { data: 'name', width: '15%' },
         { data: 'address', width: '50%' },
         { data: 'mst', width: '10%' },

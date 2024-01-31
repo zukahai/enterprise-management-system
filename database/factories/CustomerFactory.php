@@ -17,6 +17,7 @@ class CustomerFactory extends Factory
     public function definition()
     {
         return [
+            'id_custom' => fake()->numberBetween(100000,999999),
             'name' => fake()->name(),
             'phone_number' => fake()->phoneNumber(),
             'contact' => fake()->unique()->safeEmail(),

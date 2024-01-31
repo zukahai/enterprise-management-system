@@ -23,7 +23,7 @@ class CustomerController extends Controller
 
     public function create(StoreCustomerRequest $request)
     {
-        $object = $request->only('name', 'mst', 'time', 'contact', 'address', 'phone_number', 'note');
+        $object = $request->all();
         $this->service->create($object);
         return redirect()->route('customer.index')->with('success','Thêm khách hàng thành công');
     }
@@ -49,7 +49,7 @@ class CustomerController extends Controller
 
     public function update(UpdateCustomerRequest $request, $id)
     {
-        $object = $request->only('name', 'mst', 'time', 'contact', 'address', 'phone_number', 'note');
+        $object = $request->all();
         $object_update = $this->service->update($id, $object);
         return redirect()->back()->with('success','Sửa thông tin khách hàng thành công');
     }

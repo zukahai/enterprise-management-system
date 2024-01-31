@@ -231,6 +231,7 @@
             <form class="add-new-record pt-0 row g-2" id="form-add-new-record" method="POST"
                 action="{{ route('export-order.create') }}" enctype="multipart/form-data">
                 @csrf
+                
                 <div class="col-sm-12">
                     <label class="form-label" for="name">Tên thành phẩm<span
                             class="font-weight-bold text-danger">*</span></label>

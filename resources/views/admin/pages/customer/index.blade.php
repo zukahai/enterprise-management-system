@@ -54,6 +54,15 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="col-sm-12">
+                            <label class="form-label" for="id_custom">Mã khách hàng<span
+                                    class="font-weight-bold text-danger">*</span></label>
+                            <div class="input-group input-group-merge">
+                                <span id="id_custom" class="input-group-text"><i class="ti ti-user"></i></span>
+                                <input type="text" id="edit_id_custom" class="form-control dt-name" name="id_custom"
+                                    placeholder="AH" aria-label="AH" aria-describedby="name" />
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
                             <label class="form-label" for="name">Tên khách hàng <span
                                     class="font-weight-bold text-danger">*</span></label>
                             <div class="input-group input-group-merge">
@@ -161,6 +170,15 @@
             <form class="add-new-record pt-0 row g-2" id="form-add-new-record" method="POST"
                 action="{{ route('customer.create') }}" enctype="multipart/form-data">
                 @csrf
+                <div class="col-sm-12">
+                    <label class="form-label" for="id_custom">Mã khách hàng<span
+                            class="font-weight-bold text-danger">*</span></label>
+                    <div class="input-group input-group-merge">
+                        <span id="id_custom" class="input-group-text"><i class="ti ti-user"></i></span>
+                        <input type="text" id="id_custom" class="form-control dt-name" name="id_custom"
+                            placeholder="AH" aria-label="AH" aria-describedby="name" />
+                    </div>
+                </div>
                 <div class="col-sm-12">
                     <label class="form-label" for="name">Tên khách hàng <span
                             class="font-weight-bold text-danger">*</span></label>

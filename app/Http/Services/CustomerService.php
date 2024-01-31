@@ -43,6 +43,7 @@ class CustomerService
 
     public function update($id, $data) {
         try {
+            $data['_token'] = null;
             $data = array_filter($data, function ($value) {
                 return !is_null($value);
             });
