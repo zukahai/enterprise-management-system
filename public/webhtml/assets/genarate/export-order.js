@@ -233,7 +233,7 @@ $(function () {
         {
           targets: 16,
           render: function (data, type, full, meta){
-            let total_price_row = full['finished_product']['price'] * full['count'] | 0;
+            let total_price_row = BigInt(BigInt(full['finished_product']['price']) * BigInt(full['count']));
             return formatNumber(total_price_row);
           } 
         },

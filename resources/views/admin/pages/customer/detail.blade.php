@@ -27,6 +27,7 @@
 
 @section('js-other')
     <!-- Page JS -->
+    <script src="{{ asset('webhtml/assets/genarate/detail-customers.js') }}"></script>
     <script src="{{ asset('webhtml/assets/vendor/libs/moment/moment.js') }}"></script>
     <script src="{{ asset('webhtml/assets/vendor/libs/@form-validation/umd/bundle/popular.min.js') }}"></script>
     <script src="{{ asset('webhtml/assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js') }}"></script>
@@ -157,8 +158,8 @@
 
     <div class="card">
         <div class="card-datatable table-responsive pt-0">
-
-            <table class="datatables-basic table span-table" id="table-detail">
+            <h4 class="mx-2 mt-2 text-center">Thông tin khách hàng</h4>
+            <table class="datatables-laravel table span-table" id="table-detail">
                 <thead>
 
                 </thead>
@@ -202,7 +203,24 @@
             <button  class="btn btn-primary me-sm-3 me-1" data-bs-toggle="modal" data-bs-target="#edit" onclick="editRecord({{$object->id}})">Chỉnh sửa</button>
             <button  class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete-modal">Xoá</button>
         </div>
+        <hr>
+        <h4 class="mx-2 mt-2 text-center"><a href="{{route('export-order.index')}}">Đơn hàng xuất</a> của khách hàng <span class="text-success"> {{$object->name}} </span></h4>
+        <div class="container">
+            <table class="datatables-detail table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Dơn giá</th>
+                        <th>Thành tiền</th>
+                        <th>Hoàn thành</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
     </div>
+    <input type="hidden" id="customer_id" value="{{$object->id}}">
 
     <script src="{{ asset('webhtml/assets/custom-js/customer.js') }}"></script>
 

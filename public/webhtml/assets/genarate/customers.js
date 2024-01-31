@@ -83,7 +83,7 @@ $(function () {
       columns: [
         { data: 'id', width: '10%' },
         { data: 'name', width: '15%' },
-        { data: 'address', width: '20%' },
+        { data: 'address', width: '50%' },
         { data: 'mst', width: '10%' },
         { data: 'time', width: '15%' },
         { data: 'phone_number', width: '10%' },
