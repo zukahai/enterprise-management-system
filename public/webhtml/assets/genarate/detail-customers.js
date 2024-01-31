@@ -71,6 +71,7 @@ $(function () {
         { data: 'count', width: '20%' },
         { data: 'finished_product.price', width: '20%' },
         { data: null, width: '10%' }, // thành tiền
+        { data: 'delivery_date', width: '10%' },
         { data: 'status', width: '10%' },
       ],
       Responsive: true,
@@ -96,7 +97,7 @@ $(function () {
           }
         },
         {
-          targets: [5],
+          targets: [6],
           render: function (data, type, full, meta) {
             let text = (data == '1') ? 'Hoàn thành' : 'Chưa hoàn thành';
             let bootstrap_class = (data == '1') ? 'badge bg-label-success' : 'badge bg-label-danger';

@@ -214,6 +214,7 @@
                         <th>Số lượng</th>
                         <th>Dơn giá</th>
                         <th>Thành tiền</th>
+                        <th>Ngày giao</th>
                         <th>Hoàn thành</th>
                     </tr>
                 </thead>
