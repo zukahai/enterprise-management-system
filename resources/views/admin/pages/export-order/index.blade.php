@@ -41,7 +41,7 @@
         Show
       </button> --}}
     <!-- Edit Object Modal -->
-    <div class="modal fade" id="editObject2" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="editObjectModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-simple modal-edit-Object">
             <div class="modal-content p-3 p-md-5">
                 <div class="modal-body">
@@ -111,27 +111,59 @@
                     <div class="modal-body">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         <div class="text-center mb-4">
-                            <h3 class="mb-2">Chỉnh sửa tret</h3>
+                            <h3 class="mb-2">Thêm đơn hàng</h3>
                             <h2><a href="javascript:" class="mb-2 text-primary" id="edit-name-title"></a></h2>
                         </div>
-                        <form id="editForm" class="row g-3" method="POST" action="{{ route('staff.update') }}"
+                        <form id="editForm" class="row g-3" method="POST" action="{{ route('export-order.create') }}"
                             enctype="multipart/form-data">
                             @csrf
                             
                             <div class="col-sm-12">
                                 <label class="form-label" for="select2">Khách hàng</label>
                                 <div class="input-group input-group-merge">
-                                    <select class="select2 w-100" id="customer_select2" name="customer_id" aria-label="Select2"
+                                    <select class="select2 w-100" id="customer_select_add" name="customer_id" aria-label="Select2"
                                         aria-describedby="select2">
                                        {{-- options --}}
                                     </select>
                                 </div>
                             </div>
+
+                            <hr>
+                            
+                            <div id="order" class="row g-3">
+                                <label class="form-label text-success" for="order">Đơn hàng 1</label>
+                                <div class="col-sm-12">
+                                    <label class="form-label" for="select2">Thành phẩm</label>
+                                    <div class="input-group input-group-merge">
+                                        <select class="select2 w-100" id="finished_product_select_add" name="finished_product_id" aria-label="Select2"
+                                            aria-describedby="select2">
+                                           {{-- options --}}
+                                        </select>
+                                    </div>
+                                </div>
+        
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="count">Số lượng</label>
+                                    <div class="input-group input-group-merge">
+                                        <span class="input-group-text"><i class=""></i></span>
+                                        <input type="number" id="edit_count" name="count" class="form-control dt-salary"
+                                            placeholder="1234" aria-label="1234" aria-describedby="count" value="0" min="0"/>
+                                    </div>
+                                </div>
+        
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="time">Ngày giao</label>
+                                    <div class="input-group input-group-merge">
+                                        <span class="input-group-text"><i class="ti ti-calendar"></i></span>
+                                        <input type="date" class="form-control dt-date" id="edit_delivery_date" name="delivery_date"
+                                                    aria-describedby="delivery_date" value=""/>
+                                    </div>
+                                </div>
+                            </div>
                             
     
                             <div class="col-sm-12 text-center">
-                                <button type="submit" class="btn btn-primary mx-auto" onclick="submitFormEdit()">Cập nhật
-                                    thông tin</button>
+                                <button type="submit" class="btn btn-primary mx-auto" onclick="submitFormEdit()">Thêm 1 đơn hàng</button>
                             </div>
                         </form>
                     </div>

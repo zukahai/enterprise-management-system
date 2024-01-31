@@ -21,6 +21,7 @@ class ExportOrderController extends Controller
     public function create(StoreExportOrderRequest $request)
     {
         $object = $request->all();
+        // dd($object);
         $this->service->create($object);
         return redirect()->back()->with('success','Thêm đơn hàng xuất thành công');
     }

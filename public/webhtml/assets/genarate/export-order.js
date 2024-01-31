@@ -251,10 +251,10 @@ $(function () {
               '<ul class="dropdown-menu dropdown-menu-end m-0">' +
               '<li><a href="'+ domain +'/export-order/' + full['id']+'" class="dropdown-item">Xem chi tiết</a></li>' +
               '<div class="dropdown-divider"></div>' +
-              '<li><a href="javascript:;" class="dropdown-item text-danger delete-record" data-id=' + full['id'] + '>Xoá id =' + full['id'] + '</a></li>' +
+              '<li><a href="javascript:;" class="dropdown-item text-danger delete-record" data-id=' + full['id'] + '>Xoá ' + full['name'] + '</a></li>' +
               '</ul>' +
               '</div>' +
-              '<a href="javascript:;" class="btn btn-sm btn-icon item-edit" data-bs-toggle="modal" data-bs-target="#editUser2" onclick="editRecord(' + full['id'] + ')"><i class="text-primary ti ti-pencil"></i></a>'
+              '<a href="javascript:;" class="btn btn-sm btn-icon item-edit" data-bs-toggle="modal" data-bs-target="#editObjectModal" onclick="editRecord(' + full['id'] + ')"><i class="text-primary ti ti-pencil"></i></a>'
             );
           }
         },
@@ -403,7 +403,7 @@ $(function () {
           ]
         },
         {
-          text: '<i class="ti ti-plus me-sm-1"></i> <span class="d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#add-export-order">Chọn thành phẩm</span>',
+          text: '<i class="ti ti-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">Chọn thành phẩm</span>',
           className: 'btn btn-primary',
           action: function (e, dt, node, config) {
             $('#add-export-order').modal('show');

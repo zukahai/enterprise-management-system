@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('finished_products', function (Blueprint $table) {
             $table->id();
+            $table->string('id_custom')->unique()->notNull();
             $table->string('name');
             $table->unsignedBigInteger('ktdh_length')->default(0)->nullable();
             $table->unsignedBigInteger('ktdh_width')->default(0)->nullable();
