@@ -99,10 +99,22 @@ $(function () {
         },
         {
           targets: [7],
-          render: function (data, type, full, meta) {
-            let text = (data == '1') ? 'Hoàn thành' : 'Chưa hoàn thành';
-            let bootstrap_class = (data == '1') ? 'badge bg-label-success' : 'badge bg-label-danger';
-            return '<span class="' + bootstrap_class + '">' + text + '</span>';
+            render: function (data, type, full, meta){
+              let result = {
+                "1": {
+                  "text": "Hoàn thành",
+                  "class": "badge bg-label-success"
+                },
+                "0": {
+                  "text": "Đang chờ",
+                  "class": "badge bg-label-warning"
+                },
+                "2": {
+                  "text": "Đã huỷ",
+                  "class": "badge bg-label-danger"
+                }
+              }
+              return '<span class="badge bg-label-' + result[full['status']]['class'] + '">' + result[full['status']]['text'] + '</span>';
           }
         }
       ],

@@ -88,7 +88,7 @@ $(function () {
       order: [[1, 'desc']],
       columns: [
         { data: null, width: '1%' },
-        { data: 'id', width: '10%' },
+        { data: 'null', width: '10%' }, //trạng thái
         { data: 'customer.name', width: '10%' },
         { data: 'delivery_date', width: '10%' },
         { data: 'internal_code', width: '10%' },
@@ -132,6 +132,26 @@ $(function () {
           targets: 0,
           render: function (data, type, full, meta){
             return '<input class="form-check-input" type="checkbox" name="eo' + full['id'] + '" value="' + full['id'] + '">';
+          } 
+        },
+        { //trạng thái
+          targets: 1,
+          render: function (data, type, full, meta){
+            let result = {
+              "1": {
+                "text": "Hoàn thành",
+                "class": "badge bg-label-success"
+              },
+              "0": {
+                "text": "Đang chờ",
+                "class": "badge bg-label-warning"
+              },
+              "2": {
+                "text": "Đã huỷ",
+                "class": "badge bg-label-danger"
+              }
+            }
+            return '<span class="badge bg-label-' + result[full['status']]['class'] + '">' + result[full['status']]['text'] + '</span>';
           } 
         },
         { //khách hàng
