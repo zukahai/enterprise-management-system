@@ -237,6 +237,7 @@
                 <thead>
                     <tr>
                         <th rowspan="2">HT</th>
+                        <th rowspan="2"></th> <!--created_at-->
                         <th rowspan="2">Trang thái</th>
                         <th rowspan="2">Khách hàng</th>
                         <th rowspan="2">Ngày giao</th>

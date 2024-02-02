@@ -87,6 +87,7 @@ $(function () {
       },
       order: [[1, 'desc']],
       columns: [
+        { data: 'created_at', visible: false },
         { data: null, width: '1%' },
         { data: 'null', width: '10%' }, //trạng thái
         { data: 'customer.name', width: '10%' },
@@ -119,7 +120,7 @@ $(function () {
         { data: null, width: '10%' }, //dong
         { data: null, width: '10%' }, //dán
         { data: 'finished_product.other', width: '10%' }, // khác
-        { data: '', orderable: false, width: '20%' }
+        { data: '', orderable: false, width: '20%' },
       ],
       search: {
         search: getSearchParamFromURL()
@@ -129,13 +130,13 @@ $(function () {
       Responsive: true,
       columnDefs: [
         { //tên
-          targets: 0,
+          targets: 1,
           render: function (data, type, full, meta){
             return '<input class="form-check-input" type="checkbox" name="eo' + full['id'] + '" value="' + full['id'] + '">';
           } 
         },
         { //trạng thái
-          targets: 1,
+          targets: 2,
           render: function (data, type, full, meta){
             let result = {
               "1": {
@@ -155,13 +156,13 @@ $(function () {
           } 
         },
         { //khách hàng
-          targets: 2,
+          targets: 3,
           render: function (data, type, full, meta){
             return '(' + full['customer']['id_custom'] + ')<br>'  +'<a href="../../../customer/' + full['customer']['id'] + '">' + data + '</a>';
           } 
         },
         { //đơn hàng xuất
-          targets: 5,
+          targets: 6,
           render: function (data, type, full, meta){
             return '(' + full['finished_product']['id_custom'] + ')<br>'+
              '<a href="../../../finished-product/' + full['finished_product']['id'] + '">' + data + '</a>';
@@ -240,19 +241,19 @@ $(function () {
           } 
         },
         {
-          targets: 13,
+          targets: 14,
           render: function (data, type, row){
             return '<a href="' + domain + '/unit/?s=' + data + '">' + data + '</a>';
           } 
         },
         {
-          targets: [14, 15],
+          targets: [15, 16],
           render: function (data, type, full, meta){
             return formatNumber(data);
           } 
         },
         {
-          targets: 16,
+          targets: 17,
           render: function (data, type, full, meta){
             let total_price_row = BigInt(BigInt(full['finished_product']['price']) * BigInt(full['count']));
             return formatNumber(total_price_row);
@@ -279,7 +280,7 @@ $(function () {
           }
         },
         {
-          targets: [10],
+          targets: [11],
           render: function (data, type, full, meta) {
             return formatNumber(data)
           }
