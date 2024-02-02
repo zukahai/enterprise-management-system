@@ -158,8 +158,9 @@ $(function () {
         { //khách hàng
           targets: 3,
           render: function (data, type, full, meta){
-            let id = full['order']['customer']['id_custom'];
-            return '(' + id + ')<br>'  +'<a href="../../../customer/' + id + '">' + data + '</a>';
+            let id = full['order']['customer']['id'];
+            let id_custom = full['order']['customer']['id_custom'];
+            return '(' + id_custom + ')<br>'  +'<a href="../../../customer/' + id + '">' + data + '</a>';
           } 
         },
         { //đơn hàng xuất
@@ -273,7 +274,7 @@ $(function () {
               '<ul class="dropdown-menu dropdown-menu-end m-0">' +
               '<li><a href="'+ domain +'/export-order/' + full['id']+'" class="dropdown-item">Xem chi tiết</a></li>' +
               '<div class="dropdown-divider"></div>' +
-              '<li><a href="javascript:;" class="dropdown-item text-danger delete-record" data-id=' + full['id'] + '>Xoá ' + full['name'] + '</a></li>' +
+              '<li><a href="javascript:;" class="dropdown-item text-danger delete-record" data-id=' + full['id'] + '>Xoá ' + full['internal_code'] + '</a></li>' +
               '</ul>' +
               '</div>' +
               '<a href="javascript:;" class="btn btn-sm btn-icon item-edit" data-bs-toggle="modal" data-bs-target="#editObjectModal" onclick="editRecord(' + full['id'] + ')"><i class="text-primary ti ti-pencil"></i></a>'

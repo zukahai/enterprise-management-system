@@ -86,6 +86,7 @@
                             </div>
                         </div>
 
+
                         <div class="col-sm-12">
                             <label class="form-label" for="select2">Trạng thái</label>
                             <div class="input-group input-group-merge">
@@ -135,9 +136,11 @@
                         </div>
 
                         <hr>
+                        <div class="row" id="order">
+                             {{-- Thêm các dữ liệu --}}
+                        </div>
 
-                        <div id="order" class="row g-3">
-                            <label class="form-label text-success" for="order">Đơn hàng 1</label>
+                        <div class="row g-3">
                             <div class="col-sm-12">
                                 <label class="form-label" for="select2">Thành phẩm</label>
                                 <div class="input-group input-group-merge">
@@ -152,7 +155,7 @@
                                 <label class="form-label" for="count">Số lượng</label>
                                 <div class="input-group input-group-merge">
                                     <span class="input-group-text"><i class=""></i></span>
-                                    <input type="number" id="edit_count" name="count" class="form-control dt-salary"
+                                    <input type="number" id="count" name="count" class="form-control dt-salary"
                                         placeholder="1234" aria-label="1234" aria-describedby="count" value="0"
                                         min="0" />
                                 </div>
@@ -162,19 +165,20 @@
                                 <label class="form-label" for="time">Ngày giao</label>
                                 <div class="input-group input-group-merge">
                                     <span class="input-group-text"><i class="ti ti-calendar"></i></span>
-                                    <input type="date" class="form-control dt-date" id="edit_delivery_date"
+                                    <input type="date" class="form-control dt-date" id="delivery_date"
                                         name="delivery_date" aria-describedby="delivery_date" value="" />
                                 </div>
                             </div>
-
-                            
                         </div>
+                        <input type="hidden" name="count_order" id="count_order" value="1">
 
 
                         <div class="col-sm-12 text-center">
-                            <button type="submit" class="btn btn-primary mx-auto" onclick="submitFormEdit()">Thêm 1 đơn
+                            <button type="submit" id="add-all" class="btn btn-primary mx-auto" onclick="submitFormEdit()">Thêm 1 đơn
                                 hàng</button>
-                            <input onclick="addOrder()" type="button" value="+">
+                            <span onclick="addOrder()" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Chọn thêm thành phẩm khác" >
+                                <i class="ti ti-plus"></i>
+                             </span>
                         </div>
                     </form>
                 </div>
@@ -183,44 +187,56 @@
     </div>
     <!--/ Edit Object Modal -->
     <script>
+        let id_order = 0;
         function addOrder() {
             // Lấy thẻ div có id là "order"
             var orderDiv = document.getElementById("order");
-            let count = 7;
+            id_order = id_order + 1;
+            let finished_product_id = document.getElementById("finished_product_select_add").value;
+            let text_finished_product = document.getElementById("finished_product_select_add").options[document
+                .getElementById("finished_product_select_add").selectedIndex].text
+            let count = document.getElementById("count").value;
+            let delivery_date = document.getElementById("delivery_date").value;
             // Tạo đoạn mã HTML cần thêm vào
             var htmlToAdd = `
-    <label class="form-label text-success" for="order">Đơn hàng 1</label>
-    <div class="col-sm-12">
-        <label class="form-label" for="select2">Thành phẩm</label>
-        <div class="input-group input-group-merge">
-            <select class="select2 w-100" id="finished_product_select_add_${count}" name="finished_product_id" aria-label="Select2" aria-describedby="select2">
-                {{-- options --}}
-            </select>
-        </div>
-    </div>
+                <div class="col-sm-12 mt-5">
+                    <label class="form-label" for="select2">Thành phẩm</label>
+                    <div class="input-group input-group-merge">
+                        <input type="text" id="" name="text_finished_product_${id_order}"
+                            class="form-control dt-salary" value="${text_finished_product}" readonly />
+                            <input type="hidden" id="" name="finished_product_id_${id_order}"
+                            class="form-control dt-salary" value="${finished_product_id}" readonly/>
+                    </div>
+                </div>
 
-    <div class="col-sm-6">
-        <label class="form-label" for="count">Số lượng</label>
-        <div class="input-group input-group-merge">
-            <span class="input-group-text"><i class=""></i></span>
-            <input type="number" id="edit_count" name="count" class="form-control dt-salary" placeholder="1234" aria-label="1234" aria-describedby="count" value="0" min="0" />
-        </div>
-    </div>
+                <div class="col-sm-6">
+                    <label class="form-label" for="count">Số lượng</label>
+                    <div class="input-group input-group-merge">
+                        <span class="input-group-text"><i class=""></i></span>
+                        <input type="number" id="" name="count_${id_order}" class="form-control dt-salary"
+                            placeholder="1234" aria-label="1234" aria-describedby="count" value="${count}"
+                            />
+                            
+                    </div>
+                </div>
 
-    <div class="col-sm-6">
-        <label class="form-label" for="time">Ngày giao</label>
-        <div class="input-group input-group-merge">
-            <span class="input-group-text"><i class="ti ti-calendar"></i></span>
-            <input type="date" class="form-control dt-date" id="edit_delivery_date" name="delivery_date" aria-describedby="delivery_date" value="" />
-        </div>
-    </div>
-`;
+                <div class="col-sm-6">
+                    <label class="form-label" for="time">Ngày giao</label>
+                    <div class="input-group input-group-merge">
+                        <span class="input-group-text"><i class="ti ti-calendar"></i></span>
+                        <input type="date" class="form-control dt-date" id=""
+                            name="delivery_date_${id_order}" aria-describedby="delivery_date" value="${delivery_date}"/>
+                    </div>
+                </div>
+                `;
 
             // Thêm đoạn mã HTML vào thẻ div
             orderDiv.insertAdjacentHTML('beforeend', htmlToAdd);
 
+            document.getElementById("count_order").value = (id_order + 1);
+            document.getElementById("add-all").innerHTML  = "Thêm " + (id_order + 1) + " đơn hàng";
         }
-        $('#finished_product_select_add_7').selectpicker();
+        
     </script>
 
     <!-- DataTable with Buttons -->
