@@ -55,13 +55,7 @@
                         @csrf
 
                         <div class="col-sm-12">
-                            <label class="form-label" for="select2">Khách hàng</label>
-                            <div class="input-group input-group-merge">
-                                <select class="select2 w-100" id="customer_select" name="customer_id" aria-label="Select2"
-                                    aria-describedby="select2">
-                                    {{-- options --}}
-                                </select>
-                            </div>
+                            <h4 class="text-success text-center" id="text-name"> </h4>
                         </div>
 
                         <div class="col-sm-12">

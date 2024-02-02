@@ -11,8 +11,8 @@ class ExportOrder extends Model
 
     protected $guarded = [];
 
-    public function customer() {
-        return $this->hasOne(Customer::class, 'id', 'customer_id');
+    public function order() {
+        return $this->hasOne(Order::class, 'id', 'order_id');
     }
 
     public function finishedProduct() {

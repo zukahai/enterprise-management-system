@@ -90,7 +90,7 @@ $(function () {
         { data: 'created_at', visible: false },
         { data: null, width: '1%' },
         { data: 'null', width: '10%' }, //trạng thái
-        { data: 'customer.name', width: '10%' },
+        { data: 'order.customer.name', width: '10%' },
         { data: 'delivery_date', width: '10%' },
         { data: 'internal_code', width: '10%' },
         { data: 'finished_product.name', width: '30%' },
@@ -158,7 +158,8 @@ $(function () {
         { //khách hàng
           targets: 3,
           render: function (data, type, full, meta){
-            return '(' + full['customer']['id_custom'] + ')<br>'  +'<a href="../../../customer/' + full['customer']['id'] + '">' + data + '</a>';
+            let id = full['order']['customer']['id'];
+            return '(' + id + ')<br>'  +'<a href="../../../customer/' + id + '">' + data + '</a>';
           } 
         },
         { //đơn hàng xuất

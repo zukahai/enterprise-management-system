@@ -27,7 +27,7 @@ class CustomerService
     }
 
     public function getById($id) {
-        return $this->model->with(['exportOrder.finishedProduct'])->find($id);
+        return $this->model->with(['orders'])->find($id);
     }
 
     public function delete($id) {

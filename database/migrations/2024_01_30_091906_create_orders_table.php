@@ -13,15 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('export_orders', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('status')->default(0);
-            $table->date('delivery_date')->nullable();
-            $table->string('internal_code')->nullable();
-            $table->unsignedBigInteger('count');
-            $table->unsignedBigInteger('finished_product_id');
+            $table->string('id_custom')->unique();
             $table->unsignedBigInteger('customer_id');
-            $table->foreign('finished_product_id')->references('id')->on('finished_products');
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->timestamps();
         });
@@ -34,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('export_orders');
+        Schema::dropIfExists('orders');
     }
 };

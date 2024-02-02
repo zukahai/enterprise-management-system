@@ -75,11 +75,11 @@ function editRecord(id) {
         success: function (data) {
             if (data.data != undefined && data.data != []) {
                 let fullData = data.data;
-                $('#customer_select').val(fullData.customer_id).trigger('change');
                 $('#finished_product_select').val(fullData.finished_product_id).trigger('change');
                 $('#status_select').val(fullData.status).trigger('change');
                 document.getElementById('edit_count').value = fullData.count;
                 document.getElementById('edit_delivery_date').value = fullData.delivery_date;
+                document.getElementById('text-name').textContent = "Khách hàng " + fullData.order.customer.name;
             }
         }
     });
