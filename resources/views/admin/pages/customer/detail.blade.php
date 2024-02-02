@@ -215,16 +215,16 @@
             <button  class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete-modal">Xoá</button>
         </div>
         <hr>
-        <h4 class="mx-2 mt-2 text-center"><a href="{{route('export-order.index')}}">Đơn hàng xuất</a> của khách hàng <span class="text-success"> {{$object->name}} </span></h4>
+        <h4 class="mx-2 mt-2 text-center"><a href="{{route('export-order.index')}}?s=({{$object->id_custom}})">Đơn hàng xuất</a> của khách hàng <span class="text-success"> {{$object->name}} </span></h4>
         <div class="container">
             <table class="datatables-detail table">
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>Sản phẩm</th>
+                        <th>Số đơn hàng</th>
                         <th>Mã nội bộ</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Đơn giá</th>
                         <th>Số lượng</th>
-                        <th>Dơn giá</th>
                         <th>Thành tiền</th>
                         <th>Ngày giao</th>
                         <th>Hoàn thành</th>

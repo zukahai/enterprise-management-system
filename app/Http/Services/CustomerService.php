@@ -20,14 +20,39 @@ class CustomerService
         return $this->model->count();
     }
 
-    
-
     public function getAll() {
-        return $this->model->orderBy('id','asc')->get();
+        return $this->model->with(['orders.exportOrders'])->orderBy('id','asc')->get();
     }
+
 
     public function getById($id) {
         return $this->model->with(['orders'])->find($id);
+    }
+
+    public function getAllExportOrder($id) {
+        $customer = $this->model->with(['orders.exportOrders'])->find($id);
+
+        $data = [];
+        foreach ($customer->orders as $order) {
+            foreach ($order->exportOrders as $exportOrder) {
+                $item = [
+                    'order_id_customer' => $order->id_custom,
+                    'internal_code' => $exportOrder->internal_code,
+                    'finished_product' => [
+                        'id' => $exportOrder->finishedProduct->id,
+                        'name' => $exportOrder->finishedProduct->name,
+                        'price' => $exportOrder->finishedProduct->price,
+                    ],
+                    'count' => $exportOrder->count,
+                    'total' => $exportOrder->finishedProduct->price * $exportOrder->count,
+                    'status' => $exportOrder->status,
+                    'delivery_date' => $exportOrder->delivery_date
+                ];
+
+            $data[] = $item;
+            }
+        }
+        return $data;
     }
 
     public function delete($id) {

@@ -158,7 +158,7 @@ $(function () {
         { //khách hàng
           targets: 3,
           render: function (data, type, full, meta){
-            let id = full['order']['customer']['id'];
+            let id = full['order']['customer']['id_custom'];
             return '(' + id + ')<br>'  +'<a href="../../../customer/' + id + '">' + data + '</a>';
           } 
         },

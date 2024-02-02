@@ -55,22 +55,22 @@ $(function () {
         url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Vietnamese.json'
       },
       ajax: {
-        url: domain + '/api/v1/customer/' + customer_id,
+        url: domain + '/api/v1/customer/export-order/' + customer_id,
         type: 'GET',
         headers: {
           'Authorization': 'Bearer ' + authToken,
         },
         success: function (response) {
           // Đổ dữ liệu vào DataTable
-          dt_basic.rows.add(response.data.export_order).draw();
+          dt_basic.rows.add(response.data).draw();
       },
       },
       columns: [
-        { data: 'id', width: '10%' },
-        { data: 'finished_product.name', width: '20%' },
+        { data: 'order_id_customer', width: '20%' },
         { data: 'internal_code', width: '20%' },
-        { data: 'count', width: '10%' },
+        { data: 'finished_product.name', width: '15%' },
         { data: 'finished_product.price', width: '10%' },
+        { data: 'count', width: '5%' },
         { data: null, width: '10%' }, // thành tiền
         { data: 'delivery_date', width: '10%' },
         { data: 'status', width: '10%' },
@@ -79,7 +79,7 @@ $(function () {
       columnDefs: [
         {
           // name
-          targets: 1,
+          targets: 2,
           render: function (data, type, full, meta) {
             return '<a href="../../../finished-product/' + full['finished_product']['id'] + '">' + data + '</a>';
           }

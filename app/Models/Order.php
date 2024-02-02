@@ -14,4 +14,8 @@ class Order extends Model
     public function customer() {
         return $this->hasOne(Customer::class, 'id', 'customer_id');
     }
+
+    public function exportOrders() {
+        return $this->hasMany(ExportOrder::class, 'order_id', 'id');
+    }
 }

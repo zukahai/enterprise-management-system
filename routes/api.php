@@ -35,6 +35,7 @@ Route::prefix('/v1')->middleware('api')->group(function () {
 
     Route::prefix('/customer')->middleware(['auth:sanctum'])->group(function () {
         Route::get('/', [CustomerController::class, 'index'])->name('api.customer.index');
+        Route::get('/export-order/{id}', [CustomerController::class,'getAllExportOrder'])->name('api.customer.getAllExportOrder');
         Route::get('/{id}', [CustomerController::class, 'show'])->name('api.customer.show');
         Route::put('/{id}', [CustomerController::class, 'update'])->name('api.customer.update');
         Route::delete('/{id}', [CustomerController::class, 'destroy'])->name('api.customer.destroy');

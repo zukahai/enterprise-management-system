@@ -61,6 +61,29 @@ class CustomerController extends Controller
         return response()->json(['data' => $object], 200);
     }
 
+    public function getAllExportOrder(Request $request, $id)
+    {
+        $json_error = [
+            'message' => 'Unauthenticated.',
+            'data' => []
+        ];
+        $token = $request->bearerToken();
+
+        if (!$token) {
+            return response()->json([$json_error], 200);
+        }
+
+        // Kiểm tra và lấy thông tin người dùng
+        $user = Auth::user();
+        
+        if (!$user) {
+            return response()->json([$json_error ], 200);
+        }
+
+        $object = $this->service->getAllExportOrder($id);
+        return response()->json(['data' => $object], 200);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
