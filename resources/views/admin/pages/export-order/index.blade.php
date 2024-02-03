@@ -226,7 +226,6 @@
                         <input type="number" id="" name="count_${id_order}" class="form-control dt-salary"
                             placeholder="1234" aria-label="1234" aria-describedby="count" value="${count}"
                             />
-                            
                     </div>
                 </div>
 
@@ -238,7 +237,7 @@
                             name="delivery_date_${id_order}" aria-describedby="delivery_date" value="${delivery_date}"/>
                     </div>
                 </div>
-               <div class="col-sm-12 mt-2">
+               <div class="col-sm-12 mt-2 d-flex justify-content-end">
                     <span onclick="removeDiv(${id_order})" class="btn btn-sm btn-label-danger" data-bs-toggle="tooltip"
                         data-bs-placement="right" title="Xóa đơn hàng thứ ${id_order}">
                         <i class="ti ti-trash"></i> Xoá đơn hàng thứ ${id_order}
