@@ -40,3 +40,4 @@ trong datatable: Factories và Seeders
 --------------------------------------------------
 https://online-video-cutter.com/vi/screen-recorder
 https://ezgif.com/video-to-gif/ezgif-7-d1cf6408fc.mp4
+https://online-screen-recorder.com/vi
