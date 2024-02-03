@@ -36,27 +36,27 @@
       "url": "../../finished-product"
     },
     {
-      "name": "Đơn hàng xuất [Đặt hàng và giao nhận]",
+      "name": "Đơn hàng xuất [Đặt và giao hàng]",
+      "icon": "ti-truck",
+      "url": "../../export-order"
+    },
+    {
+      "name": "Đơn hàng nhập [Đặt và giao hàng]",
       "icon": "ti-truck",
       "url": "../../home"
     },
     {
-      "name": "Đơn hàng nhập [Đặt hàng và giao nhận]",
+      "name": "Xuất giao hàng [Đặt và giao hàng]",
       "icon": "ti-truck",
       "url": "../../home"
     },
     {
-      "name": "Xuất giao hàng [Đặt hàng và giao nhận]",
+      "name": "Hoá đơn bán hàng [Đặt và giao hàng]",
       "icon": "ti-truck",
       "url": "../../home"
     },
     {
-      "name": "Hoá đơn bán hàng [Đặt hàng và giao nhận]",
-      "icon": "ti-truck",
-      "url": "../../home"
-    },
-    {
-      "name": "Nhập giao hàng [Đặt hàng và giao nhận]",
+      "name": "Nhập giao hàng [Đặt và giao hàng]",
       "icon": "ti-truck",
       "url": "../../home"
     },

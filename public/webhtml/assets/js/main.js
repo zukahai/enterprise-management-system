@@ -39,8 +39,8 @@ if (document.getElementById('layout-menu')) {
       showDropdownOnHover: localStorage.getItem('templateCustomizer-' + templateName + '--ShowDropdownOnHover') // If value(showDropdownOnHover) is set in local storage
         ? localStorage.getItem('templateCustomizer-' + templateName + '--ShowDropdownOnHover') === 'true' // Use the local storage value
         : window.templateCustomizer !== undefined // If value is set in config.js
-        ? window.templateCustomizer.settings.defaultShowDropdownOnHover // Use the config.js value
-        : true // Use this if you are not using the config.js and want to set value directly from here
+          ? window.templateCustomizer.settings.defaultShowDropdownOnHover // Use the config.js value
+          : true // Use this if you are not using the config.js and want to set value directly from here
     });
     // Change parameter to true if you want scroll animation
     window.Helpers.scrollToActive((animate = false));
@@ -66,7 +66,7 @@ if (document.getElementById('layout-menu')) {
             let layoutCollapsedVal = window.Helpers.isCollapsed() ? 'collapsed' : 'expanded';
             layoutCollapsedCustomizerOptions.querySelector(`input[value="${layoutCollapsedVal}"]`).click();
           }
-        } catch (e) {}
+        } catch (e) { }
       }
     });
   });
@@ -389,7 +389,7 @@ if (document.getElementById('layout-menu')) {
             localStorage.getItem('templateCustomizer-' + templateName + '--LayoutCollapsed') === 'true',
             false
           );
-      } catch (e) {}
+      } catch (e) { }
     }
   }
 })();
@@ -450,34 +450,60 @@ if (typeof $ !== 'undefined') {
       var filterConfig = function (data) {
         // Hàm tổng hợp để chuyển đổi chuỗi thành dạng không dấu và không phân biệt ký tự viết hoa/thường
         const normalizeString = (str) => {
-            return str
-                .toLowerCase()
-                .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, '')
-                .replace(/đ/g, 'd');
+          return str
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/đ/g, 'd');
         };
-    
+
+        const longestCommonSubstring = function (str1, str2) {
+          const m = str1.length;
+          const n = str2.length;
+      
+          const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+          let maxLength = 0;
+          dp[0][0] = (str1[0] === str2[0]) ? 1 : 0;
+      
+          for (let i = 1; i <= m; i++) {
+              for (let j = 1; j <= n; j++) {
+                  if (str1[i - 1] === str2[j - 1]) {
+                      dp[i][j] = dp[i - 1][j - 1] + 1;
+      
+                      if (dp[i][j] > maxLength) {
+                          maxLength = dp[i][j];
+                      }
+                  } else {
+                      dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                  }
+              }
+          }
+          return maxLength;
+      }
+
         return function findMatches(q, cb) {
-            let matches = [];
-    
-            data.filter(function (i) {
-                const itemName = normalizeString(i.name);
-                const query = normalizeString(q);
-    
-                if (itemName.startsWith(query)) {
-                    matches.push(i);
-                } else if (!itemName.startsWith(query) && itemName.includes(query)) {
-                    matches.push(i);
-                    matches.sort(function (a, b) {
-                        return normalizeString(b.name).localeCompare(normalizeString(a.name));
-                    });
-                }
-            });
-    
-            cb(matches);
+          let matches = [];
+
+          data.filter(function (i) {
+            const itemName = normalizeString(i.name);
+            const query = normalizeString(q);
+            i.lengthCommonSubstring = longestCommonSubstring(itemName, query);
+            i.persentCommonSubstring = (i.lengthCommonSubstring / itemName.length) * 100;
+            matches.push(i);
+          });
+          matches.sort(function (a, b) {
+            return b.lengthCommonSubstring - a.lengthCommonSubstring;
+          });
+
+          const maxLength = matches[0].lengthCommonSubstring;
+          matches = matches.filter(function (i) {
+            return i.lengthCommonSubstring > maxLength / 1.2;
+          });
+
+          cb(matches);
         };
-    };
-    
+      };
+
 
       // Search JSON
       var searchJson = 'search-vertical.json'; // For vertical layout
@@ -535,43 +561,6 @@ if (typeof $ !== 'undefined') {
                   '</div>'
               }
             },
-            // Members
-            {
-              name: 'members',
-              display: 'name',
-              limit: 4,
-              source: filterConfig(searchData.members),
-              templates: {
-                header: '<h6 class="suggestions-header text-primary mb-0 mx-3 mt-3 pb-2">Members</h6>',
-                suggestion: function ({ name, src, subtitle }) {
-                  return (
-                    '<a href="app-user-view-account.html">' +
-                    '<div class="d-flex align-items-center">' +
-                    '<img class="rounded-circle me-3" src="' +
-                    assetsPath +
-                    src +
-                    '" alt="' +
-                    name +
-                    '" height="32">' +
-                    '<div class="user-info">' +
-                    '<h6 class="mb-0">' +
-                    name +
-                    '</h6>' +
-                    '<small class="text-muted">' +
-                    subtitle +
-                    '</small>' +
-                    '</div>' +
-                    '</div>' +
-                    '</a>'
-                  );
-                },
-                notFound:
-                  '<div class="not-found px-3 py-2">' +
-                  '<h6 class="suggestions-header text-primary mb-2">Members</h6>' +
-                  '<p class="py-2 mb-0"><i class="ti ti-alert-circle ti-xs me-2"></i> No Results Found</p>' +
-                  '</div>'
-              }
-            }
           )
           //On typeahead result render.
           .bind('typeahead:render', function () {
