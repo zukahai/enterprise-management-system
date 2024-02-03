@@ -136,37 +136,40 @@
                         </div>
 
                         <hr>
-                        <div class="row" id="order">
-                             {{-- Thêm các dữ liệu --}}
+                        <div id="order">
+                            {{-- Thêm các dữ liệu --}}
                         </div>
 
-                        <div class="row g-3">
-                            <div class="col-sm-12">
-                                <label class="form-label" for="select2">Thành phẩm</label>
-                                <div class="input-group input-group-merge">
-                                    <select class="select2 w-100" id="finished_product_select_add"
-                                        name="finished_product_id" aria-label="Select2" aria-describedby="select2">
-                                        {{-- options --}}
-                                    </select>
+                        <div class="">
+                            <div class="row">
+                                <label class="text-success" id="label-id" for="">Đơn hàng thứ 1</label>
+                                <div class="col-sm-12">
+                                    <label class="form-label" for="select2">Thành phẩm</label>
+                                    <div class="input-group input-group-merge">
+                                        <select class="select2 w-100" id="finished_product_select_add"
+                                            name="finished_product_id" aria-label="Select2" aria-describedby="select2">
+                                            {{-- options --}}
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-sm-6">
-                                <label class="form-label" for="count">Số lượng</label>
-                                <div class="input-group input-group-merge">
-                                    <span class="input-group-text"><i class=""></i></span>
-                                    <input type="number" id="count" name="count" class="form-control dt-salary"
-                                        placeholder="1234" aria-label="1234" aria-describedby="count" value="0"
-                                        min="0" />
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="count">Số lượng</label>
+                                    <div class="input-group input-group-merge">
+                                        <span class="input-group-text"><i class=""></i></span>
+                                        <input type="number" id="count" name="count"
+                                            class="form-control dt-salary" placeholder="1234" aria-label="1234"
+                                            aria-describedby="count" value="0" min="0" />
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-sm-6">
-                                <label class="form-label" for="time">Ngày giao</label>
-                                <div class="input-group input-group-merge">
-                                    <span class="input-group-text"><i class="ti ti-calendar"></i></span>
-                                    <input type="date" class="form-control dt-date" id="delivery_date"
-                                        name="delivery_date" aria-describedby="delivery_date" value="" />
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="time">Ngày giao</label>
+                                    <div class="input-group input-group-merge">
+                                        <span class="input-group-text"><i class="ti ti-calendar"></i></span>
+                                        <input type="date" class="form-control dt-date" id="delivery_date"
+                                            name="delivery_date" aria-describedby="delivery_date" value="" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -174,11 +177,13 @@
 
 
                         <div class="col-sm-12 text-center">
-                            <button type="submit" id="add-all" class="btn btn-primary mx-auto" onclick="submitFormEdit()">Thêm 1 đơn
+                            <button type="submit" id="add-all" class="btn btn-primary mx-auto"
+                                onclick="submitFormEdit()">Thêm 1 đơn
                                 hàng</button>
-                            <span onclick="addOrder()" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Chọn thêm thành phẩm khác" >
+                            <span onclick="addOrder()" class="btn btn-success" data-bs-toggle="tooltip"
+                                data-bs-placement="top" title="Chọn thêm thành phẩm khác">
                                 <i class="ti ti-plus"></i>
-                             </span>
+                            </span>
                         </div>
                     </form>
                 </div>
@@ -188,10 +193,13 @@
     <!--/ Edit Object Modal -->
     <script>
         let id_order = 0;
+        let count_order = 1;
+
         function addOrder() {
             // Lấy thẻ div có id là "order"
             var orderDiv = document.getElementById("order");
             id_order = id_order + 1;
+            count_order = count_order + 1;
             let finished_product_id = document.getElementById("finished_product_select_add").value;
             let text_finished_product = document.getElementById("finished_product_select_add").options[document
                 .getElementById("finished_product_select_add").selectedIndex].text
@@ -199,7 +207,9 @@
             let delivery_date = document.getElementById("delivery_date").value;
             // Tạo đoạn mã HTML cần thêm vào
             var htmlToAdd = `
-                <div class="col-sm-12 mt-5">
+            <div class="row mr-0" id="order_${id_order}">
+                <label class="text-success ${(id_order > 1 ? "mt-5" : "")}" for="">Đơn hàng thứ ${id_order}</label>
+                <div class="col-sm-12">
                     <label class="form-label" for="select2">Thành phẩm</label>
                     <div class="input-group input-group-merge">
                         <input type="text" id="" name="text_finished_product_${id_order}"
@@ -228,15 +238,28 @@
                             name="delivery_date_${id_order}" aria-describedby="delivery_date" value="${delivery_date}"/>
                     </div>
                 </div>
+               <div class="col-sm-12 mt-2">
+                    <span onclick="removeDiv(${id_order})" class="btn btn-sm btn-label-danger" data-bs-toggle="tooltip"
+                        data-bs-placement="right" title="Xóa đơn hàng thứ ${id_order}">
+                        <i class="ti ti-trash"></i> Xoá đơn hàng thứ ${id_order}
+                    </span>
+                </div>
+            </div>
                 `;
 
             // Thêm đoạn mã HTML vào thẻ div
             orderDiv.insertAdjacentHTML('beforeend', htmlToAdd);
 
             document.getElementById("count_order").value = (id_order + 1);
-            document.getElementById("add-all").innerHTML  = "Thêm " + (id_order + 1) + " đơn hàng";
+            document.getElementById("label-id").innerHTML = "Đơn hàng thứ " + (id_order + 1);
+            document.getElementById("add-all").innerHTML = "Thêm " + count_order  + " đơn hàng";
         }
-        
+
+        function removeDiv(id) {
+            document.getElementById("order_" + id).remove();
+            count_order = count_order - 1;
+            document.getElementById("add-all").innerHTML = "Thêm " + count_order + " đơn hàng";
+        }
     </script>
 
     <!-- DataTable with Buttons -->

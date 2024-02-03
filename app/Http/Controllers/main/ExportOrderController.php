@@ -29,7 +29,7 @@ class ExportOrderController extends Controller
     {
         $object = $request->all();
         $this->service->create($object);
-        return redirect()->back()->with('success','Thêm đơn hàng xuất thành công');
+        return redirect()->route('export-order.index')->with('success','Thêm đơn hàng xuất thành công');
     }
 
     public function update(UpdateExportOrderRequest $request, $id)

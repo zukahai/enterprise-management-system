@@ -94,7 +94,7 @@ class ExportOrderService
         $object_data = [];
         $object_data['order_id'] = $order->id;
         for ($i = 1; $i <= $count_order; $i++) {
-            if ($data['finished_product_id_'.$i]) {
+            if (isset($data['finished_product_id_'.$i])) {
                 $object_data['finished_product_id'] =  $data['finished_product_id_'.$i];
                 $object_data['count'] =  $data['count_'.$i];
                 $object_data['delivery_date'] =  $data['delivery_date_'.$i];
