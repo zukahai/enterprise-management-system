@@ -142,7 +142,7 @@
 
                         <div class="">
                             <div class="row">
-                                <label class="text-success" id="label-id" for="">Đơn hàng thứ 1</label>
+                                <label class="text-success" id="label-id" for="">thành phẩm thứ 1</label>
                                 <div class="col-sm-12">
                                     <label class="form-label" for="select2">Thành phẩm</label>
                                     <div class="input-group input-group-merge">
@@ -178,8 +178,7 @@
 
                         <div class="col-sm-12 text-center">
                             <button type="submit" id="add-all" class="btn btn-primary mx-auto"
-                                onclick="submitFormEdit()">Thêm 1 đơn
-                                hàng</button>
+                                onclick="submitFormEdit()">Thêm 1 thành phẩm vào đơn hàng</button>
                             <span onclick="addOrder()" class="btn btn-success" data-bs-toggle="tooltip"
                                 data-bs-placement="top" title="Chọn thêm thành phẩm khác">
                                 <i class="ti ti-plus"></i>
@@ -208,7 +207,7 @@
             // Tạo đoạn mã HTML cần thêm vào
             var htmlToAdd = `
             <div class="row mr-0" id="order_${id_order}">
-                <label class="text-success ${(id_order > 1 ? "mt-5" : "")}" for="">Đơn hàng thứ ${id_order}</label>
+                <label class="text-success ${(id_order > 1 ? "mt-5" : "")}" for="">thành phẩm thứ ${id_order}</label>
                 <div class="col-sm-12">
                     <label class="form-label" for="select2">Thành phẩm</label>
                     <div class="input-group input-group-merge">
@@ -240,7 +239,7 @@
                <div class="col-sm-12 mt-2 d-flex justify-content-end">
                     <span onclick="removeDiv(${id_order})" class="btn btn-sm btn-label-danger" data-bs-toggle="tooltip"
                         data-bs-placement="right" title="Xóa đơn hàng thứ ${id_order}">
-                        <i class="ti ti-trash"></i> Xoá đơn hàng thứ ${id_order}
+                        <i class="ti ti-trash"></i> Xoá thành phẩm thứ ${id_order} khỏi đơn hàng
                     </span>
                 </div>
             </div>
@@ -250,14 +249,14 @@
             orderDiv.insertAdjacentHTML('beforeend', htmlToAdd);
 
             document.getElementById("count_order").value = (id_order + 1);
-            document.getElementById("label-id").innerHTML = "Đơn hàng thứ " + (id_order + 1);
-            document.getElementById("add-all").innerHTML = "Thêm " + count_order  + " đơn hàng";
+            document.getElementById("label-id").innerHTML = "thành phẩm thứ " + (id_order + 1);
+            document.getElementById("add-all").innerHTML = "Thêm " + count_order + " sản phẩm vào đơn hàng";
         }
 
         function removeDiv(id) {
             document.getElementById("order_" + id).remove();
             count_order = count_order - 1;
-            document.getElementById("add-all").innerHTML = "Thêm " + count_order + " đơn hàng";
+            document.getElementById("add-all").innerHTML = "Thêm " + count_order + " sản phẩm vào đơn hàng";
         }
     </script>
 
