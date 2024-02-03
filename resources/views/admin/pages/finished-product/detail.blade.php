@@ -81,7 +81,7 @@
                         </div>
                         <hr>
                         <label class="form-label">KT đơn hàng</label>
-                        <div class="col-sm-12">
+                        <div class="col-sm-4">
                             <label class="form-label" for="ktdh_length">Dài</label>
                             <div class="input-group input-group-merge">
                                 <span class="input-group-text"><i class="fas fa-angle-double-down"></i></span>
@@ -89,7 +89,7 @@
                                     placeholder="Dài" aria-label="Dài" aria-describedby="ktdh_length" min="0" value="0"/>
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-4">
                             <label class="form-label" for="ktdh_width">Rộng</label>
                             <div class="input-group input-group-merge">
                                 <span class="input-group-text"><i class="fas fa-angle-double-down"></i></span>
@@ -97,7 +97,7 @@
                                     placeholder="Rộng" aria-label="Rộng" aria-describedby="ktdh_width" min="0" value="0"/>
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-4">
                             <label class="form-label" for="ktdh_height">Cao</label>
                             <div class="input-group input-group-merge">
                                 <span class="input-group-text"><i class="fas fa-angle-double-down"></i></span>
@@ -107,7 +107,7 @@
                         </div>
                         <hr>
                         <label class="form-label">KT sản xuất</label>
-                        <div class="col-sm-12">
+                        <div class="col-sm-4">
                             <label class="form-label" for="ktsx_length">Dài</label>
                             <div class="input-group input-group-merge">
                                 <span class="input-group-text"><i class="fas fa-angle-double-down"></i></span>
@@ -115,7 +115,7 @@
                                     placeholder="Dài" aria-label="Dài" aria-describedby="ktsx_length" min="0" value="0"/>
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-4">
                             <label class="form-label" for="ktsx_width">Rộng</label>
                             <div class="input-group input-group-merge">
                                 <span class="input-group-text"><i class="fas fa-angle-double-down"></i></span>
@@ -123,7 +123,7 @@
                                     placeholder="Rộng" aria-label="Rộng" aria-describedby="ktsx_width" min="0" value="0"/>
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-4">
                             <label class="form-label" for="ktsx_height">Cao</label>
                             <div class="input-group input-group-merge">
                                 <span class="input-group-text"><i class="fas fa-angle-double-down"></i></span>
