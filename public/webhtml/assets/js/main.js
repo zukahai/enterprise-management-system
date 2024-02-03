@@ -458,16 +458,16 @@ if (typeof $ !== 'undefined') {
         };
 
         const longestCommonSubstring = function (str1, str2) {
+          str1 = '@' + str1;
+          str2 = '@' + str2;
           const m = str1.length;
           const n = str2.length;
       
           const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
           let maxLength = 0;
-          dp[0][0] = (str1[0] === str2[0]) ? 1 : 0;
-      
-          for (let i = 1; i <= m; i++) {
-              for (let j = 1; j <= n; j++) {
-                  if (str1[i - 1] === str2[j - 1]) {
+          for (let i = 1; i < m; i++) {
+              for (let j = 1; j < n; j++) {
+                  if (str1[i] === str2[j]) {
                       dp[i][j] = dp[i - 1][j - 1] + 1;
       
                       if (dp[i][j] > maxLength) {
@@ -487,6 +487,7 @@ if (typeof $ !== 'undefined') {
           data.filter(function (i) {
             const itemName = normalizeString(i.name);
             const query = normalizeString(q);
+            i.text = itemName;
             i.lengthCommonSubstring = longestCommonSubstring(itemName, query);
             i.persentCommonSubstring = (i.lengthCommonSubstring / itemName.length) * 100;
             matches.push(i);
