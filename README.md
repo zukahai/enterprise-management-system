@@ -147,4 +147,92 @@ Hệ thống được thêm sẵn 63 ngân hàng của Việt Nam, người dùn
 
 ##### 3.2.2.2 Thêm ngân hàng
 
+<p align="center"> <img src="/demo/images/add-bank.png" alt="add-bank" /> </p>
+
 ##### 3.2.2.3 Chỉnh sửa thông tin ngân hàng
+
+<p align="center"> <img src="/demo/images/edit-bank.png" alt="edit-bank" /> </p>
+
+#### 3.2.3 Quản lí nhà cung cấp
+
+##### 3.2.3.1 Danh sách nhà cung cấp
+
+<p align="center"> <img src="/demo/images/supplier.png" alt="supplier" /> </p>
+
+##### 3.2.3.2 Thêm nhà cung cấp
+
+Khi thêm nhà cung cấp, người dùng cần chọn ngân hàng của nhà cung cấp đó *(Được lấy bên bảng ngân hàng)*. Người dùng có thể **tìm kiếm thông tin ngân hàng** để lọc ra những ngần hàng theo từ khoá, dễ dàng chọn ngân hàng hơn
+
+<p align="center"> <img src="/demo/images/add-supplier.gif" alt="add-supplier" /> </p>
+
+##### 3.2.3.3 Chỉnh sửa nhà cung cấp
+
+<p align="center"> <img src="/demo/images/edit-supplier.png" alt="edit-supplier" /> </p>
+
+##### 3.2.3.4 Chi tiết nhà cung cấp
+
+Khi xem thông tin nhà cung cấp, hệ thống sẽ trả về giao diện gồm các thông tin, người dùng có thể chỉnh sửa hoặc xoá tại đây. Bên cạnh đó thì hệ thông cũng tạo ra mà QR code từ thông tin ngân hàng của nhà cung cấp, giúp người dùng có thể thao tác thanh toán nhanh hơn.
+
+<p align="center"> <img src="/demo/images/detail-supplier.gif" alt="detail-supplier" /> </p>
+
+#### 3.2.4 Quản lí nhân viên
+
+##### 3.2.4.1 Danh sách nhân viên
+
+Chỉ tài khoản của admin mới có thể quản lí phần này, tài khoản của nhân viên không thể truy cập bất kì chức năng nào trong phần này.
+
+<p align="center"> <img src="/demo/images/staff.png" alt="staff" /> </p>
+
+##### 3.2.4.2 Thêm nhân viên
+
+<p align="center"> <img src="/demo/images/add-staff.png" alt="add-staff" /> </p>
+
+##### 3.2.4.3 Chỉnh sửa thông tin nhân viên
+
+<p align="center"> <img src="/demo/images/edit-staff.png" alt="edit-staff" /> </p>
+
+### 3.3 Quản lí vật liệu
+
+#### 3.3.1 Quản lí đơn vị
+
+##### 3.3.1.1 Danh sách đơn vị
+
+<p align="center"> <img src="/demo/images/unit.png" alt="unit" /> </p>
+
+##### 3.3.1.2 Thêm đơn vị
+
+<p align="center"> <img src="/demo/images/add-unit.png" alt="add-unit" /> </p>
+
+##### 3.3.1.3 Chỉnh sửa thông tin đơn vị
+
+<p align="center"> <img src="/demo/images/edit-unit.png" alt="edit-unit" /> </p>
+
+#### 3.3.2 Quản lí nguyên liệu
+
+##### 3.3.2.1 Danh sách nguyên liệu
+
+<p align="center"> <img src="/demo/images/ingredient.png" alt="ingredient" /> </p>
+
+##### 3.3.2.2 Thêm nguyên liệu
+
+<p align="center"> <img src="/demo/images/add-ingredient.png" alt="add-ingredient" /> </p>
+
+##### 3.3.2.3 Chỉnh sửa thông tin nguyên liệu
+
+<p align="center"> <img src="/demo/images/edit-ingredient.png" alt="edit-ingredient" /> </p>
+
+#### 3.3.3 Quản lí thành phẩm
+
+##### 3.3.3.1 Danh sách thành phẩm
+
+<p align="center"> <img src="/demo/images/finished-product.png" alt="finished-product" /> </p>
+
+##### 3.3.3.2 Thêm thành phẩm
+
+<p align="center"> <img src="/demo/images/add-finished-product.png" alt="add-finished-product" /> </p>
+
+##### 3.3.3.3 Chỉnh sửa thông tin thành phẩm
+
+<p align="center"> <img src="/demo/images/edit-finished-product.png" alt="edit-finished-product" /> </p>
+
+### 3.4 Quản lí đặt và giao hàng
