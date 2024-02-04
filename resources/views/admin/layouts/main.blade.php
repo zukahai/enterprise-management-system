@@ -386,7 +386,7 @@
                                 <ul class="dropdown-menu dropdown-menu-end py-0">
                                     <li class="dropdown-menu-header border-bottom">
                                         <div class="dropdown-header d-flex align-items-center py-3">
-                                            <h5 class="text-body mb-0 me-auto">Notification</h5>
+                                            <h5 class="text-body mb-0 me-auto">Thông báo</h5>
                                             <a href="javascript:void(0)" class="dropdown-notifications-all text-body"
                                                 data-bs-toggle="tooltip" data-bs-placement="top"
                                                 title="Mark all as read"><i class="ti ti-mail-opened fs-4"></i></a>
@@ -404,8 +404,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="flex-grow-1">
-                                                        <h6 class="mb-1">Congratulation Lettie 🎉</h6>
-                                                        <p class="mb-0">Won the monthly best seller gold badge</p>
+                                                        <h6 class="mb-1">Đơn hàng HZ-24X00002/2</h6>
+                                                        <p class="mb-0">Thành đã nhắc đến bạn trong 1 đơn hàng</p>
                                                         <small class="text-muted">1h ago</small>
                                                     </div>
                                                     <div class="flex-shrink-0 dropdown-notifications-actions">
@@ -621,7 +621,7 @@
                                     <li class="dropdown-menu-footer border-top">
                                         <a href="javascript:void(0);"
                                             class="dropdown-item d-flex justify-content-center text-primary p-2 h-px-40 mb-1 align-items-center">
-                                            View all notifications
+                                            Xem tất cả thông báo
                                         </a>
                                     </li>
                                 </ul>

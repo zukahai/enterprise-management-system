@@ -80,6 +80,26 @@ Hệ thống cho phép người dùng xuất dữ liệu theo các định dạn
 
 <p align="center"> <img src="/demo/images/export.gif" alt="export" /> </p>
 
+### 2.4 Các thành phần khác
+
+#### 2.4.1 Thanh tìm kiếm hệ thống
+
+Thanh tìm kiếm này sẽ luôn mặc định ở phía trên của màn hình. Cho phép người dùng tìm kiếm một chức năng, một bảng nào đó trên hệ thông. Người dùng có thể dùng nó để truy cập nhanh tới các bảng mà không cần thao tác trên bảng điều khiển. Đặc biệt là chỗ này em tự viết thuật toán cho phần tìm kiếm này, nó sẽ tìm kiếm dựa trên độ dài của phần giống nhau giữa từ khoá tìm kiếm và các chức năng, nên người dùng không nhất thiết phải nhập chính xác từ khoá cần tìm. Ví dụ khi người dùng nhập "haoa ddno" thì hệ thống vẫn có thể đưa ra những chức năng liên quan đến "Hoá đơn"
+
+<p align="center"> <img src="/demo/images/search-main.gif" alt="search-main" /> </p>
+
+#### 2.4.2 Tin nhắn và thông báo
+
+Biểu tượng thông báo vào bình luận cũng luôn ở góc trên phải, nhắm cho người dùng đễ quan sát và thao tác mọi lúc khi cần.
+
+<p align="center"> <img src="/demo/images/notification.gif" alt="notification" /> </p>
+
+#### 2.4.3 Quản lí tài khoản
+
+Phần này cho phép người dùng thao tác với tài khoản đang đăng nhập, hoặc có thể đăng xuất khỏi hệ thống.
+
+<p align="center"> <img src="/demo/images/account.gif" alt="account" /> </p>
+
 
 ## 3. Chi tiết hệ thống
 
