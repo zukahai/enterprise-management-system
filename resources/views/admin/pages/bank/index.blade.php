@@ -70,6 +70,14 @@
                                     placeholder="Ghi chú" aria-label="Ghi chú" aria-describedby="note" />
                             </div>
                         </div>
+                        <div class="col-sm-12">
+                            <label class="form-label" for="note">Mã ngân hàng</label>
+                            <div class="input-group input-group-merge">
+                                <span class="input-group-text"><i class="ti ti-currency-dollar"></i></span>
+                                <input type="text" id="edit_code" name="code" class="form-control dt-salary"
+                                    placeholder="Mã" aria-label="Mã" aria-describedby="code" />
+                            </div>
+                        </div>
 
                         <div class="col-sm-12 text-center">
                             <button type="submit" class="btn btn-primary mx-auto" onclick="submitFormEdit()">Cập nhật
@@ -127,6 +135,14 @@
                         <span class="input-group-text"><i class="ti ti-currency-dollar"></i></span>
                         <input type="text" id="note" name="note" class="form-control dt-salary"
                             placeholder="Ghi chú" aria-label="Ghi chú" aria-describedby="note" />
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <label class="form-label" for="note">Mã ngân hàng</label>
+                    <div class="input-group input-group-merge">
+                        <span class="input-group-text"><i class="ti ti-currency-dollar"></i></span>
+                        <input type="text" id="code" name="code" class="form-control dt-salary"
+                            placeholder="Mã" aria-label="Mã" aria-describedby="code" />
                     </div>
                 </div>
                 <div class="col-sm-12 mt-2">

@@ -85,6 +85,7 @@ function editRecord(id) {
                 document.getElementById('edit-name').value = fullData.name;
                 document.getElementById('edit-note').value = fullData.note;
                 document.getElementById('edit-name-title').textContent = fullData.name;
+                document.getElementById('edit_code').value  = fullData.code;
             }
         }
     });
