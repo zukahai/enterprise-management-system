@@ -236,3 +236,27 @@ Chỉ tài khoản của admin mới có thể quản lí phần này, tài kho�
 <p align="center"> <img src="/demo/images/edit-finished-product.png" alt="edit-finished-product" /> </p>
 
 ### 3.4 Quản lí đặt và giao hàng
+
+#### 3.4.1 Quản lí đơn hàng xuất
+
+##### 3.4.1.1 Danh sách đơn hàng xuất
+
+<p align="center"> <img src="/demo/images/export-order.png" alt="export-order" /> </p>
+
+Người dùng có thể truy cập đến khách hàng, thành phẩm hoặc đơn vị từ bảng này. (Bất cứ thông tin nào lấy từ bảng khác cũng có thể truy cập tại bảng hiện tại)
+
+##### 3.4.1.2 Thêm đơn hàng xuất
+
+<p align="center"> <img src="/demo/images/add-export-order.gif" alt="add-export-order" /> </p>
+
+Để thêm 1 đơn hàng xuất, người dùng cần chọn khách hàng. Tiếp theo chọn các sản phẩm mà khách hàng đó đặt (Bấm vào biểu tưởng nút "+" để chọn thêm 1 sản phẩm)
+
+Số phiếu va mã nội bộ sẽ được hệ thống tạo ra tự động
+
+##### 3.4.1.3 Chỉnh sửa đơn hàng xuất
+
+<p align="center"> <img src="/demo/images/eidt-export-order.png" alt="eidt-export-order" /> </p>
+
+#### 3.4.2 Quản lí đơn hàng nhập
+
+# Sẽ cập nhập thêm ....
