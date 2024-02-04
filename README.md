@@ -1,5 +1,21 @@
 # Hệ thống quản lí
 
+## Mục lục
+* [1. Giới thiệu chung](#1-giới-thiệu-chung)
+* [2. Cách trình bày giao diện](2-cách-trình-bày-giao-diện)
+  * [2.1. Chủ đề sáng tối](#21-chủ-đề-sáng-tối)
+  * [2.2 Bảng Điều Khiển](#22-bảng-điều-khiển)
+  * [2.3 Bảng Quản Lí](#23-bảng-quản-lí)
+    * [2.3.1 Phân Trang](#231-phân-trang)
+    * [2.3.2 Thao Tác Thêm Sửa Xoá](#232-thao-tác-thêm-sửa-xoá)
+    * [2.3.3 Tìm Kiếm](#233-tìm-kiếm)
+    * [2.3.4 Sắp Xếp](#234-sắp-xếp)
+    * [2.3.5 Xuất Dữ Liệu](#235-xuất-dữ-liệu)
+  * [2.4 Các Thành Phần Khác](#24-các-thành-phần-khác)
+    * [2.4.1 Thanh Tìm Kiếm Hệ Thống](#241-thanh-tìm-kiếm-hệ-thống)
+    * [2.4.2 Tin Nhắn và Thông Báo](#242-tin-nhắn-và-thông-báo)
+    * [2.4.3 Quản Lí Tài Khoản](#243-quản-lí-tài-khoản)
+
 ## 1. Giới thiệu chung
 Dựa vào các bảng cần quản lí thì em đã chia các bảng thành các nhóm, để dễ dàng quản lí hơn. <br>
 Các nhóm như sau:
