@@ -15,6 +15,7 @@
     * [2.4.1 Thanh Tìm Kiếm Hệ Thống](#241-thanh-tìm-kiếm-hệ-thống)
     * [2.4.2 Tin Nhắn và Thông Báo](#242-tin-nhắn-và-thông-báo)
     * [2.4.3 Quản Lí Tài Khoản](#243-quản-lí-tài-khoản)
+  * [2.5 Giao diện mobile](#25-giao-diện-mobile)
 * [3. Chi Tiết Hệ Thống](#3-chi-tiết-hệ-thống)
   * [3.1 Đăng Nhập Hệ Thống](#31-đăng-nhập-hệ-thống)
   * [3.2 Quản Lí Thông Tin Cơ Bản](#32-quản-lí-thông-tin-cơ-bản)
@@ -164,6 +165,11 @@ Phần này cho phép người dùng thao tác với tài khoản đang đăng n
 
 <p align="center"> <img src="/demo/images/account.gif" alt="account" /> </p>
 
+### 2.5 Giao diện mobile
+
+Khi người dùng dùng ở giao diện màn hình mobile thì vẫn có thể sử dụng được đầy đủ tính năng của hệ thống. Phần giao diện cơ bản sẽ như sau:
+
+<p align="center"> <img src="/demo/images/mobile.gif" alt="mobile" /> </p>
 
 ## 3. Chi tiết hệ thống
 
