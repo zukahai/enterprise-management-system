@@ -43,6 +43,7 @@ Nếu không có tài khoản, hoàn toàn không thể truy cập được hệ
 ## 2. Cách trình bày giao diện
 
 ### 2.1 Chủ đề sáng tối
+
 Người dùng có thể đối chủ đề của giao diện theo sáng hoặc tối tuỳ ý. 
 <p align="center"> <img src="/demo/images/theme.gif" alt="theme" /> </p>
 
@@ -75,7 +76,13 @@ Khi người dùng nhập từ khoá tìm kiếm, hệ thống sẽ trả về c
 
 <p align="center"> <img src="/demo/images/search.gif" alt="search" /> </p>
 
-#### 2.3.4 Xuất dữ liệu
+#### 2.3.4 Sắp xếp
+
+Người dùng có thể sắp xếp tăng / giảm dần dựa vào dữ liệu của từng cột.
+
+<p align="center"> <img src="/demo/images/sort.gif" alt="sort" /> </p>
+
+#### 2.3.5 Xuất dữ liệu
 Hệ thống cho phép người dùng xuất dữ liệu theo các định dạng như pdf, csv,... có thể copy hoặc in trực tiếp *(Cần kết nối đến máy in)*
 
 <p align="center"> <img src="/demo/images/export.gif" alt="export" /> </p>
@@ -109,4 +116,35 @@ Phần này cho phép người dùng thao tác với tài khoản đang đăng n
 
 Người dùng cần đăng nhập hệ thống bằng **"Tên người dùng"** và **"mật khẩu"** được admin cấp. Quá trình đăng nhập này là một phần quan trọng trong việc bảo mật hệ thống và đảm bảo rằng chỉ những người được ủy quyền mới có thể truy cập thông tin và chức năng trong hệ thống. Mật khẩu của người dùng thường được mã hóa trước khi lưu trữ trong cơ sở dữ liệu để ngăn chặn truy cập trái phép.
 
-# **Đang cập nhật thêm...**
+### 3.2 Quản lí thông tin cơ bản
+
+#### 3.2.1 Quản lí khách hàng
+
+##### 3.2.1.1 Danh sách khách hàng
+
+<p align="center"> <img src="/demo/images/list-customer.png" alt="list-customer" /> </p>
+
+##### 3.2.1.2 Thêm khách hàng
+
+<p align="center"> <img src="/demo/images/add-customer.png" alt="add-customer" /> </p>
+
+##### 3.2.1.3 Chỉnh sửa thông tin khách hàng
+
+<p align="center"> <img src="/demo/images/edit-customer.png" alt="edit-customer" /> </p>
+
+##### 3.2.1.4 Xem chi tiết khách hàng
+Khi xem thông tin chỉ tiết khách hàng, hệ thống sẽ trả về thôn tin của khách hàng đó, người dùng có thể chỉnh sửa hoặc xoá khách hàng tại đây. Bên cạnh đó người dùng có thể xem được tất cả những đơn hàng mà khách hàng này đã đặt hàng (Đơn hàng xuất)
+
+<p align="center"> <img src="/demo/images/detail-customer.gif" alt="detail-customer" /> </p>
+
+#### 3.2.2 Quản lí ngân hàng
+
+##### 3.2.2.1 Danh sách ngân hàng
+
+Hệ thống được thêm sẵn 63 ngân hàng của Việt Nam, người dùng có thể chỉnh sửa hoặc xoá nếu không cần thiết.
+
+<p align="center"> <img src="/demo/images/bank.gif" alt="bank" /> </p>
+
+##### 3.2.2.2 Thêm ngân hàng
+
+##### 3.2.2.3 Chỉnh sửa thông tin ngân hàng
