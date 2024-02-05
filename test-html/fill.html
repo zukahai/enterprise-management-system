@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.6/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.2/css/buttons.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.9/css/dataTables.dateTime.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.1.2/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.1.2/js/buttons.print.min.js"></script>
+  <script src="https://cdn.datatables.net/datetime/1.1.9/js/dataTables.dateTime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://momentjs.com/downloads/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css">
+</head>
+<body>
+
+<div class="container mt-4">
+  <table id="example" class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Created At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>John Doe</td>
+        <td>2024-01-01 10:30:00</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Jane Doe</td>
+        <td>2024-01-02 12:45:00</td>
+      </tr>
+      <!-- Add more sample data as needed -->
+    </tbody>
+  </table>
+</div>
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-3">
+      <label for="start_date">Start Date:</label>
+      <input type="text" id="start_date" class="form-control">
+    </div>
+    <div class="col-md-3">
+      <label for="end_date">End Date:</label>
+      <input type="text" id="end_date" class="form-control">
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('#example').DataTable({
+      dom: 'Bfrtip',
+      buttons: ['print'],
+      columnDefs: [
+        {
+          targets: 2,
+          render: function (data, type, row) {
+            return moment(data).format('YYYY-MM-DD HH:mm:ss');
+          }
+        }
+      ]
+    });
+
+    // DatePickers
+    $('#start_date').datetimepicker({
+      format: 'YYYY-MM-DD',
+      ignoreReadonly: true,
+    });
+
+    $('#end_date').datetimepicker({
+      format: 'YYYY-MM-DD',
+      ignoreReadonly: true,
+    });
+
+    // Filter event
+    $('#start_date, #end_date').on('dp.change', function () {
+      $('#example').DataTable().draw();
+    });
+  });
+</script>
+
+</body>
+</html>

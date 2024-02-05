@@ -27,6 +27,7 @@
 
 @section('js-other')
     <!-- Page JS -->
+    
     <script src="{{ asset('webhtml/assets/genarate/bank.js') }}"></script>
     <script src="{{ asset('webhtml/assets/vendor/libs/moment/moment.js') }}"></script>
     <script src="{{ asset('webhtml/assets/vendor/libs/@form-validation/umd/bundle/popular.min.js') }}"></script>
