@@ -186,13 +186,13 @@
                         <span class="menu-header-text" data-i18n="Misc">Misc</span>
                     </li>
                     <li class="menu-item">
-                        <a href="https://pixinvent.ticksy.com/" target="_blank" class="menu-link">
+                        <a href="" target="_blank" class="menu-link">
                             <i class="menu-icon tf-icons ti ti-lifebuoy"></i>
                             <div data-i18n="Support">Support</div>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="https://demos.pixinvent.com/vuexy-html-admin-template/documentation/" target="_blank"
+                        <a href="" target="_blank"
                             class="menu-link">
                             <i class="menu-icon tf-icons ti ti-file-description"></i>
                             <div data-i18n="Documentation">Documentation</div>
@@ -718,19 +718,19 @@
                                     <script>
                                         document.write(new Date().getFullYear());
                                     </script>
-                                    , made with ❤️ by <a href="fb.com/chiatayde" target="_blank"
+                                    , Tạo bởi <a href="fb.com/chiatayde" target="_blank"
                                         class="fw-medium">HaiZuka</a>
                                 </div>
                                 <div class="d-none d-lg-inline-block">
-                                    <a href="https://themeforest.net/licenses/standard" class="footer-link me-4"
+                                    <a href="" class="footer-link me-4"
                                         target="_blank">License</a>
-                                    <a href="https://1.envato.market/pixinvent_portfolio" target="_blank"
+                                    <a href="" target="_blank"
                                         class="footer-link me-4">More Themes</a>
 
-                                    <a href="https://demos.pixinvent.com/vuexy-html-admin-template/documentation/"
+                                    <a href=""
                                         target="_blank" class="footer-link me-4">Documentation</a>
 
-                                    <a href="https://pixinvent.ticksy.com/" target="_blank"
+                                    <a href="" target="_blank"
                                         class="footer-link d-none d-sm-inline-block">Support</a>
                                 </div>
                             </div>

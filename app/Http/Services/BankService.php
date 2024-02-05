@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cache;
 
 use App\Models\Bank;
 
@@ -19,11 +20,15 @@ class BankService
 
 
     public function getAll() {
-        return $this->model->orderBy('id','asc')->get();
+        return Cache::remember('all_banks', 60 * 60 * 24 * 7, function () {
+            return $this->model->orderBy('id','asc')->get();
+        });
     }
 
     public function getById($id) {
-        return $this->model->find($id);
+        return Cache::remember('bank_'.$id, 60 * 60 * 24 * 7, function () use ($id) {
+            return $this->model->find($id);
+        });
     }
 
     public function delete($id) {
@@ -31,6 +36,8 @@ class BankService
             $ojbect= $this->model->find($id);
             if (!$ojbect)  return -1;
             $ojbect->delete();
+            Cache::forget('bank_'.$id);
+            Cache::forget('all_banks');
             return $id;
         } catch (\Exception $e) {
             return -1;
@@ -48,6 +55,9 @@ class BankService
             // Lấy đối tượng đã được cập nhật
             $updatedObject = $this->model->findOrFail($id);
 
+            Cache::forget('bank_'.$id);
+            Cache::forget('all_banks');
+
             return $updatedObject;
         } catch (ModelNotFoundException $e) {
             // Xử lý khi không tìm thấy đối tượng
@@ -64,6 +74,8 @@ class BankService
             return !is_null($value);
         });
         $ojbect = $this->model->create($data);
+
+        Cache::forget('all_banks');
         return $ojbect;
     }
 }
