@@ -82,6 +82,9 @@
 </head>
 
 <body @yield('onload')>
+    {{-- @cache('cache_key', 60) 
+    {{$title}}
+    @endcache --}}
     <script>
         function loadPage(result, type) {
             if (result !== null) {
