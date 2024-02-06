@@ -41,3 +41,7 @@ trong datatable: Factories và Seeders
 https://online-video-cutter.com/vi/screen-recorder
 https://ezgif.com/video-to-gif/
 https://online-screen-recorder.com/vi
+
+-----------------------------------------------
+flatpickr
+https://flatpickr.js.org/examples/
