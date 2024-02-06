@@ -72,8 +72,30 @@ $(function () {
     var domain = document.documentElement.getAttribute('data-domain');
     // console.log('authtoken',authToken);
     dt_basic = dt_basic_table.DataTable({
+
       language: {
-        url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Vietnamese.json'
+        url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Vietnamese.json',
+        searchBuilder: {
+              button: {
+                  0: 'Tìm kiếm',
+                  1: 'Hủy bỏ',
+                  2: 'Áp dụng'
+              },
+              conditions: {
+                  title: 'Điều kiện tìm kiếm',
+                  value: 'Giá trị',
+                  condition: 'Điều kiện',
+                  remove: 'Xóa'
+              },
+              data: 'Dữ liệu',
+              conditions: 'Điều kiện',
+              condition: 'Điều kiện',
+              logicAnd: 'Và',
+              logicOr: 'Hoặc',
+              add: 'Thêm điều kiện',
+              clearAll: 'Xóa tất cả',
+              get: 'lấy'
+          }
       },
       ajax: {
         url: domain + '/api/v1/bank',
@@ -92,6 +114,7 @@ $(function () {
         { data: 'code', width: '10%' },
         { data: '', orderable: false, width: '20%' }
       ],
+
       search: {
         search: getSearchParamFromURL()
       },
@@ -119,7 +142,7 @@ $(function () {
         }
       ],
       order: [[0, 'desc']],
-      dom: '<"card-header flex-column flex-md-row"<"head-label text-center"><"dt-action-buttons text-end pt-3 pt-md-0"B>><"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>>t<"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+      // dom: '<"card-header flex-column flex-md-row"<"head-label text-center"><"dt-action-buttons text-end pt-3 pt-md-0"B>><"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>>t<"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
       displayLength: 7,
       lengthMenu: [7, 10, 25, 50, 75, 100],
       buttons: [
@@ -183,7 +206,36 @@ $(function () {
           className: 'create-new btn btn-primary waves-effect waves-light'
         }
       ],
+      dom: 'BQlfrtip',
+
+      searchBuilder: {
+        // container: '#searchBuilder',
+        language: {
+          searchBuilder: {
+              button: {
+                  0: 'Tìm kiếm',
+                  1: 'Hủy bỏ',
+                  2: 'Áp dụng'
+              },
+              conditions: {
+                  title: 'Điều kiện tìm kiếm',
+                  value: 'Giá trị',
+                  condition: 'Điều kiện',
+                  remove: 'Xóa'
+              },
+              data: 'Dữ liệu',
+              conditions: 'Điều kiện',
+              condition: 'Điều kiện',
+              logicAnd: 'Và',
+              logicOr: 'Hoặc',
+              add: 'Thêm điều kiện',
+              clearAll: 'Xóa tất cả',
+              get: 'lấy'
+          }
+      }
+    },
     });
+    dt_basic.searchBuilder.container().prependTo(table.table().container());
     $('div.head-label').html('<h5 class="card-title mb-0">Danh sách ngân hàng/h5>');
   }
 
