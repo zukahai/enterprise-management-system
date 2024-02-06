@@ -142,7 +142,7 @@
 
                         <div class="">
                             <div class="row">
-                                <label class="text-success" id="label-id" for="">thành phẩm thứ 1</label>
+                                <label class="text-success" id="label-id" for="">Thành phẩm thứ 1</label>
                                 <div class="col-sm-12">
                                     <label class="form-label" for="select2">Thành phẩm</label>
                                     <div class="input-group input-group-merge">
@@ -207,7 +207,7 @@
             // Tạo đoạn mã HTML cần thêm vào
             var htmlToAdd = `
             <div class="row mr-0" id="order_${id_order}">
-                <label class="text-success ${(id_order > 1 ? "mt-5" : "")}" for="">thành phẩm thứ ${id_order}</label>
+                <label class="text-success ${(id_order > 1 ? "mt-5" : "")}" for="">Thành phẩm thứ ${id_order}</label>
                 <div class="col-sm-12">
                     <label class="form-label" for="select2">Thành phẩm</label>
                     <div class="input-group input-group-merge">
@@ -249,7 +249,7 @@
             orderDiv.insertAdjacentHTML('beforeend', htmlToAdd);
 
             document.getElementById("count_order").value = (id_order + 1);
-            document.getElementById("label-id").innerHTML = "thành phẩm thứ " + (id_order + 1);
+            document.getElementById("label-id").innerHTML = "Thành phẩm thứ " + (id_order + 1);
             document.getElementById("add-all").innerHTML = "Thêm " + count_order + " sản phẩm vào đơn hàng";
         }
 
