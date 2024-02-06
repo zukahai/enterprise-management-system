@@ -60,6 +60,7 @@
 
     {{-- Xoá detail --}}
     <script src="{{ asset('webhtml/assets/custom-js/delete-object.js') }}"></script>
+    
 
     <!-- Helpers -->
     <script src="{{ asset('webhtml/assets/vendor/js/helpers.js') }}"></script>
@@ -76,15 +77,14 @@
     <link rel="stylesheet" href="{{asset('webhtml/assets/css/toastr.min.css')}}">
 
     <script src="{{asset('webhtml/assets/js/js-custom/jquery.min.3.7.1.js')}}"></script>
+
+    <link rel="stylesheet" href="{{ asset('webhtml/assets/vendor/libs/flatpickr/flatpickr.css')}}" />
     @yield('link-other-head')
 
 
 </head>
 
 <body @yield('onload')>
-    {{-- @cache('cache_key', 60) 
-    {{$title}}
-    @endcache --}}
     <script>
         function loadPage(result, type) {
             if (result !== null) {
@@ -788,7 +788,13 @@
     {{-- <script src="{{ asset('webhtml/assets/js/forms-tagify.js')}}"></script>
     <script src="{{ asset('webhtml/assets/js/forms-typeahead.js')}}"></script> --}}
 
+    <script src="{{ asset('webhtml/assets/vendor/libs/moment/moment.js')}}"></script>
+    <script src="{{ asset('webhtml/assets/vendor/libs/flatpickr/flatpickr.js')}}"></script>
+
     @yield('js-other')
+
+    {{-- main --}}
+    <script src="{{ asset('webhtml/assets/custom-js/main.js') }}"></script>
 
 
 </body>

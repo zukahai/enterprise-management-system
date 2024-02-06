@@ -81,7 +81,7 @@
                             <label class="form-label" for="time">Ngày giao</label>
                             <div class="input-group input-group-merge">
                                 <span class="input-group-text"><i class="ti ti-calendar"></i></span>
-                                <input type="date" class="form-control dt-date" id="edit_delivery_date"
+                                <input type="text" class="form-control dt-date dt-input flatpickr-input" id="edit_delivery_date"
                                     name="delivery_date" aria-describedby="delivery_date" />
                             </div>
                         </div>
@@ -167,7 +167,7 @@
                                     <label class="form-label" for="time">Ngày giao</label>
                                     <div class="input-group input-group-merge">
                                         <span class="input-group-text"><i class="ti ti-calendar"></i></span>
-                                        <input type="date" class="form-control dt-date" id="delivery_date"
+                                        <input type="text" class="form-control dt-date dt-input flatpickr-input" id="delivery_date"
                                             name="delivery_date" aria-describedby="delivery_date" value="" />
                                     </div>
                                 </div>
@@ -232,7 +232,7 @@
                     <label class="form-label" for="time">Ngày giao</label>
                     <div class="input-group input-group-merge">
                         <span class="input-group-text"><i class="ti ti-calendar"></i></span>
-                        <input type="date" class="form-control dt-date" id=""
+                        <input type="text" class="form-control dt-date dt-input flatpickr-input" id=""
                             name="delivery_date_${id_order}" aria-describedby="delivery_date" value="${delivery_date}"/>
                     </div>
                 </div>
