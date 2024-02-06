@@ -76,6 +76,7 @@ $(function () {
       language: {
         url: 'https://cdn.datatables.net/plug-ins/1.10.21/i18n/Vietnamese.json',
         searchBuilder: {
+              title: 'Tìm kiếm nâng cao',
               button: {
                   0: 'Tìm kiếm',
                   1: 'Hủy bỏ',
@@ -94,7 +95,7 @@ $(function () {
               logicOr: 'Hoặc',
               add: 'Thêm điều kiện',
               clearAll: 'Xóa tất cả',
-              get: 'lấy'
+              get: 'lấy',
           }
       },
       ajax: {
@@ -112,6 +113,7 @@ $(function () {
         { data: 'name', width: '20%' },
         { data: 'note', width: '40%' },
         { data: 'code', width: '10%' },
+        { data: 'created_at', width: '10%'},
         { data: '', orderable: false, width: '20%' }
       ],
 
@@ -139,10 +141,18 @@ $(function () {
               '<a href="javascript:;" class="btn btn-sm btn-icon item-edit" data-bs-toggle="modal" data-bs-target="#editUser2" onclick="editRecord(' + full['id'] + ')"><i class="text-primary ti ti-pencil"></i></a>'
             );
           }
+        },
+        {
+          targets: -2,
+          // visible: false
+          // type: 'datetime',
+          render: function (data, type, full, meta) {
+            return moment(data).format('DD/MM/YYYY');
+          }
         }
       ],
       order: [[0, 'desc']],
-      // dom: '<"card-header flex-column flex-md-row"<"head-label text-center"><"dt-action-buttons text-end pt-3 pt-md-0"B>><"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>>t<"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+      dom: '<"card-header flex-column flex-md-row"<"head-label text-center"><"dt-action-buttons text-end pt-3 pt-md-0"Q><"dt-action-buttons text-end pt-3 pt-md-0"B>><"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>>t<"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
       displayLength: 7,
       lengthMenu: [7, 10, 25, 50, 75, 100],
       buttons: [
@@ -206,7 +216,7 @@ $(function () {
           className: 'create-new btn btn-primary waves-effect waves-light'
         }
       ],
-      dom: 'BQlfrtip',
+      // dom: 'BQlfrtip',
 
       searchBuilder: {
         // container: '#searchBuilder',
@@ -235,12 +245,13 @@ $(function () {
       }
     },
     });
-    dt_basic.searchBuilder.container().prependTo(table.table().container());
+    // dt_basic.searchBuilder.container().prependTo(table.table().container());
     $('div.head-label').html('<h5 class="card-title mb-0">Danh sách ngân hàng/h5>');
   }
 
   // Delete Record
   $('.datatables-basic tbody').on('click', '.delete-record', function () {
+    console.log("delete");
     let authToken = localStorage.getItem('authToken') || "";
     let id = $(this).data('id');
     let clickedRow = $(this).closest('tr');
