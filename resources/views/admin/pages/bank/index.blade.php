@@ -28,7 +28,7 @@
 @section('js-other')
     <!-- Page JS -->
     <script src="https://cdn.datatables.net/searchbuilder/1.6.0/js/dataTables.searchBuilder.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/searchbuilder/1.6.0/css/searchBuilder.bootstrap5.css">
+    <link rel="stylesheet" href="{{ asset('webhtml/assets/css/searchBuilder.bootstrap5.css')}}">
     <script src="{{ asset('webhtml/assets/genarate/bank.js') }}"></script>
     <script src="{{ asset('webhtml/assets/vendor/libs/moment/moment.js') }}"></script>
     <script src="{{ asset('webhtml/assets/vendor/libs/@form-validation/umd/bundle/popular.min.js') }}"></script>
