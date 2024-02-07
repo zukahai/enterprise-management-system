@@ -9,7 +9,7 @@
 
 @section('title')
     @php
-        $title = $object->name." | Khách hàng | Công ty Hoàng Phát";
+        $title = $object->name . ' | Khách hàng | Công ty Hoàng Phát';
     @endphp
 @endsection
 
@@ -36,8 +36,8 @@
 @endsection
 
 @section('content')
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">{{ ucfirst($super) }} /</span> 
-        <a href="{{ route('customer.index') }}">{{ ucfirst($sub) }}</a> 
+    <h4 class="py-3 mb-4"><span class="text-muted fw-light">{{ ucfirst($super) }} /</span>
+        <a href="{{ route('customer.index') }}">{{ ucfirst($sub) }}</a>
         / {{ $object->name }}
     </h4>
     {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editUser2">
@@ -104,7 +104,7 @@
                             <div class="input-group input-group-merge">
                                 <span class="input-group-text"><i class="ti ti-calendar"></i></span>
                                 <input type="datetime-local" class="form-control dt-date" id="edit-time" name="time"
-                                    aria-describedby="time" placeholder="yyyy-MM-ddThh:mm:ss" step="any"/>
+                                    aria-describedby="time" placeholder="yyyy-MM-ddThh:mm:ss" step="any" />
                             </div>
                         </div>
                         <div class="col-sm-12">
@@ -153,11 +153,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <div class="text-center mb-4">
                         <h3 class="mb-2">Xác nhận xoá khách hàng</h3>
-                        <h2><a href="javascript:" class="mb-2 text-primary" id="delete-name-title">{{$object->name}}</a></h2>
+                        <h2><a href="javascript:" class="mb-2 text-primary"
+                                id="delete-name-title">{{ $object->name }}</a></h2>
                     </div>
                     <div id="" class="row g-3" method="POST">
                         <div class="col-sm-12 text-center">
-                            <button type="submit" class="btn btn-primary mx-auto" onclick="deleteObject({{$object->id}}, 'customer', 'khách hàng')">Xoá</button>
+                            <button type="submit" class="btn btn-primary mx-auto"
+                                onclick="deleteObject({{ $object->id }}, 'customer', 'khách hàng')">Xoá</button>
                         </div>
                     </div>
                 </div>
@@ -177,45 +179,52 @@
                 <tbody>
                     <tr>
                         <td>Mã</td>
-                        <td>{{$object->id_custom}}</td>
+                        <td>{{ $object->id_custom }}</td>
                     </tr>
                     <tr>
                         <td>Tên</td>
-                        <td>{{$object->name}}</td>
+                        <td>{{ $object->name }}</td>
                     </tr>
                     <tr>
                         <td>Địa chỉ</td>
-                        <td>{{$object->address}}</td>
+                        <td>{{ $object->address }}</td>
                     </tr>
                     <tr>
                         <td>Mã số thuế</td>
-                        <td>{{$object->mst}}</td>
+                        <td>{{ $object->mst }}</td>
                     </tr>
                     <tr>
                         <td>Thời gian nợ</td>
-                        <td>{{$object->time}}</td>
+                        <td>{{ $object->time }}</td>
                     </tr>
                     <tr>
                         <td>Số điện thoại</td>
-                        <td>{{$object->phone_number}}</td>
+                        <td>{{ $object->phone_number }}</td>
                     </tr>
                     <tr>
                         <td>Liên hệ</td>
-                        <td>{{$object->contact}}</td>
+                        <td>{{ $object->contact }}</td>
                     </tr>
                     <tr>
                         <td>Ghi chú</td>
-                        <td>{{$object->note}}</td>
+                        <td>{{ $object->note }}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div class="col-sm-12 text-center mb-2">
-            <button  class="btn btn-primary me-sm-3 me-1" data-bs-toggle="modal" data-bs-target="#edit" onclick="editRecord({{$object->id}})">Chỉnh sửa</button>
-            <button  class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete-modal">Xoá</button>
+            <button class="btn btn-primary me-sm-3 me-1" data-bs-toggle="modal" data-bs-target="#edit"
+                onclick="editRecord({{ $object->id }})">Chỉnh sửa</button>
+            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete-modal">Xoá</button>
         </div>
         <hr>
-        <h4 class="mx-2 mt-2 text-center"><a href="{{route('export-order.index')}}?s=({{$object->id_custom}})">Đơn hàng xuất</a> của khách hàng <span class="text-success"> {{$object->name}} </span></h4>
+        <h4 class="mx-2 mt-2 text-center">
+            <span class="avatar rounded-circle bg-label-success me-2 align-items-center justify-content-center">
+                <i class="ti ti-shopping-cart ti-sm"> </i>
+            </span>
+            <a href="{{ route('export-order.index') }}?s=({{ $object->id_custom }})">Đơn hàng xuất</a> của khách hàng
+            <span class="text-success"> {{ $object->name }} </span>
+        </h4>
         <div class="container">
             <table class="datatables-detail table">
                 <thead>
@@ -233,7 +242,7 @@
             </table>
         </div>
     </div>
-    <input type="hidden" id="customer_id" value="{{$object->id}}">
+    <input type="hidden" id="customer_id" value="{{ $object->id }}">
 
     <script src="{{ asset('webhtml/assets/custom-js/customer.js') }}"></script>
 

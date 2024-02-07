@@ -1,9 +1,8 @@
-var rangePickr = $('.dt-date'),
-  dateFormat = 'YYYY/MM/DD';
-
+var rangePickr = $('.dt-date')
 if (rangePickr.length) {
   rangePickr.flatpickr({
     // enableTime: true,
+    
     dateFormat: 'd/m/Y',
     locale: {
       weekdays: {
