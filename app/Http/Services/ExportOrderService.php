@@ -98,7 +98,8 @@ class ExportOrderService
             if (isset($data['finished_product_id_'.$i])) {
                 $object_data['finished_product_id'] =  $data['finished_product_id_'.$i];
                 $object_data['count'] =  $data['count_'.$i];
-                $object_data['delivery_date'] =  Carbon::createFromFormat('d/m/Y', $data['delivery_date_'.$i])->format('Y-m-d');
+                if (isset($data['delivery_date_'.$i]))
+                    $object_data['delivery_date'] =  Carbon::createFromFormat('d/m/Y', $data['delivery_date_'.$i])->format('Y-m-d');
                 $object_data['internal_code'] = $order_id_custom.'/'.$step;
                 $this->model->create($object_data);
                 $step++;
