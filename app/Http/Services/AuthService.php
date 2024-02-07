@@ -22,7 +22,7 @@ class AuthService
         return Auth::attempt($credentials);
     }
 
-    function countUser() {
+    function countObject() {
         return $this->model->count();
     }
 
@@ -36,19 +36,19 @@ class AuthService
         return $user;
     }
 
-    public function register($request) {
+    public function register($data) {
         // $role_name_default = config('app.DEFAULT_ROLE_USER');
         $role_name_default = 'admin';
 
         $role = $this->roleService->findByRoleName($role_name_default);
-        $username = $request->input('username');
-        $name = strtoupper($username);
+        $username = $data['username'];
+        $name = $data['name'];
         $avata = 'images/avatars/default/'.rand(1, 4).'.png';
 
 
         $user = User::create([
             'username' => $username,
-            'password' => Hash::make($request->input('password')),
+            'password' => Hash::make($data['password']),
             'role_id' => $role->id,
             'name' => $name,
             'avata' => $avata
