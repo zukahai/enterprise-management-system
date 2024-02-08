@@ -66,6 +66,7 @@ class UserController extends Controller
     }
 
     public function update(Request $request, $id) {
+        // dd($request->all());
         if (auth()->user()->id != $id && auth()->user()->role->role_name != 'admin')
             return redirect()->route('staff.index')->with('warning','Bạn không thể cập nhật tài khoản người khác khi không phải là amdin');
         $object = $request->only('username','name', 'email', 'date', 'cccd', 'address', 'phone_number', 'business_day', 'allowance', 'birthday');

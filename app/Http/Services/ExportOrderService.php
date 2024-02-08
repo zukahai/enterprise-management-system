@@ -44,9 +44,7 @@ class ExportOrderService
     public function update($id, $data) {
         try {
             $data['_token'] = null;
-            if (isset($data['delivery_date'])) {
-                $data['delivery_date'] = Carbon::createFromFormat('d/m/Y', $data['delivery_date'])->format('Y-m-d');
-            }
+           
             $data = array_filter($data, function ($value) {
                 return !is_null($value);
             });
@@ -98,8 +96,6 @@ class ExportOrderService
             if (isset($data['finished_product_id_'.$i])) {
                 $object_data['finished_product_id'] =  $data['finished_product_id_'.$i];
                 $object_data['count'] =  $data['count_'.$i];
-                if (isset($data['delivery_date_'.$i]))
-                    $object_data['delivery_date'] =  Carbon::createFromFormat('d/m/Y', $data['delivery_date_'.$i])->format('Y-m-d');
                 $object_data['internal_code'] = $order_id_custom.'/'.$step;
                 $this->model->create($object_data);
                 $step++;

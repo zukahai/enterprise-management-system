@@ -38,8 +38,6 @@ class SupplierService
 
     public function update($id, $data) {
         try {
-            if (isset($data['time'])) 
-                $data['time'] = Carbon::createFromFormat('d/m/Y', $data['time'])->format('Y-m-d');
             $data = array_filter($data, function ($value) {
                 return !is_null($value);
             });
@@ -59,8 +57,6 @@ class SupplierService
     }
 
     public function create($data) {
-        if (isset($data['time'])) 
-            $data['time'] = Carbon::createFromFormat('d/m/Y', $data['time'])->format('Y-m-d');
         //lọc những trường khác null trong data
         $data = array_filter($data, function ($value) {
             return !is_null($value);

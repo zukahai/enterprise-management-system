@@ -3,7 +3,7 @@ if (rangePickr.length) {
   rangePickr.flatpickr({
     // enableTime: true,
     
-    dateFormat: 'd/m/Y',
+    dateFormat: 'Y/m/d',
     locale: {
       weekdays: {
         shorthand: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],

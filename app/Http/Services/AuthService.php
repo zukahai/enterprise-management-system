@@ -63,8 +63,6 @@ class AuthService
         $data['password'] = Hash::make($data['password']);
         if (!isset($data['avata']))
             $data['avata'] = 'images/avatars/default/'.rand(1, 4).'.png';
-        if (isset($data['birthday'])) 
-            $data['birthday'] = Carbon::createFromFormat('d/m/Y', $data['birthday'])->format('Y-m-d');
 
         $filteredData = array_filter($data, function ($value) {
             return $value !== null;
@@ -88,8 +86,6 @@ class AuthService
 
     public function update($id, $data) {
         try {
-            if (isset($data['birthday'])) 
-                $data['birthday'] = Carbon::createFromFormat('d/m/Y', $data['birthday'])->format('Y-m-d');
             $this->model->where('id', $id)->update($data);
 
             // Lấy đối tượng đã được cập nhật
