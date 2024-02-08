@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('banks', function (Blueprint $table) {
+            $table->softDeletes();
             $table->id();
             $table->string('name')->default('');
             $table->string('note')->default('')->nullable();
