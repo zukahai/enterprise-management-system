@@ -11,11 +11,16 @@
             background: #000;
             margin: 0;
         }
+
+        body {
+            overflow-y: hidden;
+            overflow-x: hidden
+        }
     </style>
 </head>
 
 <body>
-    
+
     <canvas id="canvas"></canvas>
     <script>
         // when animating on canvas, it is best to use requestAnimationFrame instead of setTimeout or setInterval
@@ -141,7 +146,8 @@
             ctx.beginPath();
             // move to the last tracked coordinate in the set, then draw a line to the current x and y
             ctx.moveTo(this.coordinates[this.coordinates.length - 1][0], this.coordinates[this.coordinates.length - 1][
-                1]);
+                1
+            ]);
             ctx.lineTo(this.x, this.y);
             ctx.strokeStyle = 'hsl(' + hue + ', 100%, ' + this.brightness + '%)';
             ctx.stroke();
@@ -203,7 +209,8 @@
             ctx.beginPath();
             // move to the last tracked coordinates in the set, then draw a line to the current x and y
             ctx.moveTo(this.coordinates[this.coordinates.length - 1][0], this.coordinates[this.coordinates.length - 1][
-                1]);
+                1
+            ]);
             ctx.lineTo(this.x, this.y);
             ctx.strokeStyle = 'hsla(' + this.hue + ', 100%, ' + this.brightness + '%, ' + this.alpha + ')';
 
