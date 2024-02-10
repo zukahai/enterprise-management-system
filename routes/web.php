@@ -79,7 +79,10 @@ Route::prefix('/')->middleware('auth.custom')->group(function () {
     Route::prefix('/logout')->group(function () {
         Route::get('/', [UserController::class, 'logout'])->name('logout');
     });
+});
 
+Route::get('/2024', function () {
+    return view('admin.pages.other.2024');
 });
 
 Route::prefix('/login')->group(function () {
