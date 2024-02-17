@@ -45,3 +45,6 @@ https://online-screen-recorder.com/vi
 -----------------------------------------------
 flatpickr
 https://flatpickr.js.org/examples/
+------------------------------------------------
+ativelog
+php artisan vendor:publish --provider="Spatie\Activitylog\ActivitylogServiceProvider" --tag="config"
