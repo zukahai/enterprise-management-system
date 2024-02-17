@@ -26,6 +26,10 @@ class AuthService
         return $this->model->count();
     }
 
+    public function getById($id) {
+        return $this->model->findOrFail($id);
+    }
+
     public function loginByAccount($request) {
         $username = $request->username;
         $password = $request->password;
@@ -86,10 +90,13 @@ class AuthService
 
     public function update($id, $data) {
         try {
+            $oldData = $this->getById($id);
             $this->model->where('id', $id)->update($data);
 
             // Lấy đối tượng đã được cập nhật
             $updatedObject = $this->model->findOrFail($id);
+
+            OtherSevice::activityUpdate($oldData, $updatedObject);
 
             return $updatedObject;
         } catch (ModelNotFoundException $e) {
