@@ -19,9 +19,4 @@ class Bank extends Model
     protected static $logAttributes = ['*'];
     protected static $logOnlyDirty = true;
 
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults();
-    }
-
 }
