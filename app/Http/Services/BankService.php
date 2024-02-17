@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Services;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cache;
 
@@ -50,10 +49,14 @@ class BankService
             $data = array_filter($data, function ($value) {
                 return !is_null($value);
             });
+            $oldData = $this->getById($id);
             $this->model->where('id', $id)->update($data);
 
             // Lấy đối tượng đã được cập nhật
             $updatedObject = $this->model->findOrFail($id);
+
+            OtherSevice::activityUpdate($oldData, $updatedObject);
+
 
             Cache::forget('bank_'.$id);
             Cache::forget('all_banks');

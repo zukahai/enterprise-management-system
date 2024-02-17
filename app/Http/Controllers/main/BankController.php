@@ -6,6 +6,7 @@ use App\Http\Requests\StoreBankRequest;
 use App\Http\Requests\UpdateBankRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Services\BankService;
+use Spatie\Activitylog\Models\Activity;
 
 class BankController extends Controller
 {
