@@ -181,7 +181,7 @@
                                 <div class="timeline-event">
                                     <div class="timeline-header">
                                         <h5 class="mb-0">{{ $item->title }}</h5>
-                                        <small class="text-muted">Today</small>
+                                        <small class="text-muted">{{\Carbon\Carbon::parse($item->created_at)->diffForHumans()}}</small>
                                     </div>
                                     <div class="d-flex flex-wrap">
                                         <div class="avatar me-2">
@@ -189,6 +189,7 @@
                                                 class="rounded-circle" />
                                         </div>
                                         <div class="ms-1">
+                                            <small class="text-muted">{{ $item->created_at }}</small>
                                             <h6 class="mb-0">{{ $item->title }} có id là {{ $item->subject_id }}</h6>
                                         </div>
                                       </div>
