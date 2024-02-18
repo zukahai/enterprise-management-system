@@ -13,15 +13,4 @@ class Bank extends Model
     protected $guarded = [];
     use HasFactory;
     use SoftDeletes;
-    use LogsActivity;
-
-    protected $dates = ['deleted_at'];
-    protected static $logAttributes = ['*'];
-    protected static $logOnlyDirty = true;
-
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults();
-    }
-
 }

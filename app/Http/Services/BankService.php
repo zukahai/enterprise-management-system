@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Services;
-use Illuminate\Support\Facades\Hash;
+use Spatie\Activitylog\Models\Activity;
 use Illuminate\Support\Facades\Cache;
 
 use App\Models\Bank;
@@ -33,10 +33,13 @@ class BankService
     public function delete($id) {
         try {
             $ojbect= $this->model->find($id);
+            $data = $ojbect;
             if (!$ojbect)  return -1;
             $ojbect->delete();
             Cache::forget('bank_'.$id);
             Cache::forget('all_banks');
+
+            OtherSevice::activityDelete($data);
             return $id;
         } catch (\Exception $e) {
             return -1;
@@ -77,6 +80,9 @@ class BankService
             return !is_null($value);
         });
         $ojbect = $this->model->create($data);
+        OtherSevice::activityCreate($ojbect);
+
+        
 
         Cache::forget('all_banks');
         return $ojbect;

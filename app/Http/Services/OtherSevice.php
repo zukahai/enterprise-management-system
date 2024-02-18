@@ -37,4 +37,31 @@ class OtherSevice
             'event' => 'updated',
         ]);
     }
+
+    public static function activityCreate($data) {
+        activity()
+                ->performedOn($data)
+                ->withProperties(['data' => $data])
+                ->log('Created record with ID ' . $data->id)
+                ->causedBy(Auth::user());
+        
+        Activity::orderBy('created_at', 'desc')->first()
+        ->update([
+            'event' => 'created',
+        ]);
+    }
+
+    public static function activityDelete($data) {
+        activity()
+                ->performedOn($data)
+                ->withProperties(['data' => $data])
+                ->log('Deleted record with ID ' . $data->id)
+                ->causedBy(Auth::user());
+        
+        Activity::orderBy('created_at', 'desc')->first()
+        ->update([
+            'event' => 'deleted',
+        ]);
+    }
+
 }
