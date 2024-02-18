@@ -33,8 +33,11 @@ class ExportOrderService
     public function delete($id) {
         try {
             $ojbect= $this->model->find($id);
+            $data = $ojbect;
             if (!$ojbect)  return -1;
             $ojbect->delete();
+
+            OtherSevice::activityDelete($data);
             return $id;
         } catch (\Exception $e) {
             return -1;
@@ -44,14 +47,16 @@ class ExportOrderService
     public function update($id, $data) {
         try {
             $data['_token'] = null;
-           
             $data = array_filter($data, function ($value) {
                 return !is_null($value);
             });
+            $oldData = $this->getById($id);
             $this->model->where('id', $id)->update($data);
 
             // Lấy đối tượng đã được cập nhật
-            $updatedObject = $this->model->findOrFail($id);
+            $updatedObject = $this->getById($id);
+            // Lưu activity
+            OtherSevice::activityUpdate($oldData, $updatedObject);
 
             return $updatedObject;
         } catch (ModelNotFoundException $e) {
@@ -97,7 +102,8 @@ class ExportOrderService
                 $object_data['finished_product_id'] =  $data['finished_product_id_'.$i];
                 $object_data['count'] =  $data['count_'.$i];
                 $object_data['internal_code'] = $order_id_custom.'/'.$step;
-                $this->model->create($object_data);
+                $object = $this->model->create($object_data);
+                OtherSevice::activityCreate($object);
                 $step++;
             }
         }

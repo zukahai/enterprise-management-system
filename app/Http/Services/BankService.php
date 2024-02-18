@@ -83,8 +83,6 @@ class BankService
         $ojbect = $this->model->create($data);
         OtherSevice::activityCreate($ojbect);
 
-        
-
         Cache::forget('all_banks');
         return $ojbect;
     }

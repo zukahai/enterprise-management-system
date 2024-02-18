@@ -232,10 +232,28 @@
                                                                 <small class="text-muted">{{ $key }}</small>
                                                             </td>
                                                             <td>
-                                                                <small class="text-muted">{{ $value->old }}</small>
+                                                                @if (is_array($value->old) || is_object($value->old))
+                                                                    @foreach ($value->old as $subKey => $subValue)
+                                                                        <small class="text-muted">{{ $subKey }}:
+                                                                            {{ is_object($subValue) ? $subValue->id : $subValue }}</small><br>
+                                                                    @endforeach
+                                                                @else
+                                                                    <small
+                                                                        class="text-muted">{{ $value->old }}</small>
+
+                                                                @endif
                                                             </td>
                                                             <td>
-                                                                <small class="text-muted">{{ $value->new }}</small>
+                                                                @if (is_array($value->new) || is_object($value->new))
+                                                                    @foreach ($value->new as $subKey => $subValue)
+                                                                        <small class="text-muted">{{ $subKey }}:
+                                                                            {{ is_object($subValue) ? $subValue->id : $subValue }}</small><br>
+                                                                    @endforeach
+                                                                @else
+                                                                    <small
+                                                                        class="text-muted">{{ $value->new }}</small>
+
+                                                                @endif
                                                             </td>
                                                         </tr>
                                                     @endforeach
