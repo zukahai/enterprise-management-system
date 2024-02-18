@@ -168,20 +168,21 @@
                     </div>
                 </div>
                 <?php
-                    $count = 0;
+                $count = 0;
                 ?>
                 <div class="card-body pb-0">
                     <ul class="timeline ms-1 mb-0">
                         @foreach ($activities as $item)
                             <?php
-                                $count++;
+                            $count++;
                             ?>
                             <li class="timeline-item timeline-item-transparent">
                                 <span class="timeline-point timeline-point-{{ $item->color }}"></span>
                                 <div class="timeline-event">
                                     <div class="timeline-header">
                                         <h5 class="mb-0">{{ $item->title }}</h5>
-                                        <small class="text-muted">{{\Carbon\Carbon::parse($item->created_at)->diffForHumans()}}</small>
+                                        <small
+                                            class="text-muted">{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</small>
                                     </div>
                                     <div class="d-flex flex-wrap">
                                         <div class="avatar me-2">
@@ -192,52 +193,58 @@
                                             <small class="text-muted">{{ $item->created_at }}</small>
                                             <h6 class="mb-0">{{ $item->title }} có id là {{ $item->subject_id }}</h6>
                                         </div>
-                                      </div>
-                                      @if ($item->event != 'updated')
-                                          <details {{$count <= 2 ? 'open' : ''}}>
-                                              <summary>Thông tin chi tiết</summary>
-                                              <table class="table table-bordered">
-                                                  <tr>
-                                                      <th>Thông tin</th>
-                                                      <th>Giá trị</th>
-                                                  </tr>
-                                                  @foreach ($item->data as $key => $value)
-                                                      <tr>
-                                                          <td>
-                                                              <small class="text-muted">{{ $key }}</small>
-                                                          </td>
-                                                          <td>
-                                                              <small class="text-muted">{{ $value }}</small>
-                                                          </td>
-                                                      </tr>
-                                                  @endforeach
-                                              </table>
-                                          </details>
-                                      @else()
-                                          <details {{$count <= 2 ? 'open' : ''}}>
-                                              <summary>Thông tin chi tiết</summary>
-                                              <table class="table table-bordered">
-                                                  <tr>
-                                                      <th>Thông tin</th>
-                                                      <th>Giá trị cũ</th>
-                                                      <th>Giá trị thay đổi</th>
-                                                  </tr>
-                                                  @foreach ($item->data_changes as $key => $value)
-                                                      <tr>
-                                                          <td>
-                                                              <small class="text-muted">{{ $key }}</small>
-                                                          </td>
-                                                          <td>
-                                                              <small class="text-muted">{{ $value->old }}</small>
-                                                          </td>
-                                                          <td>
-                                                              <small class="text-muted">{{ $value->new }}</small>
-                                                          </td>
-                                                      </tr>
-                                                  @endforeach
-                                              </table>
-                                          </details>
-                                      @endif
+                                    </div>
+                                    @if ($item->event != 'updated')
+                                        <details {{ $count <= 2 ? 'open' : '' }}>
+                                            <summary>Thông tin chi tiết</summary>
+                                            <div class="table-activity">
+                                                <table class="table table-bordered">
+                                                    <tr>
+                                                        <th>Thông tin</th>
+                                                        <th>Giá trị</th>
+                                                    </tr>
+                                                    @foreach ($item->data as $key => $value)
+                                                        <tr>
+                                                            <td>
+                                                                <small class="text-muted">{{ $key }}</small>
+                                                            </td>
+                                                            <td>
+                                                                <small class="text-muted">{{ $value }}</small>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </table>
+                                            </div>
+                                        </details>
+                                    @else()
+                                        <details {{ $count <= 2 ? 'open' : '' }}>
+                                            <summary>Thông tin chi tiết</summary>
+                                            <div class="table-activity">
+                                                <table class="table table-bordered">
+                                                    <tr>
+                                                        <th>Thông tin</th>
+                                                        <th>Giá trị cũ</th>
+                                                        <th>Giá trị thay đổi</th>
+                                                    </tr>
+                                                    @foreach ($item->data_changes as $key => $value)
+                                                        <tr>
+                                                            <td>
+                                                                <small class="text-muted">{{ $key }}</small>
+                                                            </td>
+                                                            <td>
+                                                                <small class="text-muted">{{ $value->old }}</small>
+                                                            </td>
+                                                            <td>
+                                                                <small class="text-muted">{{ $value->new }}</small>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </table>
+                                            </div>
+                                        </details>
+                                    @endif
+                                    <a href="{{ $item->url }}" class="btn btn-sm btn-label-primary">Xem lịch sử chỉnh
+                                        sửa đối tượng</a>
                                 </div>
                             </li>
                         @endforeach

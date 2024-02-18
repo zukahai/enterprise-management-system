@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 use Illuminate\Support\Facades\Auth;
+use Route;
 use Spatie\Activitylog\Models\Activity;
 
 class OtherSevice
@@ -80,14 +81,18 @@ class OtherSevice
                 'color'=> 'danger'
             ],
             'model' => [
-                'App\Models\Bank' => 'Ngân hàng',
+                'App\Models\Bank' => [
+                    'text' => 'Ngân hàng',
+                    'url' => Route('bank.index').'/?s='
+                ]
             ],
         ];
 
         $activities = Activity::where('causer_id', $user_id)->orderBy('created_at', 'desc')->get();
         for ($index = 0; $index < count($activities); $index++) {
             $item = $activities[$index];
-            $item->title = $map[$item->event]['text'].' '.$map['model'][$item->subject_type];
+            $item->title = $map[$item->event]['text'].' '.$map['model'][$item->subject_type]['text'];
+            $item->url = $map['model'][$item->subject_type]['url'].$item->subject_id;
             $item->color = $map[$item->event]['color'];
             //convert string to json
             $properties = json_decode($item->properties);

@@ -92,3 +92,9 @@ table {
     height: 400px;
     object-fit: cover;
 }
+
+@media screen and (max-width: 768px) {
+    .table-activity{
+        overflow-x: auto;
+    }
+}
