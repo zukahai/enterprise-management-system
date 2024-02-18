@@ -64,4 +64,37 @@ class OtherSevice
         ]);
     }
 
+    public static function getActivitesOfUser($user_id) {
+
+        $map = [
+            'created' => [
+                'text' => 'Thêm mới một',
+                'color'=> 'success'
+            ],
+            'updated' => [
+                'text' => 'Chỉnh sửa thông tin một',
+                'color'=> 'warning'
+            ],
+            'deleted' => [
+                'text' => 'Xoá một',
+                'color'=> 'danger'
+            ],
+            'model' => [
+                'App\Models\Bank' => 'Ngân hàng',
+            ],
+        ];
+
+        $activities = Activity::where('causer_id', $user_id)->orderBy('created_at', 'desc')->get();
+        for ($index = 0; $index < count($activities); $index++) {
+            $item = $activities[$index];
+            $item->title = $map[$item->event]['text'].' '.$map['model'][$item->subject_type];
+            $item->color = $map[$item->event]['color'];
+            //convert string to json
+            $properties = json_decode($item->properties);
+            $item->data = $properties->data ?? null;
+            $item->data_changes = $properties->changes ?? null;
+        }
+        return $activities;
+    }
+
 }

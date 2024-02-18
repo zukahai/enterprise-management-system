@@ -8,6 +8,7 @@ use App\Models\Bank;
 
 class BankService
 {
+    protected $model;
     public function __construct(Bank $model)
     {
         $this->model = $model;
