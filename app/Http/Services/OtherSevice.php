@@ -125,6 +125,11 @@ class OtherSevice
                     'text' => 'Khách hàng',
                     'url' => Route('customer.index') . '/?s=',
                     'route' => Route('customer.index')
+                ],
+                'App\Models\Ingredient' => [
+                    'text' => 'Nguyên liệu',
+                    'url' => Route('ingredient.index') . '/?s=',
+                    'route' => Route('ingredient.index')
                 ]
             ],
         ];

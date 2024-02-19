@@ -8,6 +8,7 @@ use App\Models\Ingredient;
 
 class IngredientService
 {
+    protected $model;
     public function __construct(Ingredient $model)
     {
         $this->model = $model;
@@ -23,14 +24,16 @@ class IngredientService
     }
 
     public function getById($id) {
-        return $this->model->find($id);
+        return $this->model->with('unit')->find($id);
     }
 
     public function delete($id) {
         try {
             $ojbect= $this->model->find($id);
+            $data = $ojbect;
             if (!$ojbect)  return -1;
-            $ojbect->delete();
+                $ojbect->delete();
+            OtherSevice::activityDelete($data);
             return $id;
         } catch (\Exception $e) {
             return -1;
@@ -43,10 +46,14 @@ class IngredientService
             $data = array_filter($data, function ($value) {
                 return !is_null($value);
             });
+            //Lấy thông tin đối tượng cũ
+            $oldData = $this->getById($id);
+            // Cập nhật đối tượng
             $this->model->where('id', $id)->update($data);
-
             // Lấy đối tượng đã được cập nhật
-            $updatedObject = $this->model->findOrFail($id);
+            $updatedObject = $this->getById($id);
+            //Lưu activity
+            OtherSevice::activityUpdate($oldData, $updatedObject);
 
             return $updatedObject;
         } catch (ModelNotFoundException $e) {
@@ -64,6 +71,8 @@ class IngredientService
             return !is_null($value);
         });
         $ojbect = $this->model->create($data);
+        // Lưu activity
+        OtherSevice::activityCreate($ojbect);
         return $ojbect;
     }
 }
