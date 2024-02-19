@@ -180,7 +180,7 @@
                                 <span class="timeline-point timeline-point-{{ $item->color }}"></span>
                                 <div class="timeline-event">
                                     <div class="timeline-header">
-                                        <h5 class="mb-0">{{ $item->title }}</h5>
+                                        <h5 class="mb-0">{{ $item->activity }} <a href="{{$item->route }}">{{$item->name_model}}</a></h5>
                                         <small
                                             class="text-muted">{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</small>
                                     </div>
@@ -191,7 +191,7 @@
                                         </div>
                                         <div class="ms-1">
                                             <small class="text-muted">{{ $item->created_at }}</small>
-                                            <h6 class="mb-0">{{ $item->title }} có id là {{ $item->subject_id }}</h6>
+                                            <h6 class="mb-0">{{ ucfirst($item->name_model) }} có id là {{ $item->subject_id }}</h6>
                                         </div>
                                     </div>
                                     @if ($item->event != 'updated')
@@ -206,7 +206,7 @@
                                                     @foreach ($item->data as $key => $value)
                                                         <tr>
                                                             <td>
-                                                                <small class="text-muted">{{ $key }}</small>
+                                                                <small class="text-muted">{{ ucfirst($key) }}</small>
                                                             </td>
                                                             <td>
                                                                 <small class="text-muted">{{ $value }}</small>
@@ -229,12 +229,12 @@
                                                     @foreach ($item->data_changes as $key => $value)
                                                         <tr>
                                                             <td>
-                                                                <small class="text-muted">{{ $key }}</small>
+                                                                <small class="text-muted">{{ ucfirst($key) }}</small>
                                                             </td>
                                                             <td>
                                                                 @if (is_array($value->old) || is_object($value->old))
                                                                     @foreach ($value->old as $subKey => $subValue)
-                                                                        <small class="text-muted">{{ $subKey }}:
+                                                                        <small class="text-muted">{{ ucfirst($subKey) }}:
                                                                             {{ is_object($subValue) ? $subValue->id : $subValue }}</small><br>
                                                                     @endforeach
                                                                 @else
@@ -246,7 +246,7 @@
                                                             <td>
                                                                 @if (is_array($value->new) || is_object($value->new))
                                                                     @foreach ($value->new as $subKey => $subValue)
-                                                                        <small class="text-muted">{{ $subKey }}:
+                                                                        <small class="text-muted">{{ ucfirst($subKey) }}:
                                                                             {{ is_object($subValue) ? $subValue->id : $subValue }}</small><br>
                                                                     @endforeach
                                                                 @else
@@ -261,8 +261,8 @@
                                             </div>
                                         </details>
                                     @endif
-                                    <a href="{{ $item->url }}" class="btn btn-sm btn-label-primary">Xem lịch sử chỉnh
-                                        sửa đối tượng</a>
+                                    <a href="{{ $item->url }}" class="btn btn-sm btn-label-primary">Lịch sử chỉnh
+                                        sửa {{$item->name_model}}</a>
                                 </div>
                             </li>
                         @endforeach

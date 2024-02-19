@@ -13,9 +13,13 @@ class OtherSevice
     {
         $changes = [];
         $ignore = ['id', 'created_at', 'updated_at', 'deleted_at'];
+        $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
         foreach ($oldData->toArray() as $key => $value) {
-            if (!in_array($key, $ignore)) {
+            if (!in_array($key, $ignore) 
+                && isset($oldData->{$key}) && isset($newData->{$key})) {
+                if (substr($key, -3) == "_id")
+                    continue;
                 if (!isset($oldData->{$key}->id) && !isset($newData->{$key}?->id)) {
                     // Kiểm tra xem cả hai đều không phải là đối tượng
                     if ($oldData->{$key} != $newData->{$key}) {
@@ -24,11 +28,13 @@ class OtherSevice
                             'new' => $newData->{$key}
                         ];
                     }
-                } else {
+                } else if (isset($oldData->{$key}->id) && isset($newData->{$key}?->id)){
+                    $oldData->{$key}->makeHidden($hidden);
+                    $newData->{$key}->makeHidden($hidden);
                     if ($oldData->{$key}->id != $newData->{$key}->id) {
                         $changes[$key] = [
-                            'old' => $oldData->{$key}->id,
-                            'new' => $newData->{$key}->id
+                            'old' => $oldData->{$key},
+                            'new' => $newData->{$key}
                         ];
                     }
                 }
@@ -42,7 +48,7 @@ class OtherSevice
         $changes = self::getChanges($oldData, $newData);
         activity()
             ->performedOn($oldData)
-            ->withProperties(['changes' => $changes])
+            ->withProperties(['changes' => $changes, 'data' => $newData])
             // ->withEvent('updated')
             ->log('Updated record with ID ' . $oldData->id)
             ->causedBy(Auth::user());
@@ -55,13 +61,14 @@ class OtherSevice
 
     public static function activityCreate($data)
     {
+        $data->makeHidden(['created_at', 'updated_at', 'deleted_at']);
         activity()
             ->performedOn($data)
             ->withProperties(['data' => $data])
             ->log('Created record with ID ' . $data->id)
             ->causedBy(Auth::user());
 
-        Activity::orderBy('created_at', 'desc')->where('event', null)->first()
+        Activity::orderBy('created_at', 'desc')->where('event', null)
             ->update([
                 'event' => 'created',
             ]);
@@ -69,6 +76,7 @@ class OtherSevice
 
     public static function activityDelete($data)
     {
+        $data->makeHidden(['created_at', 'updated_at', 'deleted_at']);
         activity()
             ->performedOn($data)
             ->withProperties(['data' => $data])
@@ -100,11 +108,18 @@ class OtherSevice
             'model' => [
                 'App\Models\Bank' => [
                     'text' => 'Ngân hàng',
-                    'url' => Route('bank.index') . '/?s='
+                    'url' => Route('bank.index') . '/?s=',
+                    'route' => Route('bank.index')
                 ],
                 'App\Models\ExportOrder' => [
                     'text' => 'Đơn hàng xuất',
-                    'url' => Route('export-order.index') . '/?s='
+                    'url' => Route('export-order.index') . '/?s=',
+                    'route' => Route('export-order.index')
+                ],
+                'App\Models\Supplier' => [
+                    'text' => 'Nhà cung cấp',
+                    'url' => Route('supplier.index') . '/?s=',
+                    'route' => Route('supplier.index')
                 ]
             ],
         ];
@@ -112,9 +127,11 @@ class OtherSevice
         $activities = Activity::where('causer_id', $user_id)->orderBy('created_at', 'desc')->get();
         for ($index = 0; $index < count($activities); $index++) {
             $item = $activities[$index];
-            $item->title = $map[$item->event]['text'] . ' ' . $map['model'][$item->subject_type]['text'];
+            $item->activity = $map[$item->event]['text'];
             $item->url = $map['model'][$item->subject_type]['url'] . $item->subject_id;
             $item->color = $map[$item->event]['color'];
+            $item->name_model = strtolower($map['model'][$item->subject_type]['text']);
+            $item->route = $map['model'][$item->subject_type]['route'];
             //convert string to json
             $properties = json_decode($item->properties);
             $item->data = $properties->data ?? null;

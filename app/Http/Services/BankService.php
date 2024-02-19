@@ -57,7 +57,7 @@ class BankService
             $this->model->where('id', $id)->update($data);
 
             // Lấy đối tượng đã được cập nhật
-            $updatedObject = $this->model->findOrFail($id);
+            $updatedObject = $this->getById($id);
 
             OtherSevice::activityUpdate($oldData, $updatedObject);
 
@@ -81,6 +81,7 @@ class BankService
             return !is_null($value);
         });
         $ojbect = $this->model->create($data);
+        // Lưu activity
         OtherSevice::activityCreate($ojbect);
 
         Cache::forget('all_banks');

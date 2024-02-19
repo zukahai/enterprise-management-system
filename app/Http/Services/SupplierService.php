@@ -7,6 +7,7 @@ use App\Models\Supplier;
 
 class SupplierService
 {
+    protected $model;
     public function __construct(Supplier $model)
     {
         $this->model = $model;
@@ -28,8 +29,10 @@ class SupplierService
     public function delete($id) {
         try {
             $ojbect= $this->model->find($id);
+            $data = $ojbect;
             if (!$ojbect)  return -1;
-            $ojbect->delete();
+                $ojbect->delete();
+            OtherSevice::activityDelete($data);
             return $id;
         } catch (\Exception $e) {
             return -1;
@@ -41,10 +44,14 @@ class SupplierService
             $data = array_filter($data, function ($value) {
                 return !is_null($value);
             });
-            $this->model->where('id', $id)->update($data);
 
-            // Lấy đối tượng đã được cập nhật
-            $updatedObject = $this->model->findOrFail($id);
+            //Lấy thông tin đối tượng cũ
+            $oldData = $this->getById($id);
+            //Cập nhật đối tượng
+            $this->model->where('id', $id)->update($data);
+            $updatedObject = $this->getById($id);
+            //Lưu activity
+            OtherSevice::activityUpdate($oldData, $updatedObject);
 
             return $updatedObject;
         } catch (ModelNotFoundException $e) {
@@ -62,6 +69,8 @@ class SupplierService
             return !is_null($value);
         });
         $ojbect = $this->model->create($data);
+        // Lưu activity
+        OtherSevice::activityCreate($ojbect);
         return $ojbect;
     }
 }
