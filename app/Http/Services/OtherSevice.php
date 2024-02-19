@@ -48,7 +48,7 @@ class OtherSevice
         $changes = self::getChanges($oldData, $newData);
         activity()
             ->performedOn($oldData)
-            ->withProperties(['changes' => $changes, 'data' => $newData])
+            ->withProperties(['changes' => $changes, 'data' => $newData, 'oldData' => $oldData])
             // ->withEvent('updated')
             ->log('Updated record with ID ' . $oldData->id)
             ->causedBy(Auth::user());
@@ -135,6 +135,11 @@ class OtherSevice
                     'text' => 'Thành phẩm',
                     'url' => Route('finished-product.index') . '/?s=',
                     'route' => Route('finished-product.index')
+                ],
+                'App\Models\Unit' => [
+                    'text' => 'Đơn vị',
+                    'url' => Route('unit.index') . '/?s=',
+                    'route' => Route('unit.index')
                 ]
             ],
         ];
