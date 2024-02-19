@@ -120,6 +120,11 @@ class OtherSevice
                     'text' => 'Nhà cung cấp',
                     'url' => Route('supplier.index') . '/?s=',
                     'route' => Route('supplier.index')
+                ],
+                'App\Models\Customer' => [
+                    'text' => 'Khách hàng',
+                    'url' => Route('customer.index') . '/?s=',
+                    'route' => Route('customer.index')
                 ]
             ],
         ];

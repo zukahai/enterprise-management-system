@@ -7,6 +7,7 @@ use App\Models\Customer;
 
 class CustomerService
 {
+    protected $model;
     public function __construct(Customer $model)
     {
         $this->model = $model;
@@ -55,8 +56,11 @@ class CustomerService
     public function delete($id) {
         try {
             $ojbect= $this->model->find($id);
+            $data = $ojbect;
             if (!$ojbect)  return -1;
-            $ojbect->delete();
+                $ojbect->delete();
+            //Lưu activity
+            OtherSevice::activityDelete($data);
             return $id;
         } catch (\Exception $e) {
             return -1;
@@ -69,10 +73,14 @@ class CustomerService
             $data = array_filter($data, function ($value) {
                 return !is_null($value);
             });
+            //Lấy thông tin đối tượng cũ
+            $oldData = $this->getById($id);
+            // Cập nhật đối tượng
             $this->model->where('id', $id)->update($data);
-
             // Lấy đối tượng đã được cập nhật
-            $updatedObject = $this->model->findOrFail($id);
+            $updatedObject = $this->getById($id);
+            //Lưu activity
+            OtherSevice::activityUpdate($oldData, $updatedObject);
 
             return $updatedObject;
         } catch (ModelNotFoundException $e) {
@@ -90,6 +98,8 @@ class CustomerService
             return !is_null($value);
         });
         $ojbect = $this->model->create($data);
+        // Lưu activity
+        OtherSevice::activityCreate($ojbect);
         return $ojbect;
     }
 }
