@@ -5,6 +5,7 @@ namespace App\Http\Services;
 use Illuminate\Support\Facades\Auth;
 use Route;
 use Spatie\Activitylog\Models\Activity;
+use Illuminate\Support\Str;
 
 class OtherSevice
 {
@@ -16,25 +17,26 @@ class OtherSevice
         $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
         foreach ($oldData->toArray() as $key => $value) {
+            $key = Str::camel($key);
             if (!in_array($key, $ignore) 
                 && isset($oldData->{$key}) && isset($newData->{$key})) {
                 if (substr($key, -3) == "_id")
                     continue;
-                if (!isset($oldData->{$key}->id) && !isset($newData->{$key}?->id)) {
+                if (!isset($oldData->{$key}?->id) && !isset($newData->{$key}?->id)) {
                     // Kiểm tra xem cả hai đều không phải là đối tượng
                     if ($oldData->{$key} != $newData->{$key}) {
                         $changes[$key] = [
                             'old' => $oldData->{$key},
-                            'new' => $newData->{$key}
+                            'new' => $newData->{$key},
                         ];
                     }
-                } else if (isset($oldData->{$key}->id) && isset($newData->{$key}?->id)){
+                } else if (isset($oldData->{$key}?->id) && isset($newData->{$key}?->id)){
                     $oldData->{$key}->makeHidden($hidden);
                     $newData->{$key}->makeHidden($hidden);
                     if ($oldData->{$key}->id != $newData->{$key}->id) {
                         $changes[$key] = [
                             'old' => $oldData->{$key},
-                            'new' => $newData->{$key}
+                            'new' => $newData->{$key},
                         ];
                     }
                 }
