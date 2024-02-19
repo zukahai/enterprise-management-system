@@ -32,6 +32,7 @@ class SupplierService
             $data = $ojbect;
             if (!$ojbect)  return -1;
                 $ojbect->delete();
+            //Lưu activity
             OtherSevice::activityDelete($data);
             return $id;
         } catch (\Exception $e) {

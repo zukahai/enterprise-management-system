@@ -130,6 +130,11 @@ class OtherSevice
                     'text' => 'Nguyên liệu',
                     'url' => Route('ingredient.index') . '/?s=',
                     'route' => Route('ingredient.index')
+                ],
+                'App\Models\FinishedProduct' => [
+                    'text' => 'Thành phẩm',
+                    'url' => Route('finished-product.index') . '/?s=',
+                    'route' => Route('finished-product.index')
                 ]
             ],
         ];
