@@ -57,6 +57,7 @@
         * [3.4.1.3 Chỉnh Sửa Đơn Hàng Xuất](#3413-chỉnh-sửa-đơn-hàng-xuất)
       * [3.4.2 Quản Lí Đơn Hàng Nhập](#342-quản-lí-đơn-hàng-nhập)
 
+## Cập nhật
 
 ## 1. Giới thiệu chung
 Dựa vào các bảng cần quản lí thì em đã chia các bảng thành các nhóm, để dễ dàng quản lí hơn. <br>
