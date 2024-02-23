@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Http\Services;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Bank;
 
-class BankService extends BaseService
+class BaseService
 {
     protected $model;
-    public function __construct(Bank $model)
+    public function __construct(Model $model)
     {
         $this->model = $model;
     }
@@ -19,15 +19,11 @@ class BankService extends BaseService
 
 
     public function getAll() {
-        return Cache::remember('all_banks', 60 * 60 * 24 * 7, function () {
-            return $this->model->orderBy('id','asc')->get();
-        });
+        return $this->model->orderBy('id','asc')->get();
     }
 
     public function getById($id) {
-        return Cache::remember('bank_'.$id, 60 * 60 * 24 * 7, function () use ($id) {
-            return $this->model->find($id);
-        });
+        return $this->model->find($id);
     }
 
     public function delete($id) {
@@ -36,9 +32,6 @@ class BankService extends BaseService
             $data = $ojbect;
             if (!$ojbect)  return -1;
             $ojbect->delete();
-            Cache::forget('bank_'.$id);
-            Cache::forget('all_banks');
-
             OtherSevice::activityDelete($data);
             return $id;
         } catch (\Exception $e) {
@@ -60,10 +53,6 @@ class BankService extends BaseService
 
             OtherSevice::activityUpdate($oldData, $updatedObject);
 
-
-            Cache::forget('bank_'.$id);
-            Cache::forget('all_banks');
-
             return $updatedObject;
         } catch (ModelNotFoundException $e) {
             // Xử lý khi không tìm thấy đối tượng
@@ -82,8 +71,6 @@ class BankService extends BaseService
         $ojbect = $this->model->create($data);
         // Lưu activity
         OtherSevice::activityCreate($ojbect);
-
-        Cache::forget('all_banks');
         return $ojbect;
     }
 }
