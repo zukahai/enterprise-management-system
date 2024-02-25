@@ -11,6 +11,7 @@ use App\Http\Controllers\api\IngredientController;
 use App\Http\Controllers\api\UnitController;
 use App\Http\Controllers\api\FinishedProductController;
 use App\Http\Controllers\api\ExportOrderController;
+use App\Http\Controllers\api\NotificationController;
 
 
 Route::prefix('/v1')->middleware('api')->group(function () {
@@ -81,6 +82,13 @@ Route::prefix('/v1')->middleware('api')->group(function () {
         Route::get('/{id}', [ExportOrderController::class, 'show'])->name('api.export-order.show');
         Route::put('/{id}', [ExportOrderController::class, 'update'])->name('api.export-order.update');
         Route::delete('/{id}', [ExportOrderController::class, 'destroy'])->name('api.export-order.destroy');
+    });
+
+    Route::prefix('/notification')->middleware(['auth:sanctum'])->group(function () {
+        Route::get('/', [NotificationController::class, 'index'])->name('api.notification.index');
+        Route::get('/{id}', [NotificationController::class, 'show'])->name('api.notification.show');
+        Route::put('/{id}', [NotificationController::class, 'update'])->name('api.notification.update');
+        Route::delete('/{id}', [NotificationController::class, 'destroy'])->name('api.notification.destroy');
     });
     
     Route::post('/register', [UserController::class, 'register'])->name('api.account.register');

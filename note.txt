@@ -54,3 +54,8 @@ php artisan vendor:publish --provider="Spatie\Activitylog\ActivitylogServiceProv
 
 php artisan vendor:publish --provider="Spatie\Activitylog\ActivitylogServiceProvider" --tag="activitylog-migrations"
 php artisan vendor:publish --provider="Spatie\Activitylog\ActivitylogServiceProvider" --tag="activitylog-config"
+
+-----------------------------------------------------------------------------
+php artisan route:cache
+php artisan cache:clear
+php artisan view:clear
