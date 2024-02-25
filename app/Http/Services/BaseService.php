@@ -17,13 +17,20 @@ class BaseService
         return $this->model->count();
     }
 
-
     public function getAll() {
-        return $this->model->orderBy('id','asc')->get();
+        return $this->getAllWith([]);
+    }
+
+    public function getAllWith($with) {
+        return $this->model->with($with)->orderBy('id','asc')->get();
     }
 
     public function getById($id) {
         return $this->model->find($id);
+    }
+
+    public function getByIdWith($id, $with) {
+        return $this->model->with($with)->find($id);
     }
 
     public function delete($id) {

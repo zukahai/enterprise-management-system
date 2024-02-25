@@ -20,13 +20,13 @@ class BankService extends BaseService
 
     public function getAll() {
         return Cache::remember('all_banks', 60 * 60 * 24 * 7, function () {
-            return $this->model->orderBy('id','asc')->get();
+            return parent::getAll();
         });
     }
 
     public function getById($id) {
         return Cache::remember('bank_'.$id, 60 * 60 * 24 * 7, function () use ($id) {
-            return $this->model->find($id);
+            return parent::getById($id);
         });
     }
 
