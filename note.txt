@@ -31,13 +31,15 @@ protected $table = "accounts";
 -----------------------------------------------------------------------------
 Lỗi QR code:
 https://stackoverflow.com/questions/69442658/laravel-error-when-installing-simple-qrcode-library
+
 -----------------------------------------------------------------------------
 Taạo QR code bank
 https://api.vietqr.io/MB/0840140264088/100000/HaiZukaNe/vietqr_net_2.jpg
+
 --------------------------------------------------------------------------
 Nếu lỗi auth:sanctum thì mặc định thực hiện app/Exceptions/Handler.php
 
----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------
 Tạo dữ liệu mẫu:  Seeder 
 trong datatable: Factories và Seeders
 --------------------------------------------------
@@ -45,10 +47,11 @@ https://online-video-cutter.com/vi/screen-recorder
 https://ezgif.com/video-to-gif/
 https://online-screen-recorder.com/vi
 
------------------------------------------------
+-----------------------------------------------------------------------------
 flatpickr
 https://flatpickr.js.org/examples/
-------------------------------------------------
+
+-----------------------------------------------------------------------------
 ativelog
 php artisan vendor:publish --provider="Spatie\Activitylog\ActivitylogServiceProvider" --tag="config"
 
