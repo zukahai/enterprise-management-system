@@ -47,7 +47,8 @@ class UserController extends Controller
             $user->allowance = null;
         }
         $this->data['user'] = $user;
-        $this->data['activities'] = OtherSevice::getActivitesOfUser($user->id);
+        $condition = ['causer_id' => $user->id];
+        $this->data['activities'] = OtherSevice::getActivitesOfUser($condition);
         return View('admin.pages.staff.profile', $this->data);
     }
 

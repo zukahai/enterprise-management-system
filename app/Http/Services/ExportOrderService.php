@@ -12,7 +12,7 @@ class ExportOrderService extends BaseService
         OrderService $orderService
     )
     {
-        $this->model = $model;
+        parent::__construct($model);
         $this->customerService = $customerService;
         $this->orderService = $orderService;
     }
@@ -20,11 +20,11 @@ class ExportOrderService extends BaseService
 
 
     public function getAll() {
-        return $this->model->with(['order.customer', 'finishedProduct.unit'])->orderBy('id','desc')->get();
+        return parent::$model->with(['order.customer', 'finishedProduct.unit'])->orderBy('id','desc')->get();
     }
 
     public function getById($id) {
-        return $this->model->with(['order.customer', 'finishedProduct.unit'])->find($id);
+        return parent::$model->with(['order.customer', 'finishedProduct.unit'])->find($id);
     }
 
 
@@ -62,7 +62,7 @@ class ExportOrderService extends BaseService
                 $object_data['finished_product_id'] =  $data['finished_product_id_'.$i];
                 $object_data['count'] =  $data['count_'.$i];
                 $object_data['internal_code'] = $order_id_custom.'/'.$step;
-                $object = $this->model->create($object_data);
+                $object = parent::$model->create($object_data);
                 OtherSevice::activityCreate($object);
                 $step++;
             }

@@ -8,12 +8,12 @@ class OrderService extends BaseService
 {
     public function __construct(Order $model, CustomerService $customerService)
     {
-        $this->model = $model;
+        parent::__construct($model);
         $this->customerService = $customerService;
     }
 
     public function getAll() {
-        return $this->model->with(['customer', 'finishedProduct.unit'])->orderBy('id','desc')->get();
+        return parent::$model->with(['customer', 'finishedProduct.unit'])->orderBy('id','desc')->get();
     }
 
 }

@@ -8,13 +8,12 @@ use App\Models\Ingredient;
 
 class IngredientService extends BaseService
 {
-    protected $model;
     public function __construct(Ingredient $model)
     {
-        $this->model = $model;
+        parent::__construct($model);
     }
 
     public function getAll() {
-        return $this->model->with('unit')->orderBy('id','asc')->get();
+        return parent::$model->with('unit')->orderBy('id','asc')->get();
     }
 }

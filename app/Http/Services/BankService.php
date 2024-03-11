@@ -7,14 +7,13 @@ use App\Models\Bank;
 
 class BankService extends BaseService
 {
-    protected $model;
     public function __construct(Bank $model)
     {
-        $this->model = $model;
+        parent::__construct($model);
     }
    
     function countObject() {
-        return $this->model->count();
+        return parent::$model->count();
     }
 
 
@@ -32,7 +31,7 @@ class BankService extends BaseService
 
     public function delete($id) {
         try {
-            $ojbect= $this->model->find($id);
+            $ojbect= parent::$model->find($id);
             $data = $ojbect;
             if (!$ojbect)  return -1;
             $ojbect->delete();
@@ -53,7 +52,7 @@ class BankService extends BaseService
                 return !is_null($value);
             });
             $oldData = $this->getById($id);
-            $this->model->where('id', $id)->update($data);
+            parent::$model->where('id', $id)->update($data);
 
             // Lấy đối tượng đã được cập nhật
             $updatedObject = $this->getById($id);
@@ -79,7 +78,7 @@ class BankService extends BaseService
         $data = array_filter($data, function ($value) {
             return !is_null($value);
         });
-        $ojbect = $this->model->create($data);
+        $ojbect = parent::$model->create($data);
         // Lưu activity
         OtherSevice::activityCreate($ojbect);
 

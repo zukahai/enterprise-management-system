@@ -91,7 +91,7 @@ class OtherSevice
             ]);
     }
 
-    public static function getActivitesOfUser($user_id)
+    public static function getActivitesOfUser($condition)
     {
 
         $map = [
@@ -146,7 +146,8 @@ class OtherSevice
             ],
         ];
 
-        $activities = Activity::where('causer_id', $user_id)->orderBy('created_at', 'desc')->get();
+        
+        $activities = Activity::where($condition)->orderBy('created_at', 'desc')->get();
         for ($index = 0; $index < count($activities); $index++) {
             $item = $activities[$index];
             $item->activity = $map[$item->event]['text'];

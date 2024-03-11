@@ -26,6 +26,7 @@ Route::prefix('/')->middleware('auth.custom')->group(function () {
         Route::post('/', [CustomerController::class,'create'])->name('customer.create');
         Route::get('/{id}', [CustomerController::class,'show'])->name('customer.detail');
         Route::post('/update/{id?}', [CustomerController::class,'update'])->name('customer.update');
+        Route::get('/activity/{id?}', [CustomerController::class,'activity'])->name('customer.activity');
     });
 
     Route::prefix('/bank')->group(function () {

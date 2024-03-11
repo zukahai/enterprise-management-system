@@ -9,10 +9,10 @@ class RoleService extends BaseService
 {
     public function __construct(Role $model)
     {
-        $this->model = $model;
+        parent::__construct($model);
     }
 
     public function findByRoleName($roleName) {
-        return $this->model->where('role_name', $roleName)->first();
+        return parent::$model->where('role_name', $roleName)->first();
     }
 }

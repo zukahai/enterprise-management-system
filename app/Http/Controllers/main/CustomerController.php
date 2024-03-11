@@ -8,9 +8,9 @@ use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Http\Services\CustomerService;
 
-
 class CustomerController extends Controller
 {
+    protected $service;
     
     public function __construct(CustomerService $customerService)
     {
