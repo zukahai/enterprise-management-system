@@ -11,7 +11,6 @@ use App\Http\Services\CustomerService;
 class CustomerController extends Controller
 {
     protected $service;
-    
     public function __construct(CustomerService $customerService)
     {
         $this->service = $customerService;
@@ -52,6 +51,13 @@ class CustomerController extends Controller
         $object = $request->all();
         $object_update = $this->service->update($id, $object);
         return redirect()->back()->with('success','Sửa thông tin khách hàng thành công');
+    }
+
+    public function activity($id, $subject_type = null) {
+        $subject_type = "App\Models\Customer";
+        parent::activity($subject_type, $id);
+        $data = parent::getData();
+        return View('admin.pages.customer.activity', $data);
     }
 
     public function destroy(Customer $customer)
