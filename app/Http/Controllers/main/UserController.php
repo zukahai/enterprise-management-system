@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\main;
 
-use App\Http\Services\OtherSevice;
+use App\Http\Services\OtherService;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Services\AuthService;
@@ -16,11 +16,11 @@ class UserController extends Controller
 
     public function __construct(
         AuthService $authService,
-        OtherSevice $otherSevice
+        OtherService $otherService
     )
     {
         $this->service = $authService;
-
+        $this->otherService = $otherService;
     }
 
     public function index() {
@@ -48,7 +48,7 @@ class UserController extends Controller
         }
         $this->data['user'] = $user;
         $condition = ['causer_id' => $user->id];
-        $this->data['activities'] = OtherSevice::getActivitesOfUser($condition);
+        $this->data['activities'] = $this->otherService->getActivitesOfUser($condition);
         return View('admin.pages.staff.profile', $this->data);
     }
 

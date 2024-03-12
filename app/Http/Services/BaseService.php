@@ -40,7 +40,7 @@ class BaseService
             if (!$ojbect)  return -1;
             $ojbect->delete();
             // Lưu activity
-            OtherSevice::activityDelete($data);
+            OtherService::activityDelete($data);
             return $id;
         } catch (\Exception $e) {
             return -1;
@@ -59,7 +59,7 @@ class BaseService
             // Lấy đối tượng đã được cập nhật
             $updatedObject = $this->getById($id);
 
-            OtherSevice::activityUpdate($oldData, $updatedObject);
+            OtherService::activityUpdate($oldData, $updatedObject);
 
             return $updatedObject;
         } catch (ModelNotFoundException $e) {
@@ -78,7 +78,7 @@ class BaseService
         });
         $ojbect = $this->model->create($data);
         // Lưu activity
-        OtherSevice::activityCreate($ojbect);
+        OtherService::activityCreate($ojbect);
         return $ojbect;
     }
 }

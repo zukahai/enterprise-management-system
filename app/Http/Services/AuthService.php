@@ -29,6 +29,15 @@ class AuthService
         return $this->model->findOrFail($id);
     }
 
+    public function getUserHiddenAtribute($id) {
+        $user = $this->model->find($id);
+        $user->password = null;
+        $user->cccd = null;
+        $user->business_day = null;
+        $user->allowance = null;
+        return $user;
+    }
+
     public function loginByAccount($request) {
         $username = $request->username;
         $password = $request->password;

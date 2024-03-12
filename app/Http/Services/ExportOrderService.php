@@ -16,8 +16,6 @@ class ExportOrderService extends BaseService
         $this->customerService = $customerService;
         $this->orderService = $orderService;
     }
-   
-
 
     public function getAll() {
         return parent::$model->with(['order.customer', 'finishedProduct.unit'])->orderBy('id','desc')->get();

@@ -2,19 +2,24 @@
 
 namespace App\Http\Services;
 
+use Database\Seeders\UserSeeder;
 use Illuminate\Support\Facades\Auth;
 use Route;
 use Spatie\Activitylog\Models\Activity;
 use Illuminate\Support\Str;
 
-class OtherSevice
+class OtherService
 {
-
+    protected $authService;
+    public function __construct(AuthService $authService) {
+        $this->authService = $authService;
+    }
     public static function getChanges($oldData, $newData)
     {
         $changes = [];
         $ignore = ['id', 'created_at', 'updated_at', 'deleted_at'];
         $hidden = ['created_at', 'updated_at', 'deleted_at'];
+
 
         foreach ($oldData->toArray() as $key => $value) {
             $key = Str::camel($key);
@@ -91,7 +96,7 @@ class OtherSevice
             ]);
     }
 
-    public static function getActivitesOfUser($condition)
+    public function getActivitesOfUser($condition)
     {
 
         $map = [
@@ -159,6 +164,7 @@ class OtherSevice
             $properties = json_decode($item->properties);
             $item->data = $properties->data ?? null;
             $item->data_changes = $properties->changes ?? null;
+            $item->user = $this->authService->getUserHiddenAtribute($item->causer_id);
         }
         return $activities;
     }

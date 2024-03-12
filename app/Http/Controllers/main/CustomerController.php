@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\main;
 
+use App\Http\Services\OtherService;
 use App\Models\Customer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCustomerRequest;
@@ -11,9 +12,13 @@ use App\Http\Services\CustomerService;
 class CustomerController extends Controller
 {
     protected $service;
-    public function __construct(CustomerService $customerService)
+    public function __construct(
+        CustomerService $customerService,
+        OtherService $otherService
+    )
     {
         $this->service = $customerService;
+        $this->otherService = $otherService;
     }
     public function index()
     {
@@ -55,8 +60,9 @@ class CustomerController extends Controller
 
     public function activity($id, $subject_type = null) {
         $subject_type = "App\Models\Customer";
-        parent::activity($subject_type, $id);
-        $data = parent::getData();
+        // parent::activity($subject_type, $id);
+        $condition = ['subject_type' => $subject_type, 'subject_id' => $id];
+        $data['activities'] = $this->otherService->getActivitesOfUser($condition);
         return View('admin.pages.customer.activity', $data);
     }
 
