@@ -11,6 +11,7 @@ use App\Http\Controllers\main\IngredientController;
 use App\Http\Controllers\main\UnitController;
 use App\Http\Controllers\main\FinishedProductController;
 use App\Http\Controllers\main\ExportOrderController;
+use App\Http\Controllers\main\TestController;
 
 Route::prefix('/')->middleware('auth.custom')->group(function () {
     Route::get('/', [HomeController::class,'index'])->name('home');
@@ -79,6 +80,10 @@ Route::prefix('/')->middleware('auth.custom')->group(function () {
 
     Route::prefix('/logout')->group(function () {
         Route::get('/', [UserController::class, 'logout'])->name('logout');
+    });
+
+    Route::prefix(('/test'))->group(function () {
+        Route::get('/', [TestController::class, 'barCode'])->name('test.barCode');
     });
 });
 
