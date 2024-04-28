@@ -87,6 +87,7 @@
 <body @yield('onload')>
     <script>
         function loadPage(result, type) {
+            toastr.options.positionClass = 'toast-bottom-right';
             if (result !== null) {
                 if (type === 'success')
                     toastr.success(result);
