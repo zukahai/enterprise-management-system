@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Picqer\Barcode\BarcodeGeneratorPNG;
 use Intervention\Image\ImageManagerStatic as Image;
 
-class TestController extends Controller
+class BarCodeController extends Controller
 {
     public function barCode()
     {
@@ -21,6 +21,7 @@ class TestController extends Controller
         $image->insert($barcode, 'center'); // Chèn mã vạch vào vị trí trung tâm của hình ảnh
 
         // Trả về hình ảnh dưới dạng response
-        return $image->response('png');
+        $data['barcodeImage'] = $image->encode('data-url');
+        return view('admin.pages.barcode.index', $data);
     }
 }
